@@ -1,0 +1,104 @@
+import { joiResolver } from "@hookform/resolvers/joi";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import editTaskSchema from "../components/validations/editTaskSchema";
+
+export const editTask = () => {
+    const [tasks, setTasks] = useState<TTask>();
+    const { id } = useParams<{ id: string }>();
+
+    const nav = useNavigate();
+
+    const initialTask = {
+        title: tasks?.title,
+        type: tasks?.type,
+        assignedTo: tasks?.assignedTo,
+        status: tasks?.status,
+        priority: tasks?.priority,
+        description: tasks?.description
+    };
+
+    const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({
+        defaultValues: initialTask,
+        mode: "onChange",
+        resolver: joiResolver(editTaskSchema)
+    });
+
+    useEffect(() => {
+        if (tasks) {
+            reset(initialTask);
+        }
+    }, [tasks, reset]);
+
+
+    const getData = async () => {
+        try {
+            axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
+            const res = await axios.get("http://localhost:8080/tasks/" + id);
+            setTasks(res.data);
+
+        } catch (err) {
+            Swal.fire({
+                title: "error",
+                text: "could not get the data",
+                icon: "error",
+                confirmButtonColor: '#3085d6',
+                timer: 1500,
+                timerProgressBar: true
+            });
+        }
+    }
+
+    const onSubmit = async (form: typeof initialTask) => {
+
+        try {
+            axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
+            const res = await axios.put("http://localhost:8080/tasks/" + tasks?._id, form);
+            setTasks(res.data);
+
+            Swal.fire({
+                title: 'Success!',
+                text: 'Task updated successfully',
+                icon: 'success',
+                confirmButtonText: 'Cool',
+                confirmButtonColor: '#3085d6',
+                timer: 1500,
+                timerProgressBar: true
+            });
+            nav("/mytasks");
+
+        } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Task edit failed',
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#3085d6'
+            })
+        }
+    };
+
+    const navToMyTasks = () => {
+        nav("/mytasks")
+    }
+    useEffect(() => {
+        getData()
+    }, [id]);
+
+
+    return ({
+        tasks,
+        setTasks,
+        id,
+        getData,
+        onSubmit,
+        navToMyTasks,
+        register,
+        handleSubmit,
+        errors,
+        isValid,
+    });
+}
