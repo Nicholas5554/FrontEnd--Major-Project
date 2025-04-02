@@ -12,7 +12,8 @@ const MyCreatedDiscussions = () => {
         currentDiscussions,
         deleteDiscussion,
         navToDiscussion,
-        editDiscussion
+        editDiscussion,
+        navToCreateDiscussion
     } = myCreatedDiscussions();
 
     return (
@@ -43,7 +44,7 @@ const MyCreatedDiscussions = () => {
                 onPageChange={onPageChange}
                 showIcons
             />
-            {user.user?.isManager && <div className="flex items-center justify-center p-3 text-white transition-colors bg-gray-500 rounded-full cursor-pointer hover:bg-gray-600 active:bg-gray-700" /* onClick={navToCreateTask} */>
+            {user.user?.isManager && <div className="flex items-center justify-center p-3 text-white transition-colors bg-gray-500 rounded-full cursor-pointer hover:bg-gray-600 active:bg-gray-700" onClick={navToCreateDiscussion} >
                 <p className="text-lg font-semibold">Create a new Discussion</p>
                 <BiPlus
                     size={35}

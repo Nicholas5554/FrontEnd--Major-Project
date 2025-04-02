@@ -1,20 +1,19 @@
 import { FloatingLabel, Button } from "flowbite-react";
-import { editDiscussion } from "../../Hooks/editDiscussion";
+import { createDiscussion } from "../../Hooks/createDiscussion";
 
 
-const EditDiscussionDetails = () => {
+const CreateDiscussion = () => {
 
     const {
-        discussion,
-        submitForm,
+        onSubmit,
         errors,
         isValid,
         register,
         handleSubmit
-    } = editDiscussion();
+    } = createDiscussion();
 
     return (
-        <form onSubmit={handleSubmit(submitForm)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg w-1/1">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg w-1/1">
 
             <h1 className="text-2xl font-bold dark:text-white">Edit Discussion Details</h1>
 
@@ -24,7 +23,6 @@ const EditDiscussionDetails = () => {
                         type="text"
                         variant="standard"
                         label="Title"
-                        defaultValue={discussion?.title || ""}
                         {...register("title")}
                     />
                     <span className="w-32 text-sm text-red-500">{errors.title?.message}</span>
@@ -35,7 +33,6 @@ const EditDiscussionDetails = () => {
                         type="text"
                         variant="standard"
                         label="Content"
-                        defaultValue={discussion?.content || ""}
                         {...register("content")}
                     />
                     <span className="w-32 text-sm text-red-500">{errors.content?.message}</span>
@@ -48,7 +45,6 @@ const EditDiscussionDetails = () => {
                         type="text"
                         variant="standard"
                         label="Description"
-                        defaultValue={discussion?.description || ""}
                         {...register("description")}
                     />
                     <span className="w-32 text-sm text-red-500">{errors.description?.message}</span>
@@ -56,10 +52,9 @@ const EditDiscussionDetails = () => {
 
                 <div className="flex flex-col">
                     <FloatingLabel className="dark:text-white"
-                        type="text"
+                        type=""
                         variant="standard"
                         label="Users"
-                        defaultValue={Array.isArray(discussion?.users) ? discussion.users.map(user => user.userId).join(", ") : discussion?.users || ""}
                         {...register("users")}
                     />
                     <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>
@@ -74,4 +69,4 @@ const EditDiscussionDetails = () => {
     )
 }
 
-export default EditDiscussionDetails;
+export default CreateDiscussion;

@@ -2,7 +2,6 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { editDiscussionSchema } from "../components/validations/editDiscussionSchema";
@@ -10,7 +9,6 @@ import { editDiscussionSchema } from "../components/validations/editDiscussionSc
 export const editDiscussion = () => {
     const [discussion, setDiscussion] = useState<TDiscussion | null>(null);;
     const { id } = useParams<{ id: string }>();
-    const dispatch = useDispatch();
 
     const nav = useNavigate();
 

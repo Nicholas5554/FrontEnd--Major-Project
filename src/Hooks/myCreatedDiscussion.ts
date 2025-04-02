@@ -66,7 +66,7 @@ export const myCreatedDiscussions = () => {
     }
 
     const navToCreateDiscussion = () => {
-        nav('/createtask');
+        nav('/creatediscussion');
     }
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -107,6 +107,7 @@ export const myCreatedDiscussions = () => {
         onPageChange,
         currentDiscussions,
         navToDiscussion,
-        editDiscussion
+        editDiscussion,
+        navToCreateDiscussion
     })
 }
