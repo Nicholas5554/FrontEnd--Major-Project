@@ -29,6 +29,7 @@ const MyCreatedTasks = () => {
                             <h1>Title : {task.title}</h1>
                             <h3> Assigned To : {task.assignedTo}</h3>
                             <h3>Status : {task.status}</h3>
+
                             <button className="w-full h-10 text-sm text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700 active:bg-blue-800" onClick={() => navToTask(task._id)}>To Task</button>
 
                             <button className="w-full h-10 text-sm text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700 active:bg-blue-800" onClick={() => editTask(task._id)}>Edit Task</button>

@@ -21,8 +21,8 @@ const DiscussionDetails = () => {
             )}
             users: {discussion?.users && discussion.users.length > 0 ? (
                 <ul>
-                    {discussion.users.map((user, index) => (
-                        <li key={index}>{user.userId}</li>
+                    {discussion?.users.map((user, index) => (
+                        <li key={index}>{user}</li>
                     ))}
                 </ul>
             ) : (

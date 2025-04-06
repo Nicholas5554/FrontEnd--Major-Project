@@ -10,5 +10,5 @@ type TDiscussion = {
         "text": string
         "likes": Array<{ userId: string }>
     }>,
-    "users": Array<{ userId: string }>,
+    "users": string[]
 }
