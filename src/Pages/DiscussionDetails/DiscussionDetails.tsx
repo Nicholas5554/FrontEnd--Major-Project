@@ -19,6 +19,16 @@ const DiscussionDetails = () => {
             ) : (
                 <p>No comments yet</p>
             )}
+            users: {discussion?.users && discussion.users.length > 0 ? (
+                <ul>
+                    {discussion.users.map((user, index) => (
+                        <li key={index}>{user.userId}</li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No users found</p>
+            )}
+
         </Card>
     )
 };

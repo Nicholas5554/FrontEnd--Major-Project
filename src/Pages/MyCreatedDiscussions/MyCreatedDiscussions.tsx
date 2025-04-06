@@ -27,6 +27,7 @@ const MyCreatedDiscussions = () => {
                         <Card key={discussion._id} className="flex items-center justify-center w-auto text-center">
                             <h1>Title : {discussion.title}</h1>
                             <h3>Content : {discussion.content}</h3>
+                            <h3>Description : {discussion.description} </h3>
                             <button className="w-full h-10 text-sm text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700 active:bg-blue-800" onClick={() => navToDiscussion(discussion._id)}>To Discussion</button>
 
                             <button className="w-full h-10 text-sm text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700 active:bg-blue-800" onClick={() => { editDiscussion(discussion._id) }}>Edit Discussion</button>

@@ -51,11 +51,14 @@ const CreateDiscussion = () => {
                 </div>
 
                 <div className="flex flex-col">
-                    <FloatingLabel className="dark:text-white"
-                        type=""
+                    <FloatingLabel
+                        className="dark:text-white"
                         variant="standard"
                         label="Users"
-                        {...register("users")}
+                        {...register("users", {
+                            setValueAs: (value) =>
+                                typeof value === "string" ? value.split(",").map((id) => id.trim()) : [],
+                        })}
                     />
                     <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>
                 </div>
