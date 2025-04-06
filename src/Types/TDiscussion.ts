@@ -8,7 +8,7 @@ type TDiscussion = {
         "_id": string,
         "userId": string,
         "text": string
-        "likes": Array<{ userId: string }>
+        "likes": string[]
     }>,
     "users": string[]
 }

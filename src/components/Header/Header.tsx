@@ -70,6 +70,12 @@ const Header = () => {
                             My Created Discussions
                         </Navbar.Link>
                     </DropdownItem>}
+
+                    {user && <DropdownItem>
+                        <Navbar.Link as={Link} href="/mydiscussions" to="/mydiscussions" active={loc === '/mydiscussions'} className="text-lg">
+                            My Discussions
+                        </Navbar.Link>
+                    </DropdownItem>}
                 </Dropdown>}
 
                 {user && <Dropdown label="Crm's" style={{

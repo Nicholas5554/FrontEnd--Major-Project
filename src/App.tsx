@@ -24,6 +24,7 @@ import MyCreatedDiscussions from "./Pages/MyCreatedDiscussions/MyCreatedDiscussi
 import DiscussionDetails from "./Pages/DiscussionDetails/DiscussionDetails";
 import EditDiscussionDetails from "./Pages/EditDiscussion/EditDiscussion";
 import CreateDiscussion from "./Pages/CreateDiscussion/CreateDiscussion";
+import MyDiscussions from "./Pages/MyDiscussions/MyDiscussions";
 
 const App = () => {
 
@@ -67,6 +68,11 @@ const App = () => {
           <Route path="/mycreateddiscussions" element={
             <RouteGuard user={user!}>
               <MyCreatedDiscussions />
+            </RouteGuard>} />
+
+          <Route path="/mydiscussions" element={
+            <RouteGuard user={user!}>
+              <MyDiscussions />
             </RouteGuard>} />
 
           <Route path="/creatediscussion" element={
