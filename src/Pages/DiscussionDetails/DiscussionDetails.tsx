@@ -1,9 +1,9 @@
-import { Card } from "flowbite-react";
+import { Button, Card } from "flowbite-react";
 import { discussionDetails } from "../../Hooks/discussionDetails";
 
 const DiscussionDetails = () => {
 
-    const { discussion } = discussionDetails();
+    const { discussion, navToComments } = discussionDetails();
 
     return (
         <Card className="flex items-center justify-center w-auto text-center dark:text-white">
@@ -13,7 +13,7 @@ const DiscussionDetails = () => {
             Comments: {discussion?.comments && discussion.comments.length > 0 ? (
                 <ul>
                     {discussion.comments.map((comment, index) => (
-                        <li key={index}>{comment.text}</li>
+                        <li key={index}>{comment.userId} {comment.text} </li>
                     ))}
                 </ul>
             ) : (
@@ -28,6 +28,8 @@ const DiscussionDetails = () => {
             ) : (
                 <p>No users found</p>
             )}
+
+            <Button onClick={() => { navToComments(discussion?._id ?? "") }}>View only comments</Button>
 
         </Card>
     )

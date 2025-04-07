@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
 export const discussionDetails = () => {
     const [discussion, setDiscussion] = useState<TDiscussion>();
     const { id } = useParams<{ id: string }>();
+    const nav = useNavigate();
 
     const getData = async () => {
         try {
@@ -26,6 +27,11 @@ export const discussionDetails = () => {
         }
     }
 
+    const navToComments = (id: string) => {
+        nav(`/discussion/${id}/comments`);
+    }
+
+
     useEffect(() => {
         getData();
     }, []);
@@ -34,6 +40,7 @@ export const discussionDetails = () => {
         discussion,
         setDiscussion,
         id,
-        getData
+        getData,
+        navToComments
     })
 }

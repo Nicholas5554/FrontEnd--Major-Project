@@ -25,6 +25,7 @@ import DiscussionDetails from "./Pages/DiscussionDetails/DiscussionDetails";
 import EditDiscussionDetails from "./Pages/EditDiscussion/EditDiscussion";
 import CreateDiscussion from "./Pages/CreateDiscussion/CreateDiscussion";
 import MyDiscussions from "./Pages/MyDiscussions/MyDiscussions";
+import ShowComments from "./Pages/ShowComments/ShowComments";
 
 const App = () => {
 
@@ -90,6 +91,11 @@ const App = () => {
               <EditDiscussionDetails />
             </RouteGuard>} />
 
+          <Route path="/discussion/:id/comments" element={
+            <RouteGuard user={user!}>
+              <ShowComments />
+            </RouteGuard>} />
+
           {user?.isAdmin && <Route path="/crm" element={
             <RouteGuard user={user!}>
               <Crm />
@@ -104,6 +110,8 @@ const App = () => {
             <RouteGuard user={user!}>
               <DiscussionsCrm />
             </RouteGuard>} />}
+
+
 
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />

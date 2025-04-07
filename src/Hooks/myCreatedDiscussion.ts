@@ -70,13 +70,13 @@ export const myCreatedDiscussions = () => {
     }
 
     const [currentPage, setCurrentPage] = useState(1);
-    const tasksPerPage = 8;
+    const discussionsPerPage = 8;
     const onPageChange = (page: number) => setCurrentPage(page);
 
-    const indexOfLastCard = currentPage * tasksPerPage;
-    const indexOfFirstCard = indexOfLastCard - tasksPerPage;
-    const currentDiscussions = searchDiscussions().slice(indexOfFirstCard, indexOfLastCard);
-    const totalPages = Math.ceil(searchDiscussions().length / tasksPerPage);
+    const indexOfLastDiscussion = currentPage * discussionsPerPage;
+    const indexOfFirstDiscussion = indexOfLastDiscussion - discussionsPerPage;
+    const currentDiscussions = searchDiscussions().slice(indexOfFirstDiscussion, indexOfLastDiscussion);
+    const totalPages = Math.ceil(searchDiscussions().length / discussionsPerPage);
 
     const getData = async () => {
         const token = localStorage.getItem("token");
