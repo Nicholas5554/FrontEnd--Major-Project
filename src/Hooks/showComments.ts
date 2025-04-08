@@ -5,14 +5,14 @@ import Swal from "sweetalert2";
 
 
 export const showComments = () => {
-    const [comment, setComment] = useState<TDiscussion>();
+    const [comments, setComments] = useState<TDiscussion & { likes?: string[] }>();
     const { id } = useParams<{ id: string }>();
 
     const getData = async () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
             const res = await axios.get("http://localhost:8080/discussions/" + id + "/comments");
-            setComment(res.data);
+            setComments(res.data);
 
         } catch (err) {
             Swal.fire({
@@ -26,43 +26,81 @@ export const showComments = () => {
         }
     }
 
-    const likeComment = async () => {
+    const likeComment = async (comment: TDiscussion["comments"][0]) => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.patch("http://localhost:8080/discussions/" + id + "/comments/" + comment?.comments[0]._id, { commentId: id });
-            setComment(res.data);
 
-            Swal.fire({
-                title: "success",
-                text: "Comment liked successfully",
-                icon: "success",
-                confirmButtonColor: '#3085d6',
-                timer: 1500,
-                timerProgressBar: true
-            });
+            const res = await axios.patch(`http://localhost:8080/discussions/${id}/comments/${comment._id}`);
+            console.log(res.data);
+
+            const updatedComment = res.data;
+
+            if (res.status === 200) {
+                const user = JSON.parse(localStorage.getItem("user") || "{}");
+                const userId = user._id;
+                const commentIndex = comments?.comments.findIndex(c => c._id === updatedComment._id);
+                if (commentIndex === -1 || commentIndex === undefined) return;
+
+                const newComments = [...(comments?.comments ?? [])];
+                newComments[commentIndex] = updatedComment;
+
+                const isLiked = updatedComment.likes.includes(userId);
+
+                const ToastSweet = Swal.mixin({
+                    toast: true,
+                    position: "top-right",
+                    customClass: {
+                        popup: 'colored-toast',
+                    },
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                });
+
+                ToastSweet.fire({
+                    title: isLiked ? 'Comment Liked' : 'Comment Disliked',
+                    icon: isLiked ? 'success' : 'warning',
+                    toast: true,
+                });
+
+                setComments({
+                    ...comments,
+                    comments: newComments,
+                    _id: comments?._id || "",
+                    title: comments?.title || "",
+                    description: comments?.description || "",
+                    content: comments?.content || "",
+                    userId: comments?.userId || "",
+                    users: comments?.users || [],
+                    likes: comments?.likes || []
+                });
+            }
         } catch (err) {
             Swal.fire({
-                title: "error",
-                text: "could not like the Comment",
+                title: "Error",
+                text: "Could not like/unlike comment",
                 icon: "error",
+                timerProgressBar: true,
+                showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
-                timer: 1500,
-                timerProgressBar: true
             });
-            console.log(err);
-
         }
-    }
+    };
+
+
+    const currentUser = localStorage.getItem("x-auth-token");
+    const isLiked = currentUser && comments?.likes?.includes(currentUser);
 
     useEffect(() => {
         getData();
     }, []);
 
     return ({
-        comment,
-        setComment,
+        comments,
+        setComments,
         likeComment,
         id,
-        getData
+        getData,
+        isLiked
     })
 }

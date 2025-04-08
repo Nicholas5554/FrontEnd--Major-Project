@@ -43,6 +43,7 @@ export const loginPage = () => {
                 icon: "success",
                 timer: 1500,
                 timerProgressBar: true,
+                showConfirmButton: false
             });
             nav("/");
 
