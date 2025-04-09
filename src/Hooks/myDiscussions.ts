@@ -24,7 +24,7 @@ export const myDiscussions = () => {
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, Delete it"
+                confirmButtonText: "Yes, I want to leave this discussion",
 
             }).then(async (result) => {
                 if (result.isConfirmed) {
@@ -34,7 +34,7 @@ export const myDiscussions = () => {
 
                     if (res) {
                         Swal.fire({
-                            title: "Discussion Deleted",
+                            title: "Left Discussion",
                             icon: "success",
                             confirmButtonColor: "#3085d6",
                             timer: 1500,

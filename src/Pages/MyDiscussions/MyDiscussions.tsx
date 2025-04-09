@@ -1,45 +1,58 @@
-import { Card, Pagination } from "flowbite-react";
+import { FaDoorOpen } from "react-icons/fa";
 import { myDiscussions } from "../../Hooks/myDiscussions";
+import { PiCursorClickFill } from "react-icons/pi";
 
 const MyDiscussions = () => {
 
     const {
-        currentPage,
-        totalPages,
-        onPageChange,
-        currentDiscussions,
         deleteDiscussion,
-        navToDiscussion
+        navToDiscussion,
+        searchDiscussions
     } = myDiscussions();
 
     return (
-        <div className="flex flex-col items-center justify-start gap-2 text-center dark:text-white">
-            <h1 className="text-2xl">My Discussions</h1>
-            <p className="text-lg">These are the Discussions that you got added to</p>
+        <>
+            <div className="relative overflow-x-auto w-[80%]">
+                <h1 className="mb-2 text-4xl font-bold dark:text-white">My Discussions</h1>
+                <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" className="px-6 py-3">Title</th>
+                            <th scope="col" className="px-6 py-3">content</th>
+                            <th scope="col" className="px-6 py-3">To Discussion</th>
+                            <th scope="col" className="px-6 py-3">Leave Discussion</th>
+                        </tr>
+                    </thead>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 w-1/1">
-                {currentDiscussions.map((discussion: TDiscussion) => {
-                    return (
-                        <Card key={discussion._id} className="flex items-center justify-center w-auto text-center">
-                            <h1>Title : {discussion.title}</h1>
-                            <h3>Content : {discussion.content}</h3>
-                            <h3>Description : {discussion.description} </h3>
-                            <button className="w-full h-10 text-sm text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700 active:bg-blue-800" onClick={() => navToDiscussion(discussion._id)}>To Discussion</button>
-
-                            <button className="w-full h-10 text-sm text-white transition-colors bg-red-600 rounded-md hover:bg-red-700 active:bg-red-800" onClick={() => deleteDiscussion(discussion)}>Leave Discussion</button>
-
-                        </Card>
-                    )
-                })}
+                    <tbody>
+                        {searchDiscussions().map((discussion: TDiscussion) => (
+                            <tr key={discussion._id} className="bg-white border-b text- dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {discussion.title}
+                                </th>
+                                <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    {discussion.content}
+                                </td>
+                                <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <PiCursorClickFill
+                                        size={20}
+                                        className="ml-12 text-gray-900 cursor-pointer whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        onClick={() => { navToDiscussion(discussion._id) }}
+                                    />
+                                </td>
+                                <td>
+                                    <FaDoorOpen
+                                        size={20}
+                                        className="ml-12 text-gray-900 cursor-pointer whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        onClick={() => deleteDiscussion(discussion)}
+                                    />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-
-            <Pagination className="mb-5"
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={onPageChange}
-                showIcons
-            />
-        </div>
+        </>
     );
 };
 
