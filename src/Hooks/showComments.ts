@@ -31,11 +31,11 @@ export const showComments = () => {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
 
             const res = await axios.patch(`http://localhost:8080/discussions/${id}/comments/${comment._id}`);
-            console.log(res.data);
 
             const updatedComment = res.data;
 
             if (res.status === 200) {
+                console.log(res.data);
                 const user = JSON.parse(localStorage.getItem("user") || "{}");
                 const userId = user._id;
                 const commentIndex = comments?.comments.findIndex(c => c._id === updatedComment._id);
@@ -44,7 +44,20 @@ export const showComments = () => {
                 const newComments = [...(comments?.comments ?? [])];
                 newComments[commentIndex] = updatedComment;
 
+                setComments({
+                    ...comments,
+                    comments: newComments,
+                    _id: comments?._id || "",
+                    title: comments?.title || "",
+                    description: comments?.description || "",
+                    content: comments?.content || "",
+                    userId: comments?.userId || "",
+                    users: comments?.users || [],
+                    likes: comments?.likes || []
+                });
+
                 const isLiked = updatedComment.likes.includes(userId);
+
 
                 const ToastSweet = Swal.mixin({
                     toast: true,
@@ -63,17 +76,7 @@ export const showComments = () => {
                     toast: true,
                 });
 
-                setComments({
-                    ...comments,
-                    comments: newComments,
-                    _id: comments?._id || "",
-                    title: comments?.title || "",
-                    description: comments?.description || "",
-                    content: comments?.content || "",
-                    userId: comments?.userId || "",
-                    users: comments?.users || [],
-                    likes: comments?.likes || []
-                });
+
             }
         } catch (err) {
             Swal.fire({
@@ -88,9 +91,6 @@ export const showComments = () => {
     };
 
 
-    const currentUser = localStorage.getItem("x-auth-token");
-    const isLiked = currentUser && comments?.likes?.includes(currentUser);
-
     useEffect(() => {
         getData();
     }, []);
@@ -101,6 +101,5 @@ export const showComments = () => {
         likeComment,
         id,
         getData,
-        isLiked
     })
 }

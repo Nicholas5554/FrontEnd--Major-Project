@@ -4,20 +4,26 @@ import { IoHeartSharp } from "react-icons/io5";
 
 const ShowComments = () => {
 
-    const { comments, likeComment, isLiked } = showComments();
+    const { comments, likeComment } = showComments();
+
+    const currentUserId = JSON.parse(localStorage.getItem("user") || "{ }")._id;
 
     return (
-        <Card className="flex items-center justify-center w-auto text-center dark:text-white">
-            <h1>{comments?.comments.map((comment) => {
+        <Card className="flex items-center justify-center w-auto text-center dark:text-white">{
+            comments?.comments.map((comment) => {
+                const liked = comment.likes.includes(currentUserId);
                 return (
                     <div key={comment._id} className="flex flex-col items-center justify-center w-auto text-center dark:text-white">
                         <p>User Id : {comment.userId}</p>
                         <p>Text : {comment?.text}</p>
-                        <IoHeartSharp onClick={() => { likeComment(comment) }} className={`hover:cursor-pointer size-9 ${isLiked ? "text-red-500" : "text-white"}`} >like comment</IoHeartSharp>
+                        <IoHeartSharp
+                            onClick={() => likeComment(comment)}
+                            className={`hover:cursor-pointer size-9 ${liked ? "text-red-500" : "text-white"}`}
+                        />
                     </div>
-                )
-            })}</h1>
-        </Card>
+                );
+            })
+        }</Card>
     )
 };
 

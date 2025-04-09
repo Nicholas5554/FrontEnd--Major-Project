@@ -66,6 +66,12 @@ const Header = () => {
                     background: "#3b4450", color: "white", fontWeight: "bold"
                 }}>
                     {user && <DropdownItem>
+                        <Navbar.Link as={Link} href="/creatediscussion" to="/creatediscussion" active={loc === '/creatediscussion'} className="text-lg">
+                            Create Discussion
+                        </Navbar.Link>
+                    </DropdownItem>}
+
+                    {user && <DropdownItem>
                         <Navbar.Link as={Link} href="/mycreateddiscussions" to="/mycreateddiscussions" active={loc === '/mycreateddiscussions'} className="text-lg">
                             My Created Discussions
                         </Navbar.Link>
