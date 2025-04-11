@@ -47,6 +47,13 @@ const Header = () => {
                 }}>
                     {user?.isManager && (
                         <DropdownItem>
+                            <Navbar.Link as={Link} href="/createtask" to="/createtask" active={loc === '/createtask'} className="text-lg">
+                                Create Task
+                            </Navbar.Link>
+                        </DropdownItem>
+                    )}
+                    {user?.isManager && (
+                        <DropdownItem>
                             <Navbar.Link as={Link} href="/mytasks" to="/mytasks" active={loc === '/mytasks'} className="text-lg">
                                 My Created Tasks
                             </Navbar.Link>

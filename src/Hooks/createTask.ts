@@ -12,7 +12,7 @@ export const createTask = () => {
         "title": "",
         "type": "",
         "assignedTo": "",
-        "status": "",
+        "status": "to do",
         "priority": "",
         "description": ""
     }
