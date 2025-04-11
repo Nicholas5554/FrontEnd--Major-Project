@@ -1,43 +1,66 @@
-import { Button, Card, Pagination } from "flowbite-react";
+
 import { FaPencil } from "react-icons/fa6";
 import { useMyAssignedTasks } from "../../Hooks/useMyAssignedTasks";
+import { PiCursorClickFill } from "react-icons/pi";
 
 const MyAssignedTasks = () => {
     const {
         navToTask,
-        currentPage,
-        totalPages,
-        onPageChange,
-        currentTasks,
+        searchTasks,
+        ChangeStatus
     } = useMyAssignedTasks();
 
+
     return (
-        <div className="flex flex-col items-center justify-start gap-2 text-center dark:text-white">
-            <h1 className="text-2xl">My Assigned Tasks</h1>
-            <p className="text-lg">These are the tasks that you need to get done with</p>
+        <>
+            <div className="relative overflow-x-auto w-[90%]">
+                <h1 className="mb-2 text-4xl font-bold dark:text-white">My Assigned Tasks</h1>
+                <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" className="px-6 py-3">Title</th>
+                            <th scope="col" className="px-6 py-3">Status</th>
+                            <th scope="col" className="px-6 py-3">Priority</th>
+                            <th scope="col" className="px-6 py-3">To Task</th>
+                            <th scope="col" className="px-6 py-3">Update Status</th>
+                        </tr>
+                    </thead>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 w-1/1">
-                {currentTasks.map((task: TTask) => {
-                    return (
-                        <Card key={task._id} className="flex items-center justify-center w-auto text-center">
-                            <h1>Title : {task.title}</h1>
-                            <Button onClick={() => navToTask(task._id)}>to tesk</Button>
-                            <FaPencil
-                                size={30}
-                                className="m-auto cursor-pointer hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
-                            />
-                        </Card>
-                    )
-                })}
+                    <tbody>
+                        {searchTasks().map((task: TTask) => (
+                            <tr key={task._id} className="bg-white border-b text- dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" onClick={() => navToTask(task._id)}>
+                                    {task.title}
+                                </th>
+                                <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    {task.status}
+                                </td>
+                                <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    {task.priority}
+                                </td>
+
+                                <td>
+                                    <PiCursorClickFill
+                                        size={20}
+                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        onClick={() => navToTask(task._id)}
+                                    />
+                                </td>
+
+                                <td>
+                                    <FaPencil
+                                        size={20}
+                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        onClick={() => ChangeStatus(task)}
+                                    />
+                                </td>
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-
-            <Pagination className="mb-5"
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={onPageChange}
-                showIcons
-            />
-        </div>
+        </>
     );
 };
 

@@ -3,13 +3,12 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { TRootState } from "../Store/bigPie";
+import Swal from "sweetalert2";
 
 export const useMyAssignedTasks = () => {
     const [tasks, setTasks] = useState<TTask[]>([]);
     const nav = useNavigate();
     const searchWord = useSelector((state: TRootState) => state.searchSlice.search);
-    const [currentPage, setCurrentPage] = useState(1);
-    const tasksPerPage = 8;
 
     const searchTasks = () => {
         return tasks.filter((item: TTask) => item.title.toLowerCase().includes(searchWord.toLowerCase()));
@@ -19,12 +18,53 @@ export const useMyAssignedTasks = () => {
         nav(`/task/${id}`);
     };
 
-    const onPageChange = (page: number) => setCurrentPage(page);
+    const ChangeStatus = async (task: TTask) => {
+        try {
+            const { value: newStatus } = await Swal.fire({
+                title: "Change Status",
+                input: "select",
+                inputOptions: {
+                    'to do': 'To Do',
+                    'in progress': 'In Progress',
+                    'completed': 'Completed'
+                },
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                inputPlaceholder: "Select status",
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'You need to select a status!';
+                    }
+                }
+            });
 
-    const indexOfLastCard = currentPage * tasksPerPage;
-    const indexOfFirstCard = indexOfLastCard - tasksPerPage;
-    const currentTasks = searchTasks().slice(indexOfFirstCard, indexOfLastCard);
-    const totalPages = Math.ceil(searchTasks().length / tasksPerPage);
+            if (newStatus) {
+                setTasks(prevTasks =>
+                    prevTasks.map(t =>
+                        t._id === task._id ? { ...t, status: newStatus } : t
+                    )
+                );
+
+                await axios.patch(`http://localhost:8080/tasks/status/${task._id}`, { status: newStatus });
+
+                Swal.fire({
+                    title: `Task status updated to ${newStatus}`,
+                    icon: "success",
+                    timer: 1500,
+                    timerProgressBar: true,
+                    confirmButtonColor: "#3085d6"
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Error",
+                text: "Could not change status",
+                icon: "error",
+                confirmButtonColor: '#3085d6',
+            });
+        }
+    };
 
     useEffect(() => {
         const getData = async () => {
@@ -50,9 +90,6 @@ export const useMyAssignedTasks = () => {
         searchTasks,
         navToTask,
         user,
-        currentPage,
-        totalPages,
-        onPageChange,
-        currentTasks,
+        ChangeStatus
     };
 };
