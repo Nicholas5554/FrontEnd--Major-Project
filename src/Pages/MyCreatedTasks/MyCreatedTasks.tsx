@@ -1,61 +1,78 @@
-import { Card, Pagination } from "flowbite-react";
-import { BiPlus } from "react-icons/bi";
 import { myCreatedTasks } from "../../Hooks/myCreatedTasks";
+import { FaPencil, FaTrash } from "react-icons/fa6";
+import { PiCursorClickFill } from "react-icons/pi";
 
 const MyCreatedTasks = () => {
 
     const {
-        user,
         navToTask,
         deleteTask,
         editTask,
-        navToCreateTask,
-        currentPage,
-        totalPages,
-        onPageChange,
-        currentTasks,
-        ChangeStatus
+        ChangeStatus,
+        searchTasks
     } = myCreatedTasks();
 
     return (
-        <div className="flex flex-col items-center justify-start gap-2 text-center dark:text-white">
-            <h1 className="text-2xl">My Created Tasks</h1>
-            <p className="text-lg">These are the tasks that you created</p>
+        <>
+            <div className="relative overflow-x-auto w-[90%]">
+                <h1 className="mb-2 text-4xl font-bold dark:text-white">Tasks Chart</h1>
+                <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" className="px-6 py-3">Title</th>
+                            <th scope="col" className="px-6 py-3">Assigned To</th>
+                            <th scope="col" className="px-6 py-3">Status</th>
+                            <th scope="col" className="px-6 py-3">Priority</th>
+                            <th scope="col" className="px-6 py-3">To Task</th>
+                            <th scope="col" className="px-6 py-3">Update Status</th>
+                            <th scope="col" className="px-6 py-3">Delete Task</th>
+                        </tr>
+                    </thead>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 w-1/1">
-                {currentTasks.map((task: TTask) => {
-                    return (
-                        <Card key={task._id} className="flex items-center justify-center w-auto text-center">
-                            <h1>Title : {task.title}</h1>
-                            <h3> Assigned To : {task.assignedTo}</h3>
-                            <h3>Status : {task.status}</h3>
+                    <tbody>
+                        {searchTasks().map((task: TTask) => (
+                            <tr key={task._id} className="bg-white border-b text- dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" onClick={() => navToTask(task._id)}>
+                                    {task.title}
+                                </th>
+                                <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    {task.assignedTo}
+                                </td>
+                                <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    {task.status}
+                                </td>
+                                <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    {task.priority}
+                                </td>
 
-                            <button className="w-full h-10 text-sm text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700 active:bg-blue-800" onClick={() => navToTask(task._id)}>To Task</button>
+                                <td>
+                                    <PiCursorClickFill
+                                        size={20}
+                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        onClick={() => editTask(task._id)}
+                                    />
+                                </td>
+                                <td>
+                                    <FaPencil
+                                        size={20}
+                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        onClick={() => ChangeStatus(task)}
+                                    />
+                                </td>
 
-                            <button className="w-full h-10 text-sm text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700 active:bg-blue-800" onClick={() => editTask(task._id)}>Edit Task</button>
-
-                            <button className="w-full h-10 text-sm text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700 active:bg-blue-800" onClick={() => ChangeStatus(task)}>Change Status</button>
-
-                            <button className="w-full h-10 text-sm text-white transition-colors bg-red-600 rounded-md hover:bg-red-700 active:bg-red-800" onClick={() => deleteTask(task)}>Delete Task</button>
-
-                        </Card>
-                    )
-                })}
+                                <td>
+                                    <FaTrash
+                                        size={20}
+                                        className="ml-12 text-gray-900 cursor-pointer whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        onClick={() => deleteTask(task)}
+                                    />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-
-            <Pagination className="mb-5"
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={onPageChange}
-                showIcons
-            />
-            {user.user?.isManager && <div className="flex items-center justify-center p-3 text-white transition-colors bg-gray-500 rounded-full cursor-pointer hover:bg-gray-600 active:bg-gray-700" onClick={navToCreateTask}>
-                <p className="text-lg font-semibold">Create a new Task</p>
-                <BiPlus
-                    size={35}
-                />
-            </div>}
-        </div>
+        </>
     );
 };
 
