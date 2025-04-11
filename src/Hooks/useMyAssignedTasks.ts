@@ -24,7 +24,6 @@ export const useMyAssignedTasks = () => {
                 title: "Change Status",
                 input: "select",
                 inputOptions: {
-                    'to do': 'To Do',
                     'in progress': 'In Progress',
                     'completed': 'Completed'
                 },
