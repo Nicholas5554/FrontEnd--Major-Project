@@ -26,40 +26,44 @@ export const showComments = () => {
         }
     }
 
+
+
     const likeComment = async (comment: TDiscussion["comments"][0]) => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
 
             const res = await axios.patch(`http://localhost:8080/discussions/${id}/comments/${comment._id}`);
 
-            const updatedComment = res.data;
+            if (res) {
+                const updatedComment = res.data;
 
-            if (res.status === 200) {
-                console.log(res.data);
-                const user = JSON.parse(localStorage.getItem("user") || "{}");
-                const userId = user._id;
-                const commentIndex = comments?.comments.findIndex(c => c._id === updatedComment._id);
-                if (commentIndex === -1 || commentIndex === undefined) return;
-
-                const newComments = [...(comments?.comments ?? [])];
-                newComments[commentIndex] = updatedComment;
-
-                setComments({
-                    ...comments,
-                    comments: newComments,
-                    _id: comments?._id || "",
-                    title: comments?.title || "",
-                    description: comments?.description || "",
-                    content: comments?.content || "",
-                    userId: comments?.userId || "",
-                    users: comments?.users || [],
-                    likes: comments?.likes || []
+                setComments((prev) => {
+                    if (!prev) return prev;
+                    const updatedComments = prev.comments.map((c) =>
+                        c._id === updatedComment._id ? updatedComment : c
+                    );
+                    return { ...prev, comments: updatedComments };
                 });
 
-                const isLiked = updatedComment.likes.includes(userId);
+                const updatedLikes = updatedComment.likes || [];
 
+                const token = localStorage.getItem("token");
 
-                const ToastSweet = Swal.mixin({
+                if (!token) {
+                    console.error("No token found in localStorage");
+                    return;
+                }
+
+                const payloadBase64 = token.split('.')[1];
+                const payloadDecoded = JSON.parse(atob(payloadBase64));
+
+                const userId = payloadDecoded._id;
+
+                const isLiked = updatedLikes.includes(userId);
+
+                await Swal.fire({
+                    title: isLiked ? 'Comment Liked' : 'Comment Disliked',
+                    icon: isLiked ? 'success' : 'warning',
                     toast: true,
                     position: "top-right",
                     customClass: {
@@ -69,13 +73,6 @@ export const showComments = () => {
                     timer: 1500,
                     timerProgressBar: true,
                 });
-
-                ToastSweet.fire({
-                    title: isLiked ? 'Comment Liked' : 'Comment Disliked',
-                    icon: isLiked ? 'success' : 'warning',
-                    toast: true,
-                });
-
 
             }
         } catch (err) {
@@ -90,6 +87,18 @@ export const showComments = () => {
         }
     };
 
+    let userId = "";
+    const token = localStorage.getItem("token");
+    if (token) {
+        try {
+            const payloadBase64 = token.split('.')[1];
+            const payloadDecoded = JSON.parse(atob(payloadBase64));
+            userId = payloadDecoded._id;
+        } catch (e) {
+            console.error("Invalid token:", e);
+        }
+    }
+
 
     useEffect(() => {
         getData();
@@ -101,5 +110,6 @@ export const showComments = () => {
         likeComment,
         id,
         getData,
+        userId
     })
 }
