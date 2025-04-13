@@ -16,7 +16,7 @@ const ShowComments = () => {
                         <p>Text : {comment?.text}</p>
                         <IoHeartSharp
                             onClick={() => likeComment(comment)}
-                            className={`hover:cursor-pointer size-9 ${comment.likes?.includes(userId || "") ? "text-red-500" : "text-white"}`}
+                            className={`hover:cursor-pointer size-9 ${comment.likes?.includes(userId || "") ? "text-red-500" : "text-grey-500"}`}
                         />
                     </div>
                 );

@@ -67,7 +67,7 @@ export const showComments = () => {
                     toast: true,
                     position: "top-right",
                     customClass: {
-                        popup: 'colored-toast',
+                        popup: `colored-toast ${document.documentElement.classList.contains("dark") ? "swal-dark" : ""}`,
                     },
                     showConfirmButton: false,
                     timer: 1500,
