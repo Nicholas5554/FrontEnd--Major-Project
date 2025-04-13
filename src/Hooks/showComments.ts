@@ -26,7 +26,37 @@ export const showComments = () => {
         }
     }
 
+    const deleteComment = async (comment: TDiscussion["comments"][0]) => {
+        try {
 
+            axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
+            await axios.delete(`http://localhost:8080/discussions/${id}/comments/${comment._id}`);
+
+            setComments((prev) => {
+                if (!prev) return prev;
+                const updatedComments = prev.comments.filter((c) => c._id !== comment._id);
+                return { ...prev, comments: updatedComments };
+            });
+
+            await Swal.fire({
+                title: "Comment Deleted",
+                icon: "success",
+                timerProgressBar: true,
+                showConfirmButton: true,
+                confirmButtonColor: '#3085d6',
+            });
+
+        } catch (err) {
+            Swal.fire({
+                title: "Error",
+                text: "Could not delete comment",
+                icon: "error",
+                timerProgressBar: true,
+                showConfirmButton: true,
+                confirmButtonColor: '#3085d6',
+            });
+        }
+    };
 
     const likeComment = async (comment: TDiscussion["comments"][0]) => {
         try {
@@ -110,6 +140,7 @@ export const showComments = () => {
         likeComment,
         id,
         getData,
-        userId
+        userId,
+        deleteComment
     })
 }
