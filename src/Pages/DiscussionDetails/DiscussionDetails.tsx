@@ -3,7 +3,7 @@ import { discussionDetails } from "../../Hooks/discussionDetails";
 
 const DiscussionDetails = () => {
 
-    const { discussion, navToComments } = discussionDetails();
+    const { discussion, navToComments, addComment } = discussionDetails();
 
     return (
         <Card className="flex items-center justify-center w-auto text-center dark:text-white">
@@ -14,8 +14,8 @@ const DiscussionDetails = () => {
                 <ul>
                     {discussion.comments.map((comment, index) => (
                         <>
-                            <li>{comment.userId}</li>
-                            <li key={index}>{comment.text} </li>
+                            {/*      <li>{comment.userId}</li> */}
+                            <li key={index} className="underline">{comment.text} </li>
                         </>
                     ))}
                 </ul>
@@ -33,6 +33,7 @@ const DiscussionDetails = () => {
             )}
 
             <Button onClick={() => { navToComments(discussion?._id ?? "") }} >View only comments</Button>
+            <Button onClick={addComment}>Add Comment </Button>
 
         </Card>
     )

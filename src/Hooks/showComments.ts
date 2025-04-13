@@ -28,7 +28,6 @@ export const showComments = () => {
 
     const deleteComment = async (comment: TDiscussion["comments"][0]) => {
         try {
-
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
             await axios.delete(`http://localhost:8080/discussions/${id}/comments/${comment._id}`);
 
@@ -39,10 +38,16 @@ export const showComments = () => {
             });
 
             await Swal.fire({
+                toast: true,
+                position: "top-right",
                 title: "Comment Deleted",
                 icon: "success",
+                customClass: {
+                    popup: `colored-toast ${document.documentElement.classList.contains("dark") ? "swal-dark" : ""}`,
+                },
                 timerProgressBar: true,
-                showConfirmButton: true,
+                showConfirmButton: false,
+                timer: 1500,
                 confirmButtonColor: '#3085d6',
             });
 
