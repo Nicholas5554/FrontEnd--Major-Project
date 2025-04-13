@@ -33,7 +33,7 @@ const DiscussionDetails = () => {
             )}
 
             <Button onClick={() => { navToComments(discussion?._id ?? "") }} >View only comments</Button>
-            <Button onClick={addComment}>Add Comment </Button>
+            <Button onClick={() => { addComment() }}>Add Comment </Button>
 
         </Card>
     )

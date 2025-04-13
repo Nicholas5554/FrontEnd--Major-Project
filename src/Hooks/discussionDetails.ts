@@ -53,14 +53,14 @@ export const discussionDetails = () => {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
 
             const res = await axios.patch(`http://localhost:8080/discussions/${id}/comments`, { comments: [{ text }] });
-            console.log(res.data);
-
 
             setDiscussion((prev) => {
                 if (!prev) return prev;
                 const updatedComments = [...prev.comments, res.data];
                 return { ...prev, comments: updatedComments };
             });
+
+            getData();
 
             await Swal.fire({
                 title: "Comment Added",
@@ -76,7 +76,7 @@ export const discussionDetails = () => {
                 background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                 color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             });
-            nav(`/discussion/${id}`);
+
 
         } catch (err) {
             Swal.fire({
@@ -98,7 +98,7 @@ export const discussionDetails = () => {
 
     useEffect(() => {
         getData();
-    }, [id]);
+    }, []);
 
     return ({
         discussion,
