@@ -5,7 +5,6 @@ import { FaPencil } from "react-icons/fa6";
 const TasksCrm = () => {
 
     const {
-        navToTask,
         deleteTask,
         ChangeStatus,
         searchTasks
@@ -30,11 +29,11 @@ const TasksCrm = () => {
                     <tbody>
                         {searchTasks().map((task: TTask) => (
                             <tr key={task._id} className="bg-white border-b text- dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" onClick={() => navToTask(task._id)}>
+                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {task.title}
                                 </th>
                                 <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                    {task.assignedTo}
+                                    {task.assignedTo ? `${task.assignedTo.name.first} ${task.assignedTo.name.last}` : "Unassigned"}
                                 </td>
                                 <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                     {task.status}

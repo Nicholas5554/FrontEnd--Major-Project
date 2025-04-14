@@ -38,7 +38,7 @@ const MyCreatedTasks = () => {
                                     {task.title}
                                 </th>
                                 <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                    {task.assignedTo}
+                                    {task.assignedTo ? `${task.assignedTo.name.first} ${task.assignedTo.name.last}` : "Unassigned"}
                                 </td>
                                 <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                     {task.status}

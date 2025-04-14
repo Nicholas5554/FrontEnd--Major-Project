@@ -22,15 +22,6 @@ export const tasksCrmFuncs = () => {
         nav("/task/" + id);
     }
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const cardsPerPage = 8;
-    const onPageChange = (page: number) => setCurrentPage(page);
-
-    const indexOfLastCard = currentPage * cardsPerPage;
-    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    const currentTasks = searchTasks().slice(indexOfFirstCard, indexOfLastCard);
-    const totalPages = Math.ceil(searchTasks().length / cardsPerPage);
-
     const fetchTasks = async () => {
         try {
             const res = await axios.get('http://localhost:8080/tasks');
@@ -146,10 +137,6 @@ export const tasksCrmFuncs = () => {
         tasks,
         searchTasks,
         user,
-        currentPage,
-        totalPages,
-        onPageChange,
-        currentTasks,
         navToTask,
         deleteTask,
         ChangeStatus

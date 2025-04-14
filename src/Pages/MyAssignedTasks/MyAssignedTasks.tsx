@@ -18,6 +18,7 @@ const MyAssignedTasks = () => {
                 <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
+                            <th scope="col" className="px-6 py-3">Assigning User</th>
                             <th scope="col" className="px-6 py-3">Title</th>
                             <th scope="col" className="px-6 py-3">Status</th>
                             <th scope="col" className="px-6 py-3">Priority</th>
@@ -29,7 +30,10 @@ const MyAssignedTasks = () => {
                     <tbody>
                         {searchTasks().map((task: TTask) => (
                             <tr key={task._id} className="bg-white border-b text- dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" onClick={() => navToTask(task._id)}>
+                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {task.userId ? `${task.userId.name.first} ${task.userId.name.last}` : "Unknown"}
+                                </th>
+                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {task.title}
                                 </th>
                                 <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
