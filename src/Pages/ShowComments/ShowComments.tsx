@@ -13,9 +13,15 @@ const ShowComments = () => {
             comments?.comments?.map((comment) => {
                 return (
                     <div key={comment._id} className="flex flex-col items-center justify-center w-auto text-center dark:text-white">
-                        <p>User Id : {comment.userId}</p>
+                        <p>
+                            User: {comment.userId && comment.userId.name
+                                ? `${comment.userId.name.first || "Unknown"} ${comment.userId.name.last || "User"}`
+                                : "User not found"}
+                        </p>
+
                         <p>Text : {comment?.text}</p>
                         <div className="flex flex-row items-center justify-center w-auto text-center dark:text-white">
+
                             <IoHeartSharp
                                 onClick={() => likeComment(comment)}
                                 className={`hover:cursor-pointer size-9 ${comment.likes?.includes(userId || "") ? "text-red-500" : "text-grey-500"}`}

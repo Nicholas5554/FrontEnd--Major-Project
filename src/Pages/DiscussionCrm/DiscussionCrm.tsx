@@ -11,12 +11,12 @@ const DiscussionsCrm = () => {
     return (
         <>
             <div className="relative overflow-x-auto w-[80%]">
-                <h1 className="mb-2 text-4xl font-bold dark:text-white">Tasks Chart</h1>
+                <h1 className="mb-2 text-4xl font-bold dark:text-white">Discussion Chart</h1>
                 <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">Title</th>
-                            <th scope="col" className="px-6 py-3">User Id </th>
+                            <th scope="col" className="px-6 py-3">The User Who Created</th>
                             <th scope="col" className="px-6 py-3">content</th>
                             <th scope="col" className="px-6 py-3">Delete Discussion</th>
                         </tr>
@@ -29,7 +29,7 @@ const DiscussionsCrm = () => {
                                     {discussion.title}
                                 </th>
                                 <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                    {discussion.userId}
+                                    {discussion.userId ? `${discussion.userId.name.first} ${discussion.userId.name.last}` : "User not found"}
                                 </td>
                                 <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                     {discussion.content}

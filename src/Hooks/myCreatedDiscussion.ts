@@ -69,15 +69,6 @@ export const myCreatedDiscussions = () => {
         nav('/creatediscussion');
     }
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const discussionsPerPage = 8;
-    const onPageChange = (page: number) => setCurrentPage(page);
-
-    const indexOfLastDiscussion = currentPage * discussionsPerPage;
-    const indexOfFirstDiscussion = indexOfLastDiscussion - discussionsPerPage;
-    const currentDiscussions = searchDiscussions().slice(indexOfFirstDiscussion, indexOfLastDiscussion);
-    const totalPages = Math.ceil(searchDiscussions().length / discussionsPerPage);
-
     const getData = async () => {
         const token = localStorage.getItem("token");
         if (token) {
@@ -102,10 +93,6 @@ export const myCreatedDiscussions = () => {
         searchDiscussions,
         deleteDiscussion,
         user,
-        currentPage,
-        totalPages,
-        onPageChange,
-        currentDiscussions,
         navToDiscussion,
         editDiscussion,
         navToCreateDiscussion
