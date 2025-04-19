@@ -14,6 +14,7 @@ export const showComments = () => {
             const res = await axios.get("http://localhost:8080/discussions/" + id + "/comments");
             setComments(res.data);
 
+
         } catch (err) {
             Swal.fire({
                 title: "error",
@@ -69,6 +70,7 @@ export const showComments = () => {
 
             const res = await axios.patch(`http://localhost:8080/discussions/${id}/comments/${comment._id}`);
 
+
             if (res) {
                 const updatedComment = res.data;
 
@@ -91,9 +93,7 @@ export const showComments = () => {
 
                 const payloadBase64 = token.split('.')[1];
                 const payloadDecoded = JSON.parse(atob(payloadBase64));
-
                 const userId = payloadDecoded._id;
-
                 const isLiked = updatedLikes.includes(userId);
 
                 await Swal.fire({
@@ -120,6 +120,7 @@ export const showComments = () => {
                 confirmButtonColor: '#3085d6',
             });
         }
+
     };
 
     let userId = "";
@@ -133,7 +134,6 @@ export const showComments = () => {
             console.error("Invalid token:", e);
         }
     }
-
 
     useEffect(() => {
         getData();
