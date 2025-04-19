@@ -15,7 +15,7 @@ export const editTask = () => {
     const initialTask = {
         title: tasks?.title,
         type: tasks?.type,
-        assignedTo: tasks?.assignedTo,
+        assignedTo: tasks?.assignedTo._id,
         status: tasks?.status,
         priority: tasks?.priority,
         description: tasks?.description
@@ -47,7 +47,12 @@ export const editTask = () => {
                 icon: "error",
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             });
         }
     }
@@ -66,7 +71,12 @@ export const editTask = () => {
                 confirmButtonText: 'Cool',
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             });
             nav("/mytasks");
 
@@ -76,7 +86,12 @@ export const editTask = () => {
                 text: 'Task edit failed',
                 icon: 'error',
                 confirmButtonText: 'Ok',
-                confirmButtonColor: '#3085d6'
+                confirmButtonColor: '#3085d6',
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             })
         }
     };

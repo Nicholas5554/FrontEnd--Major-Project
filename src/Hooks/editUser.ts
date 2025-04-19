@@ -48,7 +48,6 @@ export const editUser = () => {
     }, [userInfo, reset]);
 
     const getData = async () => {
-
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
             const res = await axios.get("http://localhost:8080/users/" + id);
@@ -62,7 +61,12 @@ export const editUser = () => {
                 icon: "error",
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             })
         }
     };
@@ -80,9 +84,15 @@ export const editUser = () => {
                 icon: "success",
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             });
             navToProfile();
+
         } catch (error) {
             Swal.fire({
                 title: "error",
@@ -90,7 +100,12 @@ export const editUser = () => {
                 icon: "error",
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             })
         }
     }
@@ -103,10 +118,15 @@ export const editUser = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: `Change your status to ${userInfo?.isManager ? "personal" : "manager"}`
+            confirmButtonText: `Change your status to ${userInfo?.isManager ? "personal" : "manager"}`,
+            customClass: {
+                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+            },
+            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
+
         }).then(async (result) => {
             if (result.isConfirmed) {
-
                 try {
                     axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
                     const res = await axios.patch(
@@ -120,7 +140,12 @@ export const editUser = () => {
                         icon: "success",
                         confirmButtonColor: '#3085d6',
                         timer: 1500,
-                        timerProgressBar: true
+                        timerProgressBar: true,
+                        customClass: {
+                            popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                        },
+                        background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                        color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
                     });
                     navToProfile();
 
@@ -131,7 +156,12 @@ export const editUser = () => {
                         icon: "error",
                         confirmButtonColor: '#3085d6',
                         timer: 1500,
-                        timerProgressBar: true
+                        timerProgressBar: true,
+                        customClass: {
+                            popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                        },
+                        background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                        color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
                     });
                 }
             };
@@ -147,7 +177,13 @@ export const editUser = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete my account"
+            confirmButtonText: "Yes, delete my account",
+            customClass: {
+                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+            },
+            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
+
         }).then(async (result) => {
             if (result.isConfirmed) {
 
@@ -164,7 +200,12 @@ export const editUser = () => {
                         icon: "success",
                         confirmButtonColor: '#3085d6',
                         timer: 1500,
-                        timerProgressBar: true
+                        timerProgressBar: true,
+                        customClass: {
+                            popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                        },
+                        background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                        color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
                     });
                     nav("/");
                 } catch (error) {
@@ -174,7 +215,12 @@ export const editUser = () => {
                         icon: "error",
                         confirmButtonColor: '#3085d6',
                         timer: 1500,
-                        timerProgressBar: true
+                        timerProgressBar: true,
+                        customClass: {
+                            popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                        },
+                        background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                        color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
                     })
                 }
             };

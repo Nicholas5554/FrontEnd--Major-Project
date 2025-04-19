@@ -17,7 +17,7 @@ export const editDiscussion = () => {
         content: discussion?.content,
         description: discussion?.description,
         users: [
-            discussion?.users[0]
+            discussion?.users?._id[0]
         ],
     }
 

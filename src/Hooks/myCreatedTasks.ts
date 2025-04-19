@@ -24,7 +24,12 @@ export const myCreatedTasks = () => {
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, Delete it"
+                confirmButtonText: "Yes, Delete it",
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
 
             }).then(async (result) => {
                 if (result.isConfirmed) {
@@ -39,6 +44,11 @@ export const myCreatedTasks = () => {
                             confirmButtonColor: "#3085d6",
                             timer: 1500,
                             timerProgressBar: true,
+                            customClass: {
+                                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                            },
+                            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
                         });
                         newTasks.splice(index, 1);
                         setTasks(newTasks);
@@ -52,7 +62,12 @@ export const myCreatedTasks = () => {
                 icon: "error",
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             });
         }
     };
@@ -74,7 +89,12 @@ export const myCreatedTasks = () => {
                     if (!value) {
                         return 'You need to select a status!';
                     }
-                }
+                },
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             });
 
             if (newStatus) {
@@ -87,11 +107,16 @@ export const myCreatedTasks = () => {
                 await axios.patch(`http://localhost:8080/tasks/status/${task._id}`, { status: newStatus });
 
                 Swal.fire({
-                    title: `Task status updated to ${newStatus}`,
+                    title: `Task status updated to : "${newStatus}"`,
                     icon: "success",
                     timer: 1500,
                     timerProgressBar: true,
-                    confirmButtonColor: "#3085d6"
+                    confirmButtonColor: "#3085d6",
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
                 });
                 navToMyTasks()
             }
@@ -101,6 +126,12 @@ export const myCreatedTasks = () => {
                 text: "Could not change status",
                 icon: "error",
                 confirmButtonColor: '#3085d6',
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
+
             });
         }
     };

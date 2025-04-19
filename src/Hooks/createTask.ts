@@ -36,7 +36,12 @@ export const createTask = () => {
                 confirmButtonText: 'Cool',
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             });
             nav("/mytasks");
 

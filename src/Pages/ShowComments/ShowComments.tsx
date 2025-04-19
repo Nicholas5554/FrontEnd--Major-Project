@@ -19,7 +19,7 @@ const ShowComments = () => {
                                 : "User not found"}
                         </p>
 
-                        <p>Text : {comment?.text}</p>
+                        <p className="mt-1 mb-2">Text : {comment?.text}</p>
                         <div className="flex flex-row items-center justify-center w-auto text-center dark:text-white">
 
                             <IoHeartSharp
@@ -28,7 +28,7 @@ const ShowComments = () => {
                             />
                             <FaTrash
                                 size={20}
-                                className="text-gray-900 cursor-pointer size-8 whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                className="ml-2 text-gray-900 cursor-pointer size-8 whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                 onClick={() => deleteComment(comment)}
                             />
                         </div>

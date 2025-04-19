@@ -49,7 +49,7 @@ const EditTask = () => {
                             type="text"
                             variant="standard"
                             label="Assigned To"
-                            defaultValue={tasks?.assignedTo || ""}
+                            defaultValue={tasks?.assignedTo._id || ""}
                             {...register("assignedTo")}
                         />
                         <span className="w-32 text-sm text-red-500">{errors.assignedTo?.message}</span>

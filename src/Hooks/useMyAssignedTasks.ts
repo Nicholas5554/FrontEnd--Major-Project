@@ -31,6 +31,11 @@ export const useMyAssignedTasks = () => {
                 cancelButtonColor: "#d33",
                 inputPlaceholder: "Select status",
                 showCancelButton: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
                 inputValidator: (value) => {
                     if (!value) {
                         return 'You need to select a status!';
@@ -48,11 +53,16 @@ export const useMyAssignedTasks = () => {
                 await axios.patch(`http://localhost:8080/tasks/status/${task._id}`, { status: newStatus });
 
                 Swal.fire({
-                    title: `Task status updated to ${newStatus}`,
+                    title: `Task status updated to : "${newStatus}"`,
                     icon: "success",
-                    timer: 1500,
+                    timer: 2500,
                     timerProgressBar: true,
-                    confirmButtonColor: "#3085d6"
+                    confirmButtonColor: "#3085d6",
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                 });
             }
         } catch (error) {
@@ -61,6 +71,11 @@ export const useMyAssignedTasks = () => {
                 text: "Could not change status",
                 icon: "error",
                 confirmButtonColor: '#3085d6',
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
         }
     };
@@ -75,7 +90,17 @@ export const useMyAssignedTasks = () => {
                 const res = await axios.get('http://localhost:8080/tasks/myAssignedTasks');
                 setTasks(res.data);
             } catch (err) {
-                console.error("Error fetching tasks:", err);
+                Swal.fire({
+                    title: "Error",
+                    text: "Could not fetch tasks",
+                    icon: "error",
+                    confirmButtonColor: '#3085d6',
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+                });
             }
         };
 

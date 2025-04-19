@@ -23,21 +23,7 @@ const DiscussionDetails = () => {
                 <p>No users found</p>
             )}
 
-            Comments : {discussion?.comments && discussion.comments.length > 0 ? (
-                <ul>
-                    {discussion.comments.map((comment, index) => (
-                        <>
-                            <li>User : {comment.userId ? `${comment.userId.name.first} ${comment.userId.name.last}` : ""}</li>
-                            <li key={index} className="mt-2">Comment : {comment.text} </li>
-                        </>
-                    ))}
-                </ul>
-            ) : (
-                <p>No comments yet</p>
-            )}
-
-
-            <Button onClick={() => { navToComments(discussion?._id ?? "") }} >View only comments</Button>
+            <Button onClick={() => { navToComments(discussion?._id ?? "") }} >View comments</Button>
             <Button onClick={() => { addComment() }}>Add Comment </Button>
 
         </Card>

@@ -120,7 +120,6 @@ export const showComments = () => {
                 confirmButtonColor: '#3085d6',
             });
         }
-
     };
 
     let userId = "";
