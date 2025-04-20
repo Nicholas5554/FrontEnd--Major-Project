@@ -40,7 +40,7 @@ export const createTask = () => {
                     popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
                 },
                 background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
-                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
             nav("/mytasks");
 
@@ -51,7 +51,12 @@ export const createTask = () => {
                 text: 'Task creation failed',
                 icon: 'error',
                 confirmButtonText: 'Ok',
-                confirmButtonColor: '#3085d6'
+                confirmButtonColor: '#3085d6',
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             })
         }
     };

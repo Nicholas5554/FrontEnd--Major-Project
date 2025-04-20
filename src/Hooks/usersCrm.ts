@@ -28,7 +28,12 @@ export const crm = () => {
                 icon: "warning",
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
         }
     }
@@ -41,7 +46,13 @@ export const crm = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: `Change this account status to ${user?.isManager ? "personal" : "Manager"}`
+            confirmButtonText: `Change this account status to ${user?.isManager ? "personal" : "Manager"}`,
+            customClass: {
+                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+            },
+            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+
         }).then(async (result) => {
             if (result.isConfirmed) {
 
@@ -56,7 +67,12 @@ export const crm = () => {
                         icon: "success",
                         confirmButtonColor: '#3085d6',
                         timer: 1500,
-                        timerProgressBar: true
+                        timerProgressBar: true,
+                        customClass: {
+                            popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                        },
+                        background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                        color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                     });
 
                 } catch (error) {
@@ -67,7 +83,12 @@ export const crm = () => {
                         icon: "error",
                         confirmButtonColor: '#3085d6',
                         timer: 1500,
-                        timerProgressBar: true
+                        timerProgressBar: true,
+                        customClass: {
+                            popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                        },
+                        background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                        color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                     })
                 }
 
@@ -84,7 +105,12 @@ export const crm = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes delete this account"
+            confirmButtonText: "Yes delete this account",
+            customClass: {
+                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+            },
+            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
@@ -98,7 +124,12 @@ export const crm = () => {
                         icon: "success",
                         confirmButtonColor: '#3085d6',
                         timer: 1500,
-                        timerProgressBar: true
+                        timerProgressBar: true,
+                        customClass: {
+                            popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                        },
+                        background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                        color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                     });
 
                 } catch (error) {
@@ -108,7 +139,12 @@ export const crm = () => {
                         icon: "error",
                         confirmButtonColor: '#3085d6',
                         timer: 1500,
-                        timerProgressBar: true
+                        timerProgressBar: true,
+                        customClass: {
+                            popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                        },
+                        background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                        color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                     })
                 }
             };

@@ -15,15 +15,6 @@ export const discussionCrmFuncs = () => {
         return discussions?.filter((item: TDiscussion) => item.title.includes(searchWord.toLocaleLowerCase()));
     }
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const cardsPerPage = 8;
-    const onPageChange = (page: number) => setCurrentPage(page);
-
-    const indexOfLastCard = currentPage * cardsPerPage;
-    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    const currentTasks = searchDiscussions().slice(indexOfFirstCard, indexOfLastCard);
-    const totalPages = Math.ceil(searchDiscussions().length / cardsPerPage);
-
     const fetchDiscussions = async () => {
         try {
             const res = await axios.get('http://localhost:8080/discussions');
@@ -36,6 +27,11 @@ export const discussionCrmFuncs = () => {
                 timerProgressBar: true,
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
         }
     }
@@ -48,7 +44,12 @@ export const discussionCrmFuncs = () => {
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, Delete it"
+                confirmButtonText: "Yes, Delete it",
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
 
             }).then(async (result) => {
                 if (result.isConfirmed) {
@@ -58,11 +59,16 @@ export const discussionCrmFuncs = () => {
 
                     if (res) {
                         Swal.fire({
-                            title: "Card Deleted",
+                            title: "Discussion Deleted",
                             icon: "success",
                             confirmButtonColor: "#3085d6",
                             timer: 1500,
                             timerProgressBar: true,
+                            customClass: {
+                                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                            },
+                            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                         });
                         newDiscussions.splice(index, 1);
                         setDiscussions(newDiscussions);
@@ -77,7 +83,12 @@ export const discussionCrmFuncs = () => {
                 icon: "error",
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
         }
     };
@@ -91,10 +102,6 @@ export const discussionCrmFuncs = () => {
         searchDiscussions,
         fetchDiscussions,
         user,
-        currentPage,
-        totalPages,
-        onPageChange,
-        currentTasks,
         deleteDiscussion
     })
 }
