@@ -59,7 +59,7 @@ const EditDiscussionDetails = () => {
                         type="text"
                         variant="standard"
                         label="Users"
-                        defaultValue={Array.isArray(discussion?.users) ? discussion.users.map(user => user.userId).join(", ") : discussion?.users || ""}
+                        defaultValue={Array.isArray(discussion?.users) ? discussion.users.map(user => user._id).join(", ") : discussion?.users._id || ""}
                         {...register("users")}
                     />
                     <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>

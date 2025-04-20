@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { editDiscussionSchema } from "../components/validations/editDiscussionSchema";
 
 export const editDiscussion = () => {
-    const [discussion, setDiscussion] = useState<TDiscussion | null>(null);;
+    const [discussion, setDiscussion] = useState<TDiscussion | null>(null);
     const { id } = useParams<{ id: string }>();
 
     const nav = useNavigate();
@@ -16,9 +16,7 @@ export const editDiscussion = () => {
         title: discussion?.title,
         content: discussion?.content,
         description: discussion?.description,
-        users: [
-            discussion?.users?._id[0]
-        ],
+        users: Array.isArray(discussion?.users) ? discussion.users.map(user => user._id) : [],
     }
 
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({
@@ -39,6 +37,8 @@ export const editDiscussion = () => {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
             const res = await axios.get("http://localhost:8080/discussions/" + id);
             setDiscussion(res.data);
+            console.log(res.data);
+
 
 
         } catch (error) {
