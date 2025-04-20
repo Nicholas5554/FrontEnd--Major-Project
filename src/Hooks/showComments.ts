@@ -22,7 +22,13 @@ export const showComments = () => {
                 icon: "error",
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+
             });
         }
     }
@@ -60,6 +66,12 @@ export const showComments = () => {
                 timerProgressBar: true,
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+
             });
         }
     };
@@ -118,6 +130,12 @@ export const showComments = () => {
                 timerProgressBar: true,
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+
             });
         }
     };

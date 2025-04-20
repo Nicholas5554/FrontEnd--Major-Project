@@ -24,7 +24,12 @@ export const myCreatedDiscussions = () => {
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, Delete it"
+                confirmButtonText: "Yes, Delete it",
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
 
             }).then(async (result) => {
                 if (result.isConfirmed) {
@@ -39,6 +44,11 @@ export const myCreatedDiscussions = () => {
                             confirmButtonColor: "#3085d6",
                             timer: 1500,
                             timerProgressBar: true,
+                            customClass: {
+                                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                            },
+                            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                         });
                         newDiscussions.splice(index, 1);
                         setDiscussions(newDiscussions);
@@ -52,7 +62,12 @@ export const myCreatedDiscussions = () => {
                 icon: "error",
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
         }
     };

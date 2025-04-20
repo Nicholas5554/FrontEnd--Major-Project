@@ -27,7 +27,6 @@ export const createTask = () => {
 
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-
             await axios.post("http://localhost:8080/tasks", form);
             Swal.fire({
                 title: 'Success!',

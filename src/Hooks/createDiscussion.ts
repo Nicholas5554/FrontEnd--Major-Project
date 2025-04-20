@@ -8,7 +8,7 @@ import { editDiscussionSchema } from "../components/validations/editDiscussionSc
 export const createDiscussion = () => {
     const nav = useNavigate();
 
-    const initialFromData = {
+    const initialFormData = {
         "title": "",
         "description": "",
         "content": "",
@@ -16,12 +16,12 @@ export const createDiscussion = () => {
     }
 
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({
-        defaultValues: initialFromData,
+        defaultValues: initialFormData,
         mode: "onChange",
         resolver: joiResolver(editDiscussionSchema)
     });
 
-    const onSubmit = async (form: typeof initialFromData) => {
+    const onSubmit = async (form: typeof initialFormData) => {
 
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";

@@ -25,6 +25,12 @@ export const myDiscussions = () => {
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Yes, I want to leave this discussion",
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+
 
             }).then(async (result) => {
                 if (result.isConfirmed) {
@@ -39,6 +45,12 @@ export const myDiscussions = () => {
                             confirmButtonColor: "#3085d6",
                             timer: 1500,
                             timerProgressBar: true,
+                            customClass: {
+                                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                            },
+                            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+
                         });
                         newDiscussions.splice(index, 1);
                         setDiscussions(newDiscussions);
@@ -48,11 +60,17 @@ export const myDiscussions = () => {
         } catch (error) {
             Swal.fire({
                 title: "Error",
-                text: "could not delete Discussion",
+                text: "could not Leave Discussion",
                 icon: "error",
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+
             });
         }
     };
@@ -60,15 +78,6 @@ export const myDiscussions = () => {
     const navToDiscussion = (id: string) => {
         nav(`/discussion/${id}`);
     }
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const discussionsPerPage = 8;
-    const onPageChange = (page: number) => setCurrentPage(page);
-
-    const indexOfLastDiscussion = currentPage * discussionsPerPage;
-    const indexOfFirstDiscussion = indexOfLastDiscussion - discussionsPerPage;
-    const currentDiscussions = searchDiscussions().slice(indexOfFirstDiscussion, indexOfLastDiscussion);
-    const totalPages = Math.ceil(searchDiscussions().length / discussionsPerPage);
 
     const getData = async () => {
         const token = localStorage.getItem("token");
@@ -94,10 +103,6 @@ export const myDiscussions = () => {
         searchDiscussions,
         deleteDiscussion,
         user,
-        currentPage,
-        totalPages,
-        onPageChange,
-        currentDiscussions,
-        navToDiscussion,
+        navToDiscussion
     })
 }
