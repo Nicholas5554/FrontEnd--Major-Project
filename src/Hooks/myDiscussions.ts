@@ -87,7 +87,25 @@ export const myDiscussions = () => {
 
         const res = await axios.get('http://localhost:8080/discussions/my-discussions');
         setDiscussions(res.data);
+        if (res.data.length === 0) {
+            Swal.fire({
+                title: "Error",
+                text: "could not Get Discussions",
+                icon: "error",
+                showConfirmButton: true,
+                confirmButtonColor: '#3085d6',
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+
+            });
+        }
+
     }
+
 
     useEffect(() => {
         getData();

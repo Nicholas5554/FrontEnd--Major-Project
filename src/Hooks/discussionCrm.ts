@@ -19,6 +19,21 @@ export const discussionCrmFuncs = () => {
         try {
             const res = await axios.get('http://localhost:8080/discussions');
             setDiscussions(res.data);
+            if (res.data.length === 0) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Could not get Discussions",
+                    icon: "warning",
+                    timerProgressBar: true,
+                    showConfirmButton: true,
+                    confirmButtonColor: '#3085d6',
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+                });
+            }
         } catch (err: any) {
             Swal.fire({
                 title: "Error",

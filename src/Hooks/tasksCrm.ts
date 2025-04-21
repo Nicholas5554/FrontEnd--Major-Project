@@ -26,6 +26,21 @@ export const tasksCrmFuncs = () => {
         try {
             const res = await axios.get('http://localhost:8080/tasks');
             setTasks(res.data);
+            if (res.data.length === 0) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Could not get Tasks",
+                    icon: "warning",
+                    timerProgressBar: true,
+                    showConfirmButton: true,
+                    confirmButtonColor: '#3085d6',
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+                });
+            }
         } catch (err: any) {
             Swal.fire({
                 title: "Error",
@@ -34,58 +49,14 @@ export const tasksCrmFuncs = () => {
                 timerProgressBar: true,
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
         }
     }
-
-
-    const ChangeStatus = async (task: TTask) => {
-        try {
-            const { value: newStatus } = await Swal.fire({
-                title: "Change Status",
-                input: "select",
-                inputOptions: {
-                    'to do': 'To Do',
-                    'in progress': 'In Progress',
-                    'completed': 'Completed'
-                },
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                inputPlaceholder: "Select status",
-                showCancelButton: true,
-                inputValidator: (value) => {
-                    if (!value) {
-                        return 'You need to select a status!';
-                    }
-                }
-            });
-
-            if (newStatus) {
-                setTasks(prevTasks =>
-                    prevTasks.map(t =>
-                        t._id === task._id ? { ...t, status: newStatus } : t
-                    )
-                );
-
-                await axios.patch(`http://localhost:8080/tasks/status/${task._id}`, { status: newStatus });
-
-                Swal.fire({
-                    title: `Task status updated to ${newStatus}`,
-                    icon: "success",
-                    timer: 1500,
-                    timerProgressBar: true,
-                    confirmButtonColor: "#3085d6"
-                });
-            }
-        } catch (error) {
-            Swal.fire({
-                title: "Error",
-                text: "Could not change status",
-                icon: "error",
-                confirmButtonColor: '#3085d6',
-            });
-        }
-    };
 
     const deleteTask = async (task: TTask) => {
         try {
@@ -95,7 +66,12 @@ export const tasksCrmFuncs = () => {
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, Delete it"
+                confirmButtonText: "Yes, Delete it",
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
 
             }).then(async (result) => {
                 if (result.isConfirmed) {
@@ -105,11 +81,16 @@ export const tasksCrmFuncs = () => {
 
                     if (res) {
                         Swal.fire({
-                            title: "Card Deleted",
+                            title: "Task Deleted",
                             icon: "success",
                             confirmButtonColor: "#3085d6",
                             timer: 1500,
                             timerProgressBar: true,
+                            customClass: {
+                                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                            },
+                            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                         });
                         newTasks.splice(index, 1);
                         setTasks(newTasks);
@@ -124,7 +105,12 @@ export const tasksCrmFuncs = () => {
                 icon: "error",
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
-                timerProgressBar: true
+                timerProgressBar: true,
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
         }
     };
@@ -138,7 +124,6 @@ export const tasksCrmFuncs = () => {
         searchTasks,
         user,
         navToTask,
-        deleteTask,
-        ChangeStatus
+        deleteTask
     })
 }

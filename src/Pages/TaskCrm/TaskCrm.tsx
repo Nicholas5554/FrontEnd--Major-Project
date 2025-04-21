@@ -1,12 +1,10 @@
 import { FaTrash } from "react-icons/fa";
 import { tasksCrmFuncs } from "../../Hooks/tasksCrm";
-import { FaPencil } from "react-icons/fa6";
 
 const TasksCrm = () => {
 
     const {
         deleteTask,
-        ChangeStatus,
         searchTasks
     } = tasksCrmFuncs();
 
@@ -21,7 +19,6 @@ const TasksCrm = () => {
                             <th scope="col" className="px-6 py-3">Assigned To</th>
                             <th scope="col" className="px-6 py-3">Status</th>
                             <th scope="col" className="px-6 py-3">Priority</th>
-                            <th scope="col" className="px-6 py-3">Change Status</th>
                             <th scope="col" className="px-6 py-3">Delete Task</th>
                         </tr>
                     </thead>
@@ -40,14 +37,6 @@ const TasksCrm = () => {
                                 </td>
                                 <td className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                     {task.priority}
-                                </td>
-
-                                <td>
-                                    <FaPencil
-                                        size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
-                                        onClick={() => ChangeStatus(task)}
-                                    />
                                 </td>
 
                                 <td>

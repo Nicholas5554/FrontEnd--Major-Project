@@ -92,7 +92,7 @@ export const useMyAssignedTasks = () => {
             } catch (err) {
                 Swal.fire({
                     title: "Error",
-                    text: "Could not fetch tasks",
+                    text: "Could not Get tasks",
                     icon: "error",
                     confirmButtonColor: '#3085d6',
                     customClass: {
