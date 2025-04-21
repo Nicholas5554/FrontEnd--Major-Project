@@ -30,7 +30,7 @@ export const tasksCrmFuncs = () => {
                 Swal.fire({
                     title: "Error",
                     text: "Could not get Tasks",
-                    icon: "warning",
+                    icon: "error",
                     timerProgressBar: true,
                     showConfirmButton: true,
                     confirmButtonColor: '#3085d6',

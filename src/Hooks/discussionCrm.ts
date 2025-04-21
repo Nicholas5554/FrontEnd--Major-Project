@@ -23,7 +23,7 @@ export const discussionCrmFuncs = () => {
                 Swal.fire({
                     title: "Error",
                     text: "Could not get Discussions",
-                    icon: "warning",
+                    icon: "error",
                     timerProgressBar: true,
                     showConfirmButton: true,
                     confirmButtonColor: '#3085d6',

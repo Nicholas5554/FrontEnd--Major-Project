@@ -24,9 +24,9 @@ const Header = () => {
             <Navbar.Toggle />
             <Navbar.Collapse>
 
-                <Navbar.Brand>
+                {loc !== "/" && loc !== "/about" && loc !== "/profile" && loc !== "/createtask" && loc !== "/creatediscussion" && <Navbar.Brand>
                     <TextInput rightIcon={FaSearch} onChange={search} />
-                </Navbar.Brand>
+                </Navbar.Brand>}
 
                 <DarkThemeToggle />
 
@@ -91,7 +91,7 @@ const Header = () => {
                     </DropdownItem>}
                 </Dropdown>}
 
-                {user && <Dropdown label="Crm's" style={{
+                {user?.isAdmin && <Dropdown label="Crm's" style={{
                     background: "#3b4450", color: "white", fontWeight: "bold"
                 }}>
                     {user?.isAdmin && (

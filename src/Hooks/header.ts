@@ -23,7 +23,12 @@ export const header = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, log me out"
+            confirmButtonText: "Yes, log me out",
+            customClass: {
+                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+            },
+            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
@@ -32,6 +37,11 @@ export const header = () => {
                     confirmButtonColor: "#3085d6",
                     timer: 1500,
                     timerProgressBar: true,
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                 });
                 localStorage.removeItem("token");
                 dispatch(userActions.logout());
@@ -60,7 +70,17 @@ export const header = () => {
                     ;
                 }
             } catch (error) {
-                console.error("Failed to fetch user data:", error);
+                Swal.fire({
+                    title: "Error",
+                    text: "Could not get user data",
+                    icon: "error",
+                    confirmButtonColor: "#3085d6",
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+                });
             }
         };
         fetchUser();

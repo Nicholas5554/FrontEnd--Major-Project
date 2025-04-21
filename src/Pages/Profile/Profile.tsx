@@ -15,11 +15,11 @@ const Profile = () => {
             <div className="flex flex-wrap items-center justify-center gap-4 w-1/1">
                 <Card className="flex items-center justify-center w-auto">
                     <img src={user?.image.url} alt={user?.image.alt} className="object-fill w-72 h-[200px]  m-auto" />
-                    <h2>user id : {user?._id}</h2>
-                    <h1>{user?.name.first}</h1>
-                    <h3>{user?.address.country}</h3>
-                    <p>{user?.isManager ? "Manager User" : "Personal User"}</p>
-                    <p>{user?.phone}</p>
+                    <h2>User Id : {user?._id}</h2>
+                    <h1>Name : {user?.name.first}</h1>
+                    <h3>Country : {user?.address.country}</h3>
+                    <p>Status : {user?.isManager ? "Manager User" : "Personal User"}</p>
+                    <p>Phone : {user?.phone}</p>
                 </Card>
 
             </div>

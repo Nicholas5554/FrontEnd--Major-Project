@@ -40,7 +40,7 @@ export const crm = () => {
             Swal.fire({
                 title: "Error",
                 text: "Could not get users",
-                icon: "warning",
+                icon: "error",
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
                 timerProgressBar: true,

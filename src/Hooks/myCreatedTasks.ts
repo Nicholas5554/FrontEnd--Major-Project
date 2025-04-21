@@ -154,15 +154,6 @@ export const myCreatedTasks = () => {
         nav('/createtask');
     }
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const tasksPerPage = 8;
-    const onPageChange = (page: number) => setCurrentPage(page);
-
-    const indexOfLastCard = currentPage * tasksPerPage;
-    const indexOfFirstCard = indexOfLastCard - tasksPerPage;
-    const currentTasks = searchTasks().slice(indexOfFirstCard, indexOfLastCard);
-    const totalPages = Math.ceil(searchTasks().length / tasksPerPage);
-
     const getData = async () => {
         const token = localStorage.getItem("token");
         if (token) {
@@ -171,6 +162,19 @@ export const myCreatedTasks = () => {
 
         const res = await axios.get('http://localhost:8080/tasks/my-createdTasks');
         setTasks(res.data);
+        if (res.data.length === 0) {
+            Swal.fire({
+                title: "No Tasks Found",
+                icon: "info",
+                text: "You have not created any tasks yet",
+                confirmButtonColor: '#3085d6',
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
+            });
+        }
     }
 
     useEffect(() => {
@@ -190,10 +194,6 @@ export const myCreatedTasks = () => {
         navToTask,
         navToCreateTask,
         user,
-        currentPage,
-        totalPages,
-        onPageChange,
-        currentTasks,
         ChangeStatus
     })
 }
