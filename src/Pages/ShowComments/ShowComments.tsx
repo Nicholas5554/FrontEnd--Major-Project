@@ -29,7 +29,7 @@ const ShowComments = () => {
                                 onClick={() => likeComment(comment)}
                                 className={`hover:cursor-pointer size-9 ${comment.likes?.includes(userId || "") ? "text-red-500" : "text-grey-500"}`}
                             />
-                            {(user?._id == comment.userId._id || user?._id == comments.userId?._id) && <FaTrash
+                            {(user?._id == comment.userId._id) && <FaTrash
                                 size={20}
                                 className="ml-2 text-gray-900 cursor-pointer size-8 whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                 onClick={() => deleteComment(comment)}

@@ -14,7 +14,6 @@ export const showComments = () => {
             const res = await axios.get("http://localhost:8080/discussions/" + id + "/comments");
             setComments(res.data);
 
-
         } catch (err) {
             Swal.fire({
                 title: "error",
