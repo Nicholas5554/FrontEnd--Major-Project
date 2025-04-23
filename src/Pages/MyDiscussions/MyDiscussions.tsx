@@ -1,11 +1,9 @@
-import { FaDoorOpen } from "react-icons/fa";
 import { myDiscussions } from "../../Hooks/myDiscussions";
 import { PiCursorClickFill } from "react-icons/pi";
 
 const MyDiscussions = () => {
 
     const {
-        deleteDiscussion,
         navToDiscussion,
         searchDiscussions
     } = myDiscussions();
@@ -21,7 +19,6 @@ const MyDiscussions = () => {
                             <th scope="col" className="px-6 py-3">The User Who Created</th>
                             <th scope="col" className="px-6 py-3">content</th>
                             <th scope="col" className="px-6 py-3">To Discussion</th>
-                            <th scope="col" className="px-6 py-3">Leave Discussion</th>
                         </tr>
                     </thead>
 
@@ -42,13 +39,6 @@ const MyDiscussions = () => {
                                         size={20}
                                         className="ml-12 text-gray-900 cursor-pointer whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                         onClick={() => { navToDiscussion(discussion._id) }}
-                                    />
-                                </td>
-                                <td>
-                                    <FaDoorOpen
-                                        size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
-                                        onClick={() => deleteDiscussion(discussion)}
                                     />
                                 </td>
                             </tr>

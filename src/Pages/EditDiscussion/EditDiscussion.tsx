@@ -55,14 +55,19 @@ const EditDiscussionDetails = () => {
                 </div>
 
                 <div className="flex flex-col">
-                    <FloatingLabel className="dark:text-white"
-                        type="text"
-                        variant="standard"
-                        label="Users"
-                        defaultValue={Array.isArray(discussion?.users) ? discussion.users.map(user => user._id).join(", ") : discussion?.users._id || ""}
-                        {...register("users")}
-                    />
-                    <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>
+                    <div className="flex flex-col">
+                        <label className="dark:text-white" htmlFor="users">Users</label>
+                        <textarea
+                            id="users"
+                            className="w-full p-2 border rounded dark:text-white dark:bg-gray-700"
+                            rows={3}
+                            {...register("users", {
+                                setValueAs: (value) =>
+                                    typeof value === "string" ? value.split(",").map((id) => id.trim()) : [],
+                            })}
+                        />
+                        <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>
+                    </div>
                 </div>
             </div>
 

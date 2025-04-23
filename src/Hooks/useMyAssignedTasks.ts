@@ -89,11 +89,12 @@ export const useMyAssignedTasks = () => {
                 }
                 const res = await axios.get('http://localhost:8080/tasks/myAssignedTasks');
                 setTasks(res.data);
+
             } catch (err) {
                 Swal.fire({
-                    title: "Error",
-                    text: "Could not Get tasks",
-                    icon: "error",
+                    title: "No Tasks Found",
+                    text: "Could not find tasks",
+                    icon: "question",
                     confirmButtonColor: '#3085d6',
                     customClass: {
                         popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",

@@ -16,65 +16,6 @@ export const myDiscussions = () => {
         return discussions.filter((item: TDiscussion) => item.title.includes(searchWord.toLocaleLowerCase()));
     };
 
-    const deleteDiscussion = async (discussion: TDiscussion) => {
-        try {
-            Swal.fire({
-                title: "Are you sure?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, I want to leave this discussion",
-                customClass: {
-                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
-                },
-                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
-                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
-
-
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    const res = await axios.delete("http://localhost:8080/discussions/" + discussion._id);
-                    const index = discussions.indexOf(discussion);
-                    const newDiscussions = [...discussions];
-
-                    if (res) {
-                        Swal.fire({
-                            title: "Left Discussion",
-                            icon: "success",
-                            confirmButtonColor: "#3085d6",
-                            timer: 1500,
-                            timerProgressBar: true,
-                            customClass: {
-                                popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
-                            },
-                            background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
-                            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
-
-                        });
-                        newDiscussions.splice(index, 1);
-                        setDiscussions(newDiscussions);
-                    }
-                };
-            });
-        } catch (error) {
-            Swal.fire({
-                title: "Error",
-                text: "could not Leave Discussion",
-                icon: "error",
-                showConfirmButton: true,
-                confirmButtonColor: '#3085d6',
-                timerProgressBar: true,
-                customClass: {
-                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
-                },
-                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
-                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
-
-            });
-        }
-    };
-
     const navToDiscussion = (id: string) => {
         nav(`/discussion/${id}`);
     }
@@ -89,9 +30,9 @@ export const myDiscussions = () => {
         setDiscussions(res.data);
         if (res.data.length === 0) {
             Swal.fire({
-                title: "Error",
-                text: "could not Get Discussions",
-                icon: "error",
+                title: "No Discussions Found",
+                text: "could not find Discussions",
+                icon: "question",
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
                 timerProgressBar: true,
@@ -119,7 +60,6 @@ export const myDiscussions = () => {
     return ({
         discussions,
         searchDiscussions,
-        deleteDiscussion,
         user,
         navToDiscussion
     })

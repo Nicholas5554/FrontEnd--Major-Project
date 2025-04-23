@@ -38,7 +38,7 @@ const App = () => {
       </header>
       <main className="flex flex-col items-center justify-start min-h-screen gap-4 dark:bg-gray-800">
         <Routes>
-          <Route path="/" element={<Home />} />
+          {!user && <Route path="/" element={<Home />} />}
           <Route path="/about" element={<About />} />
 
           <Route path="/profile" element={

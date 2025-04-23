@@ -16,7 +16,7 @@ const Header = () => {
 
     return (
         <Navbar fluid className="list-none shadow bg-slate-200 dark:bg-gray-900">
-            <Navbar.Link as={Link} href="/" to="/" active={loc === '/'} className="flex flex-row gap-2">
+            <Navbar.Link className="flex flex-row gap-2">
                 <img src="/dark-mouse.jpeg" alt="dark-mouse" className="w-[40px] h-[40px]" />
                 <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">NEX</span>
             </Navbar.Link>
@@ -24,15 +24,15 @@ const Header = () => {
             <Navbar.Toggle />
             <Navbar.Collapse>
 
-                {loc !== "/" && loc !== "/about" && loc !== "/profile" && loc !== "/createtask" && loc !== "/creatediscussion" && <Navbar.Brand>
+                {loc !== "/" && loc !== "/about" && loc !== "/profile" && loc !== "/createtask" && loc !== "/creatediscussion" && loc !== "/login" && loc !== "/register" && < Navbar.Brand >
                     <TextInput rightIcon={FaSearch} onChange={search} />
                 </Navbar.Brand>}
 
                 <DarkThemeToggle />
 
-                <Navbar.Link as={Link} href="/" to="/" active={loc === '/'} className="text-lg">
+                {!user && <Navbar.Link as={Link} href="/" to="/" active={loc === '/'} className="text-lg">
                     Home
-                </Navbar.Link>
+                </Navbar.Link>}
 
                 <Navbar.Link as={Link} href="/about" to="/about" active={loc === '/about'} className="text-lg">
                     About
@@ -141,7 +141,7 @@ const Header = () => {
 
             </Navbar.Collapse>
 
-        </Navbar>
+        </Navbar >
     );
 };
 

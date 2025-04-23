@@ -51,16 +51,19 @@ const CreateDiscussion = () => {
                 </div>
 
                 <div className="flex flex-col">
-                    <FloatingLabel
-                        className="dark:text-white"
-                        variant="standard"
-                        label="Users"
-                        {...register("users", {
-                            setValueAs: (value) =>
-                                typeof value === "string" ? value.split(",").map((id) => id.trim()) : [],
-                        })}
-                    />
-                    <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>
+                    <div className="flex flex-col">
+                        <label className="dark:text-white" htmlFor="users">Users</label>
+                        <textarea
+                            id="users"
+                            className="w-full p-2 text-sm border rounded dark:text-white dark:bg-gray-700"
+                            rows={1}
+                            {...register("users", {
+                                setValueAs: (value) =>
+                                    typeof value === "string" ? value.split(",").map((id) => id.trim()) : [],
+                            })}
+                        />
+                        <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>
+                    </div>
                 </div>
             </div>
 

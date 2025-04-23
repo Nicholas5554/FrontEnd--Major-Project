@@ -49,6 +49,11 @@ export const registerPage = () => {
                 timer: 2000,
                 timerProgressBar: true,
                 confirmButtonColor: "#3085d6",
+                customClass: {
+                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                },
+                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
             nav("/login");
 
@@ -56,11 +61,16 @@ export const registerPage = () => {
             if (axios.isAxiosError(error)) {
                 Swal.fire({
                     title: "Error",
-                    text: `${error.message}`,
+                    text: "please check your data",
                     icon: "error",
                     timer: 2000,
                     timerProgressBar: true,
                     confirmButtonColor: "#3085d6",
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                 });
             } else {
                 Swal.fire({
@@ -70,6 +80,11 @@ export const registerPage = () => {
                     timer: 2000,
                     timerProgressBar: true,
                     confirmButtonColor: "#3085d6",
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                 });
             }
         }
