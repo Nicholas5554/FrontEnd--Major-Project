@@ -17,6 +17,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.2.7",
     "@sweetalert2/themes": "^5.0.18",
+    "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "caniuse-lite": "^1.0.30001664",
     "flowbite-react": "^0.8.0",

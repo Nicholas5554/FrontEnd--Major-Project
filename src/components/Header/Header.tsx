@@ -30,15 +30,18 @@ const Header = () => {
 
                 <DarkThemeToggle />
 
-                {!user && <Navbar.Link as={Link} href="/" to="/" active={loc === '/'} className="text-lg">
+                {!user && <Navbar.Link as={Link} href="/" to="/" active={loc === '/'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg">
                     Home
                 </Navbar.Link>}
 
-                <Navbar.Link as={Link} href="/about" to="/about" active={loc === '/about'} className="text-lg">
+                <Navbar.Link as={Link} href="/about" to="/about" active={loc === '/about'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg">
                     About
                 </Navbar.Link>
 
-                {user && (<Navbar.Link as={Link} href="/profile" to="/profile" active={loc === '/profile'} className="text-lg">
+                {user && (<Navbar.Link as={Link} href="/profile" to="/profile" active={loc === '/profile'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg">
                     Profile
                 </Navbar.Link>)}
 
@@ -47,14 +50,16 @@ const Header = () => {
                 }}>
                     {user?.isManager && (
                         <DropdownItem>
-                            <Navbar.Link as={Link} href="/createtask" to="/createtask" active={loc === '/createtask'} className="text-lg">
+                            <Navbar.Link as={Link} href="/createtask" to="/createtask" active={loc === '/createtask'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
                                 Create Task
                             </Navbar.Link>
                         </DropdownItem>
                     )}
                     {user?.isManager && (
                         <DropdownItem>
-                            <Navbar.Link as={Link} href="/mytasks" to="/mytasks" active={loc === '/mytasks'} className="text-lg">
+                            <Navbar.Link as={Link} href="/mytasks" to="/mytasks" active={loc === '/mytasks'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
                                 My Created Tasks
                             </Navbar.Link>
                         </DropdownItem>
@@ -62,7 +67,8 @@ const Header = () => {
 
                     {user && (
                         <DropdownItem>
-                            <Navbar.Link as={Link} href="/myassignedtasks" to="/myassignedtasks" active={loc === '/myassignedtasks'} className="text-lg">
+                            <Navbar.Link as={Link} href="/myassignedtasks" to="/myassignedtasks" active={loc === '/myassignedtasks'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
                                 my Assigned Tasks
                             </Navbar.Link>
                         </DropdownItem>
@@ -73,19 +79,22 @@ const Header = () => {
                     background: "#3b4450", color: "white", fontWeight: "bold"
                 }}>
                     {user && <DropdownItem>
-                        <Navbar.Link as={Link} href="/creatediscussion" to="/creatediscussion" active={loc === '/creatediscussion'} className="text-lg">
+                        <Navbar.Link as={Link} href="/creatediscussion" to="/creatediscussion" active={loc === '/creatediscussion'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
                             Create Discussion
                         </Navbar.Link>
                     </DropdownItem>}
 
                     {user && <DropdownItem>
-                        <Navbar.Link as={Link} href="/mycreateddiscussions" to="/mycreateddiscussions" active={loc === '/mycreateddiscussions'} className="text-lg">
+                        <Navbar.Link as={Link} href="/mycreateddiscussions" to="/mycreateddiscussions" active={loc === '/mycreateddiscussions'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
                             My Created Discussions
                         </Navbar.Link>
                     </DropdownItem>}
 
-                    {user && <DropdownItem>
-                        <Navbar.Link as={Link} href="/mydiscussions" to="/mydiscussions" active={loc === '/mydiscussions'} className="text-lg">
+                    {user && <DropdownItem className="">
+                        <Navbar.Link as={Link} href="/mydiscussions" to="/mydiscussions" active={loc === '/mydiscussions'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
                             My Discussions
                         </Navbar.Link>
                     </DropdownItem>}
@@ -96,7 +105,8 @@ const Header = () => {
                 }}>
                     {user?.isAdmin && (
                         <DropdownItem>
-                            <Navbar.Link as={Link} href="/crm" to="/crm" active={loc === '/crm'} className="text-lg">
+                            <Navbar.Link as={Link} href="/crm" to="/crm" active={loc === '/crm'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
                                 Users Crm
                             </Navbar.Link>
                         </DropdownItem>
@@ -104,7 +114,8 @@ const Header = () => {
 
                     {user?.isAdmin && (
                         <DropdownItem>
-                            <Navbar.Link as={Link} href="/taskscrm" to="/taskscrm" active={loc === '/taskscrm'} className="text-lg">
+                            <Navbar.Link as={Link} href="/taskscrm" to="/taskscrm" active={loc === '/taskscrm'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
                                 Tasks Crm
                             </Navbar.Link>
                         </DropdownItem>
@@ -112,25 +123,29 @@ const Header = () => {
 
                     {user?.isAdmin && (
                         <DropdownItem>
-                            <Navbar.Link as={Link} href="/discussionscrm" to="/discussionscrm" active={loc === '/discussionscrm'} className="text-lg">
+                            <Navbar.Link as={Link} href="/discussionscrm" to="/discussionscrm" active={loc === '/discussionscrm'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
                                 Discussions Crm
                             </Navbar.Link>
                         </DropdownItem>
                     )}
                 </Dropdown>}
 
-                {!user && (<Navbar.Link as={Link} href="/register" to="/register" active={loc === '/register'} className="text-lg">
+                {!user && (<Navbar.Link as={Link} href="/register" to="/register" active={loc === '/register'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg">
                     Register
                 </Navbar.Link>)}
 
                 {!user && (
-                    <Navbar.Link as={Link} href="/login" to="/login" active={loc === '/login'} className="text-lg">
+                    <Navbar.Link as={Link} href="/login" to="/login" active={loc === '/login'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg">
                         Login
                     </Navbar.Link>
                 )}
 
                 {user && (
-                    <Navbar.Link className="text-lg cursor-pointer"
+                    <Navbar.Link className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+           after:h-[2px] after:w-0 after:bg-red-600 after:transition-all after:duration-300 text-lg cursor-pointer"
                         onClick={logout}
                         style={{
                             color: "crimson", fontWeight: "bold"
