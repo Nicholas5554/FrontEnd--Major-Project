@@ -15,7 +15,7 @@ const MyCreatedTasks = () => {
 
     return (
         <>
-            <div className="relative overflow-x-auto w-[90%]">
+            <div className="relative overflow-x-auto w-[95%]">
                 <h1 className="mb-2 text-4xl font-bold dark:text-white">My Created Tasks</h1>
                 <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -50,21 +50,21 @@ const MyCreatedTasks = () => {
                                 <td>
                                     <PiCursorClickFill
                                         size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        className="ml-6 text-gray-900 cursor-pointer md:ml-7 lg:ml-9 dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                         onClick={() => navToTask(task._id)}
                                     />
                                 </td>
                                 <td>
                                     <SlEqualizer
                                         size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        className="text-gray-900 cursor-pointer ml-7 md:ml-7 lg:ml-10 dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                         onClick={() => editTask(task._id)}
                                     />
                                 </td>
                                 <td>
                                     <FaPencil
                                         size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        className="text-gray-900 cursor-pointer ml-7 md:ml-8 lg:ml-12 dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                         onClick={() => ChangeStatus(task)}
                                     />
                                 </td>
@@ -72,7 +72,7 @@ const MyCreatedTasks = () => {
                                 <td>
                                     <FaTrash
                                         size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        className="cursor-pointer ml-7 text-gr ay-900 md:ml-8 lg:ml-12 whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                         onClick={() => deleteTask(task)}
                                     />
                                 </td>

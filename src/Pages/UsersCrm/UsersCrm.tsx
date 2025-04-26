@@ -14,7 +14,7 @@ const Crm = () => {
 
     return (
         <>
-            <div className="relative overflow-x-auto w-[90%]">
+            <div className="relative overflow-x-auto w-[95%]">
                 <h1 className="mb-2 text-4xl font-bold dark:text-white">Users Chart</h1>
                 <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -47,7 +47,7 @@ const Crm = () => {
                                 <td>
                                     <FaUser
                                         size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        className="ml-8 text-gray-900 cursor-pointer md:ml-9 lg:ml-14 dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                         onClick={() => patchManagerStatus(user)}
                                     />
                                 </td>
@@ -55,7 +55,7 @@ const Crm = () => {
                                 <td>
                                     <FaTrash
                                         size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        className="ml-8 text-gray-900 cursor-pointer md:ml-9 lg:ml-14 dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                         onClick={() => deleteUser(user)}
                                     />
                                 </td>

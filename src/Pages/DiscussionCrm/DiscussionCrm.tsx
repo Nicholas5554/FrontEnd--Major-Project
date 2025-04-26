@@ -10,7 +10,7 @@ const DiscussionsCrm = () => {
 
     return (
         <>
-            <div className="relative overflow-x-auto w-[80%]">
+            <div className="relative overflow-x-auto w-[95%]">
                 <h1 className="mb-2 text-4xl font-bold dark:text-white">Discussion Chart</h1>
                 <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -38,7 +38,7 @@ const DiscussionsCrm = () => {
                                 <td>
                                     <FaTrash
                                         size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer whitespace-nowrap dark:text-white hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        className="ml-10 text-gray-900 cursor-pointer md:ml-16 lg:ml-16 dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                         onClick={() => deleteDiscussion(discussion)}
                                     />
                                 </td>

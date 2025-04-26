@@ -70,8 +70,8 @@ export const showComments = () => {
                 },
                 background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                 color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
-
             });
+            console.log(err);
         }
     };
 

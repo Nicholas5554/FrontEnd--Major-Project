@@ -13,7 +13,7 @@ const MyAssignedTasks = () => {
 
     return (
         <>
-            <div className="relative overflow-x-auto w-[90%]">
+            <div className="relative overflow-x-auto w-[95%]">
                 <h1 className="mb-2 text-4xl font-bold dark:text-white">My Assigned Tasks</h1>
                 <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -46,7 +46,7 @@ const MyAssignedTasks = () => {
                                 <td>
                                     <PiCursorClickFill
                                         size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        className="text-gray-900 cursor-pointer ml-7 md:ml-9 lg:ml-9 dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                         onClick={() => navToTask(task._id)}
                                     />
                                 </td>
@@ -54,7 +54,7 @@ const MyAssignedTasks = () => {
                                 <td>
                                     <FaPencil
                                         size={20}
-                                        className="ml-12 text-gray-900 cursor-pointer dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
+                                        className="ml-8 text-gray-900 cursor-pointer md:ml-14 lg:ml-14 dark:text-white whitespace-nowrap hover:text-slate-600 active:text-slate-500 dark:hover:text-slate-300 dark:active:text-slate-400"
                                         onClick={() => ChangeStatus(task)}
                                     />
                                 </td>
