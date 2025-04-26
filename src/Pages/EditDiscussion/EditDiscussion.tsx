@@ -59,7 +59,7 @@ const EditDiscussionDetails = () => {
                         <label className="dark:text-white" htmlFor="users">Users</label>
                         <textarea
                             id="users"
-                            className="w-full p-2 border rounded dark:text-white dark:bg-gray-700"
+                            className="w-full p-2 text-sm border rounded dark:text-white dark:bg-gray-700"
                             rows={3}
                             {...register("users", {
                                 setValueAs: (value) =>

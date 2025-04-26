@@ -13,7 +13,7 @@ export const createTask = () => {
         "type": "",
         "assignedTo": "",
         "status": "to do",
-        "priority": "",
+        "priority": "low",
         "description": ""
     }
 
