@@ -1,29 +1,36 @@
-CardGen (React)
+NEX (React)
 
-to project : https://react-project-jcck.onrender.com/
+This is a React-based task management platform where users can securely log in, create and manage tasks, participate in discussions, and personalize their workspace. The project communicates with a backend API to handle authentication, task management, and collaborative discussions in real time.
+Features
 
-This is a React-based project where users can log into a website, like or dislike cards, create new cards, edit existing ones, and manage their profile data. The project uses an API for handling user information and card data.
-Features:
+    User Authentication: Secure registration, login, and logout functionality integrated with JWT.
 
-    User Authentication: Users can register, log in, and log out using the API.
-    Card Interaction: Users can like/dislike cards, create new cards, and edit or delete their own cards.
-    Profile Management: Users can update their profile information (e.g., username, address) and delete their user on the profile page.
-    CRM Page (Admin Only): Admins can access a dedicated CRM page to:
+    Task Management: Users can create, edit, update the status, and delete their own tasks.
 
-    View data of all registered users.
-    Change the account status to either Business or Personal.
-    Delete user accounts.
+    Discussion Boards: Users can participate in discussions related to specific tasks, promoting team collaboration.
+
+    Profile Management: Users can update their profile information and manage their account settings.
+
+    Real-Time Updates (Optional if you have it): Tasks and discussions update dynamically without needing to refresh the page.
+
+    Responsive UI: Optimized for both desktop and mobile users for a seamless experience.
 
 Technologies Used
 
-    React: Front-end library for building the user interface.
-    React Router: For handling navigation between different pages.
-    API: For storing user data, authentication, and managing card data (fetch, create, edit, delete).
-    Axios: For making HTTP requests to the API.
-    State Management: Local state management using React hooks (e.g., useState, useEffect).
-    Form Handling: react-hook-form for managing form states.
-    TypeScript: Type safety with @typescript-eslint plugins and TypeScript definitions.
-    Styling: Tailwind CSS and styled-components for dynamic and responsive UI design.
-    JWT: JSON Web Tokens for secure user authentication and session management.
-    SweetAlert2: For beautiful, customizable alerts and popups.
-    React Icons: For a wide variety of icons used across the project.
+    React: Front-end library for building interactive user interfaces.
+
+    React Router: Client-side routing for navigating between pages.
+
+    Axios: For making HTTP requests to the backend API.
+
+    State Management: Managed locally using React hooks (useState, useEffect) and context where needed.
+
+    Form Handling: react-hook-form for efficient form validation and management.
+
+    Styling: TailwindCSS for fast and responsive UI styling.
+
+    JWT: JSON Web Tokens for secure authentication.
+
+    React Icons: Wide collection of icons for an enhanced user experience.
+
+    SweetAlert2: Customizable alerts for confirmations and feedback.
