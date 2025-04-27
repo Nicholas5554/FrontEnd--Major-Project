@@ -179,7 +179,13 @@ export const myCreatedTasks = () => {
 
     useEffect(() => {
         getData();
-    }, [])
+
+        const interval = setInterval(() => {
+            getData();
+        }, 10000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const user = useSelector(
         (state: TRootState) => state.userSlice,

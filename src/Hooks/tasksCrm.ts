@@ -117,6 +117,12 @@ export const tasksCrmFuncs = () => {
 
     useEffect(() => {
         fetchTasks();
+
+        const interval = setInterval(() => {
+            fetchTasks();
+        }, 10000);
+
+        return () => clearInterval(interval);
     }, []);
 
     return ({

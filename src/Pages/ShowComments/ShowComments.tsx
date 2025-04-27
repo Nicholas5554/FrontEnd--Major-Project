@@ -12,10 +12,10 @@ const ShowComments = () => {
 
 
     return (
-        <Card className="flex items-center justify-center w-auto text-center dark:text-white">{
+        <Card className="flex flex-col items-center justify-center w-auto text-center dark:text-white">{
             comments?.comments?.map((comment) => {
                 return (
-                    <div key={comment._id} className="flex flex-col items-center justify-center w-auto text-center dark:text-white">
+                    <div key={comment._id} className="flex flex-col items-center justify-center w-auto mb-2 text-center border-b-2 dark:text-white">
                         <p>
                             User: {comment.userId && comment.userId.name
                                 ? `${comment.userId.name.first || "Unknown"} ${comment.userId.name.last || "User"}`

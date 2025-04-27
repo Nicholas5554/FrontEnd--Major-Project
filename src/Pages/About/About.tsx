@@ -1,39 +1,43 @@
 const About = () => {
     return (
         <div className="text-center dark:text-white w-[90vw] text-lg">
-            <h1 className="font-bold text-teal-500">About CardGen</h1>
+            <h1 className="font-bold text-teal-500">This Is NEX</h1>
             <p className="size-auto">
-                The User Cards Manager is a React-based application designed to help you efficiently manage user profiles.
-                With this tool, you can easily add, edit, and delete user information, and display it in an intuitive card format.
+                NEX is a minimalist task organizer designed to help teams and individuals stay organized, collaborate seamlessly, and achieve their goals.
             </p>
             <br />
+
+            <h2 className="font-bold text-teal-500">Why NEX?</h2>
+            <p>
+                In today's fast-paced world, staying organized is crucial. NEX provides a simple yet powerful platform for managing tasks and collaborating with others. Whether you're a student, a professional, or part of a team, NEX can help you streamline your workflow and boost productivity.
+            </p>
+            <br />
+
             <h2 className="font-bold text-teal-500">Features</h2>
             <ul>
-                <li>Add new users with detailed information including name, email, and profile picture.</li>
-                <li>Edit existing user profiles to keep information up to date.</li>
-                <li>Delete user profiles that are no longer needed.</li>
-                <li>View user details in an easy-to-read card layout.</li>
-                <li>Responsive design, making it accessible on both desktop and mobile devices.</li>
+                <li>User authentication and personalized dashboards</li>
+                <li>Create, edit, delete, and manage tasks easily</li>
+                <li>Discussion boards for collaboration</li>
+                <li>Responsive and minimalistic design for a smooth experience</li>
             </ul>
             <br />
             <h2 className="font-bold text-teal-500">Technologies Used</h2>
             <p>
-                The User Cards Manager is built using modern web technologies including:
+                NEX is built using modern web technologies including:
             </p>
             <ul>
                 <li><strong>React:</strong> For building the user interface.</li>
                 <li><strong>React Router:</strong> For managing application routing.</li>
-                <li><strong>CSS/Sass:</strong> For styling the components.</li>
-                <li><strong>Bootstrap:</strong> For responsive design and pre-built components.</li>
+                <li><strong>NodeJs:</strong> For back-end logic</li>
+                <li><strong>MongoDb:</strong> for storing information</li>
             </ul>
             <br />
+
             <h2 className="font-bold text-teal-500">How It Works</h2>
             <p>
-                The application is structured as a single-page application, where the main content changes dynamically based on user interaction. The user data is managed through a combination of React state and props, ensuring that the information displayed is always current and accurate.
+                NEX allows users to create an account and log in to access their personalized dashboard. Users can create tasks, assign them to team members, and track progress. The discussion boards enables communication, making it easy to collaborate on projects.
             </p>
-            <p>
-                This project is ideal for anyone looking to build or improve their skills in React, and it serves as a practical example of managing dynamic data in a user-friendly interface.
-            </p>
+
         </div>
     );
 };

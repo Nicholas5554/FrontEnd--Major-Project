@@ -110,6 +110,12 @@ export const discussionCrmFuncs = () => {
 
     useEffect(() => {
         fetchDiscussions();
+
+        const interval = setInterval(() => {
+            fetchDiscussions();
+        }, 10000);
+
+        return () => clearInterval(interval);
     }, []);
 
     return ({

@@ -18,7 +18,8 @@ export const crm = () => {
     const getUsers = async () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.get("http://localhost:8080/users/")
+            const res = await axios.get("http://localhost:8080/users/");
+
             setUsers(res.data);
             if (res.data.length === 0) {
                 Swal.fire({
@@ -169,7 +170,13 @@ export const crm = () => {
 
 
     useEffect(() => {
-        getUsers()
+        getUsers();
+
+        const interval = setInterval(() => {
+            getUsers();
+        }, 10000);
+
+        return () => clearInterval(interval);
     }, []);
 
     return ({
