@@ -17,8 +17,6 @@ Features :
 
     Profile Management: Users can update their profile information and manage their account settings.
 
-    Real-Time Updates (Optional if you have it): Tasks and discussions update dynamically without needing to refresh the page.
-
     Responsive UI: Optimized for both desktop and mobile users for a seamless experience.
 
 Technologies Used
