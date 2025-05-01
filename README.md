@@ -1,5 +1,9 @@
 NEX (React)
 
+note* 
+
+*make sure to run command npm i to download the node_models so that the project works as intended*
+
 This is a React-based task management platform where users can securely log in, create and manage tasks, participate in discussions, and personalize their workspace. The project communicates with a backend API to handle authentication, task management, and collaborative discussions in real time.
 Features
 
