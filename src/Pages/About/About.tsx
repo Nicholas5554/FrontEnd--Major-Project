@@ -12,6 +12,11 @@ const About = () => {
                 In today's fast-paced world, staying organized is crucial. NEX provides a simple yet powerful platform for managing tasks and collaborating with others. Whether you're a student, a professional, or part of a team, NEX can help you streamline your workflow and boost productivity.
             </p>
             <br />
+            <h2 className="font-bold text-teal-500">How It Works</h2>
+            <p>
+                NEX allows users to create an account and log in to access their personalized dashboard. Users can create tasks, assign them to team members by the Id of the member, and track progress. The discussion boards enables communication, making it easy to collaborate on projects(make sure to add users by Id as well).
+            </p>
+            <br />
 
             <h2 className="font-bold text-teal-500">Features</h2>
             <ul>
@@ -31,12 +36,7 @@ const About = () => {
                 <li><strong>NodeJs:</strong> For back-end logic</li>
                 <li><strong>MongoDb:</strong> for storing information</li>
             </ul>
-            <br />
 
-            <h2 className="font-bold text-teal-500">How It Works</h2>
-            <p>
-                NEX allows users to create an account and log in to access their personalized dashboard. Users can create tasks, assign them to team members by the Id of the member, and track progress. The discussion boards enables communication, making it easy to collaborate on projects(make sure to add users by Id as well).
-            </p>
 
         </div>
     );
