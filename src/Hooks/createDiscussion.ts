@@ -41,7 +41,7 @@ export const createDiscussion = () => {
                 background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                 color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
-            nav("/mycreateddiscussions");
+            navToMyDiscussions()
 
         } catch (error) {
 
@@ -60,11 +60,16 @@ export const createDiscussion = () => {
         }
     };
 
+    const navToMyDiscussions = () => {
+        nav("/mycreateddiscussions");
+    }
+
     return ({
         register,
         handleSubmit,
         errors,
         isValid,
         onSubmit,
+        navToMyDiscussions
     });
 };

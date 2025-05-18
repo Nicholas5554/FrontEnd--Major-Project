@@ -9,7 +9,8 @@ const CreateDiscussion = () => {
         errors,
         isValid,
         register,
-        handleSubmit
+        handleSubmit,
+        navToMyDiscussions
     } = createDiscussion();
 
     return (
@@ -67,8 +68,10 @@ const CreateDiscussion = () => {
                 </div>
             </div>
 
+            <button className="w-full h-10 text-sm text-white transition-colors rounded-md bg-neutral-500 hover:bg-neutral-600" onClick={navToMyDiscussions}>Go Back</button>
+
             <Button type="submit" disabled={!isValid} className="w-full dark:text-white">
-                Save Changes
+                Create Discussion
             </Button>
 
         </form>

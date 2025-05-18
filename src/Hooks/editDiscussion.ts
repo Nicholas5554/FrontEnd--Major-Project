@@ -37,9 +37,6 @@ export const editDiscussion = () => {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
             const res = await axios.get("http://localhost:8080/discussions/" + id);
             setDiscussion(res.data);
-            console.log(res.data);
-
-
 
         } catch (error) {
             Swal.fire({
