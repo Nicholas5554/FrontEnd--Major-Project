@@ -5,17 +5,17 @@ note*
 *make sure to run command npm i to download the node_models so that the project works as intended*
 
 This is a React-based task management platform where users can securely log in, create and manage tasks, participate in discussions, and personalize their workspace. The project communicates with a backend API to handle authentication, task management, and collaborative discussions in real time.
-Features
+
+Features :
 
     User Authentication: Secure registration, login, and logout functionality integrated with JWT.
 
     Task Management: Users can create, edit, update the status, and delete their own tasks.
+    each user gets an id that he provides to his manager in order to assign him.
 
     Discussion Boards: Users can participate in discussions related to specific tasks, promoting team collaboration.
 
     Profile Management: Users can update their profile information and manage their account settings.
-
-    Real-Time Updates (Optional if you have it): Tasks and discussions update dynamically without needing to refresh the page.
 
     Responsive UI: Optimized for both desktop and mobile users for a seamless experience.
 
