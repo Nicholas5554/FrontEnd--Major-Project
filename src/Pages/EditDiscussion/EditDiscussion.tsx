@@ -4,14 +4,9 @@ import { editDiscussion } from "../../Hooks/editDiscussion";
 
 const EditDiscussionDetails = () => {
 
-    const {
-        discussion,
-        submitForm,
-        errors,
-        isValid,
-        register,
-        handleSubmit
-    } = editDiscussion();
+    const { discussion, submitForm, errors, isValid, register, handleSubmit, } = editDiscussion();
+
+
 
     return (
         <form onSubmit={handleSubmit(submitForm)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg w-1/1">
@@ -66,6 +61,7 @@ const EditDiscussionDetails = () => {
                                     typeof value === "string" ? value.split(",").map((id) => id.trim()) : [],
                             })}
                         />
+
                         <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>
                     </div>
                 </div>

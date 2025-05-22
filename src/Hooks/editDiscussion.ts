@@ -27,9 +27,21 @@ export const editDiscussion = () => {
 
     useEffect(() => {
         if (discussion) {
-            reset(initialDiscussion);
+            reset({
+                title: discussion.title,
+                content: discussion.content,
+                description: discussion.description,
+                users: Array.isArray(discussion.users)
+                    ? discussion.users.map((user: any) => user._id)
+                    : discussion.users?._id
+                        ? [discussion.users._id]
+                        : []
+            });
         }
     }, [discussion, reset]);
+
+
+
 
     const getData = async () => {
 
@@ -54,6 +66,7 @@ export const editDiscussion = () => {
             })
         }
     };
+
 
     const submitForm = async (form: typeof initialDiscussion) => {
 
@@ -105,6 +118,6 @@ export const editDiscussion = () => {
         handleSubmit,
         errors,
         isValid,
-        submitForm
+        submitForm,
     })
 }
