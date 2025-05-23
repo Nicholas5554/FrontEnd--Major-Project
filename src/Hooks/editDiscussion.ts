@@ -12,14 +12,21 @@ export const editDiscussion = () => {
 
     const nav = useNavigate();
 
-    const initialDiscussion = {
+    interface EditDiscussionForm {
+        title?: string;
+        content?: string;
+        description?: string;
+        users: string[] | string;
+    }
+
+    const initialDiscussion: EditDiscussionForm = {
         title: discussion?.title,
         content: discussion?.content,
         description: discussion?.description,
         users: Array.isArray(discussion?.users) ? discussion.users.map(user => user._id) : [],
     }
 
-    const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({
+    const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<EditDiscussionForm>({
         defaultValues: initialDiscussion,
         mode: "onChange",
         resolver: joiResolver(editDiscussionSchema)
@@ -32,10 +39,8 @@ export const editDiscussion = () => {
                 content: discussion.content,
                 description: discussion.description,
                 users: Array.isArray(discussion.users)
-                    ? discussion.users.map((user: any) => user._id)
-                    : discussion.users?._id
-                        ? [discussion.users._id]
-                        : []
+                    ? discussion.users.map(user => user._id).join(",")
+                    : "",
             });
         }
     }, [discussion, reset]);
@@ -70,9 +75,18 @@ export const editDiscussion = () => {
 
     const submitForm = async (form: typeof initialDiscussion) => {
 
+        const usersArray = typeof form.users === "string"
+            ? form.users.split(",").map(id => id.trim()).filter(Boolean)
+            : form.users;
+
+        const payload = {
+            ...form,
+            users: usersArray,
+        };
+
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.put("http://localhost:8080/discussions/" + discussion?._id, form);
+            const res = await axios.put("http://localhost:8080/discussions/" + discussion?._id, payload);
             setDiscussion(res.data);
             nav("/mycreateddiscussions")
 
