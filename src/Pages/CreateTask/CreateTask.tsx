@@ -45,7 +45,7 @@ const CreateTask = () => {
                         <FloatingLabel className="dark:text-white"
                             type="text"
                             variant="standard"
-                            label="Assigned To"
+                            label="Assigned To (user ID)"
                             {...register("assignedTo")}
                         />
                         <span className="w-32 text-sm text-red-500">{errors.assignedTo?.message}</span>

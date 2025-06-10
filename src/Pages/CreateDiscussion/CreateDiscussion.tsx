@@ -53,7 +53,7 @@ const CreateDiscussion = () => {
 
                 <div className="flex flex-col">
                     <div className="flex flex-col">
-                        <label className="dark:text-white" htmlFor="users">Users</label>
+                        <label className="dark:text-white" htmlFor="users">Users (User Id's)</label>
                         <textarea
                             id="users"
                             className="w-full p-2 text-sm border rounded dark:text-white dark:bg-gray-700"
