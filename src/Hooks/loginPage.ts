@@ -8,6 +8,7 @@ import { loginSchema } from "../components/validations/loginSchema";
 import { decode } from "../Services/tokenService";
 import { userActions } from "../Store/userSlice";
 
+const { API_URL } = import.meta.env;
 
 export const loginPage = () => {
     const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export const loginPage = () => {
     const submitLogin = async (form: any) => {
 
         try {
-            const token = await axios.post("http://localhost:8080/users/login", form);
+            const token = await axios.post(`${API_URL}/login`, form);
 
             localStorage.setItem("token", token.data);
             const id = decode(token.data)._id;

@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { TaskSchema } from "../components/validations/taskSchema";
 
+const { API_URL } = import.meta.env;
+
 export const createTask = () => {
     const nav = useNavigate();
 
