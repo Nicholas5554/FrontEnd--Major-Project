@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { TRootState } from "../Store/bigPie";
 
+const { VITE_API_URL } = import.meta.env;
+
 
 export const myCreatedTasks = () => {
     const [tasks, setTasks] = useState<TTask[]>([]);
@@ -33,7 +35,7 @@ export const myCreatedTasks = () => {
 
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    const res = await axios.delete("http://localhost:8080/tasks/" + task._id);
+                    const res = await axios.delete(`${VITE_API_URL}/tasks/` + task._id);
                     const index = tasks.indexOf(task);
                     const newTasks = [...tasks];
 
@@ -104,8 +106,6 @@ export const myCreatedTasks = () => {
                     )
                 );
 
-                await axios.patch(`http://localhost:8080/tasks/status/${task._id}`, { status: newStatus });
-
                 Swal.fire({
                     title: `Task status updated to : "${newStatus}"`,
                     icon: "success",
@@ -118,7 +118,9 @@ export const myCreatedTasks = () => {
                     background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                     color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
                 });
-                navToMyTasks()
+                await axios.patch(`${VITE_API_URL}/tasks/status/${task._id}`, { status: newStatus });
+
+                navToMyTasks();
             }
         } catch (error) {
             Swal.fire({
@@ -160,7 +162,7 @@ export const myCreatedTasks = () => {
             axios.defaults.headers.common["x-auth-token"] = token;
         }
 
-        const res = await axios.get('http://localhost:8080/tasks/my-createdTasks');
+        const res = await axios.get(`${VITE_API_URL}/tasks/my-createdTasks`);
         setTasks(res.data);
         if (res.data.length === 0) {
             Swal.fire({

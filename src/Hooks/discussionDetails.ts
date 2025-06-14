@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
+const { VITE_API_URL } = import.meta.env;
+
 export const discussionDetails = () => {
     const [discussion, setDiscussion] = useState<TDiscussion>();
     const { id } = useParams<{ id: string }>();
@@ -11,7 +13,7 @@ export const discussionDetails = () => {
     const getData = async () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.get("http://localhost:8080/discussions/" + id);
+            const res = await axios.get(`${VITE_API_URL}/discussions/` + id);
             setDiscussion(res.data);
 
         } catch (err) {
@@ -58,7 +60,7 @@ export const discussionDetails = () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
 
-            const res = await axios.patch(`http://localhost:8080/discussions/${id}/comments`, { comments: [{ text }] });
+            const res = await axios.patch(`${VITE_API_URL}/discussions/${id}/comments`, { comments: [{ text }] });
 
             setDiscussion((prev) => {
                 if (!prev) return prev;

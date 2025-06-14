@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
+const { VITE_API_URL } = import.meta.env;
+
 
 export const showComments = () => {
     const [comments, setComments] = useState<TDiscussion & { likes?: string[] }>();
@@ -11,7 +13,7 @@ export const showComments = () => {
     const getData = async () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.get("http://localhost:8080/discussions/" + id + "/comments");
+            const res = await axios.get(`${VITE_API_URL}/discussions/` + id + `/comments`);
             setComments(res.data);
 
         } catch (err) {
@@ -35,7 +37,7 @@ export const showComments = () => {
     const deleteComment = async (comment: TDiscussion["comments"][0]) => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            await axios.delete(`http://localhost:8080/discussions/${id}/comments/${comment._id}`);
+            await axios.delete(`${VITE_API_URL}/discussions/${id}/comments/${comment._id}`);
 
             setComments((prev) => {
                 if (!prev) return prev;
@@ -79,7 +81,7 @@ export const showComments = () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
 
-            const res = await axios.patch(`http://localhost:8080/discussions/${id}/comments/${comment._id}`);
+            const res = await axios.patch(`${VITE_API_URL}/discussions/${id}/comments/${comment._id}`);
 
 
             if (res) {

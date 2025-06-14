@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { editDiscussionSchema } from "../components/validations/editDiscussionSchema";
 
+const { VITE_API_URL } = import.meta.env;
+
 export const createDiscussion = () => {
     const nav = useNavigate();
 
@@ -26,7 +28,7 @@ export const createDiscussion = () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
 
-            await axios.post("http://localhost:8080/discussions", form);
+            await axios.post(`${VITE_API_URL}/discussions`, form);
             Swal.fire({
                 title: 'Success!',
                 text: 'Discussion created successfully',

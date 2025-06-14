@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 import { TRootState } from "../Store/bigPie";
 import { userActions } from "../Store/userSlice";
 
+const { VITE_API_URL } = import.meta.env;
+
 export const profile = () => {
 
     const user = useSelector((state: TRootState) => state.userSlice.user);
@@ -21,7 +23,7 @@ export const profile = () => {
     const getData = async () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.get("http://localhost:8080/users/" + user?._id);
+            const res = await axios.get(`${VITE_API_URL}/users/` + user?._id);
             dispatch(userActions.login(res.data));
 
         } catch (error) {

@@ -6,6 +6,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { editDiscussionSchema } from "../components/validations/editDiscussionSchema";
 
+const { VITE_API_URL } = import.meta.env;
+
 export const editDiscussion = () => {
     const [discussion, setDiscussion] = useState<TDiscussion | null>(null);
     const { id } = useParams<{ id: string }>();
@@ -52,7 +54,7 @@ export const editDiscussion = () => {
 
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.get("http://localhost:8080/discussions/" + id);
+            const res = await axios.get(`${VITE_API_URL}/discussions/` + id);
             setDiscussion(res.data);
 
         } catch (error) {
@@ -86,7 +88,7 @@ export const editDiscussion = () => {
 
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.put("http://localhost:8080/discussions/" + discussion?._id, payload);
+            const res = await axios.put(`${VITE_API_URL}/discussions/` + discussion?._id, payload);
             setDiscussion(res.data);
             nav("/mycreateddiscussions")
 

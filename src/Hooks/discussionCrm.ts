@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { TRootState } from "../Store/bigPie";
 
+const { VITE_API_URL } = import.meta.env;
+
 export const discussionCrmFuncs = () => {
 
     const [discussions, setDiscussions] = useState<TDiscussion[]>([]);
@@ -17,7 +19,7 @@ export const discussionCrmFuncs = () => {
 
     const fetchDiscussions = async () => {
         try {
-            const res = await axios.get('http://localhost:8080/discussions');
+            const res = await axios.get(`${VITE_API_URL}/discussions`);
             setDiscussions(res.data);
             if (res.data.length === 0) {
                 Swal.fire({
@@ -68,7 +70,7 @@ export const discussionCrmFuncs = () => {
 
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    const res = await axios.delete("http://localhost:8080/discussions/" + discussion._id);
+                    const res = await axios.delete(`${VITE_API_URL}/discussions/` + discussion._id);
                     const index = discussions.indexOf(discussion);
                     const newDiscussions = [...discussions];
 

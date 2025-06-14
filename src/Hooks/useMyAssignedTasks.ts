@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { TRootState } from "../Store/bigPie";
 import Swal from "sweetalert2";
 
+const { VITE_API_URL } = import.meta.env;
+
 export const useMyAssignedTasks = () => {
     const [tasks, setTasks] = useState<TTask[]>([]);
     const nav = useNavigate();
@@ -24,7 +26,7 @@ export const useMyAssignedTasks = () => {
             if (token) {
                 axios.defaults.headers.common["x-auth-token"] = token;
             }
-            const res = await axios.get('http://localhost:8080/tasks/myAssignedTasks');
+            const res = await axios.get(`${VITE_API_URL}/tasks/myAssignedTasks`);
             setTasks(res.data);
 
             if (res.data.length === 0) {
@@ -88,8 +90,6 @@ export const useMyAssignedTasks = () => {
                     )
                 );
 
-                await axios.patch(`http://localhost:8080/tasks/status/${task._id}`, { status: newStatus });
-
                 Swal.fire({
                     title: `Task status updated to : "${newStatus}"`,
                     icon: "success",
@@ -102,6 +102,8 @@ export const useMyAssignedTasks = () => {
                     background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                     color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                 });
+
+                await axios.patch(`${VITE_API_URL}/tasks/status/${task._id}`, { status: newStatus });
             }
         } catch (error) {
             Swal.fire({

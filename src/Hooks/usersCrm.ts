@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import { TRootState } from "../Store/bigPie";
 import { TUser } from "../Types/TUser";
 
+const { VITE_API_URL } = import.meta.env;
+
 export const crm = () => {
 
     const [users, setUsers] = useState<TUser[]>([]);
@@ -18,7 +20,7 @@ export const crm = () => {
     const getUsers = async () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.get("http://localhost:8080/users/");
+            const res = await axios.get(`${VITE_API_URL}/users/`);
 
             setUsers(res.data);
             if (res.data.length === 0) {
@@ -74,7 +76,7 @@ export const crm = () => {
 
                 try {
                     axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-                    await axios.patch("http://localhost:8080/users/" + user?._id, { manager: !user?.isManager });
+                    await axios.patch(`${VITE_API_URL}/users/` + user?._id, { manager: !user?.isManager });
                     getUsers();
 
                     Swal.fire({
@@ -131,7 +133,7 @@ export const crm = () => {
             if (result.isConfirmed) {
                 try {
                     axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-                    await axios.delete("http://localhost:8080/users/" + user._id);
+                    await axios.delete(`${VITE_API_URL}/users/` + user._id);
                     getUsers();
 
                     Swal.fire({

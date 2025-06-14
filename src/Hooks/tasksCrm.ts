@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { TRootState } from "../Store/bigPie";
 
+const { VITE_API_URL } = import.meta.env;
+
 export const tasksCrmFuncs = () => {
 
     const nav = useNavigate();
@@ -24,7 +26,7 @@ export const tasksCrmFuncs = () => {
 
     const fetchTasks = async () => {
         try {
-            const res = await axios.get('http://localhost:8080/tasks');
+            const res = await axios.get(`${VITE_API_URL}/tasks`);
             setTasks(res.data);
             if (res.data.length === 0) {
                 Swal.fire({
@@ -75,7 +77,7 @@ export const tasksCrmFuncs = () => {
 
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    const res = await axios.delete("http://localhost:8080/tasks/" + task._id);
+                    const res = await axios.delete(`${VITE_API_URL}/tasks/` + task._id);
                     const index = tasks.indexOf(task);
                     const newTasks = [...tasks];
 

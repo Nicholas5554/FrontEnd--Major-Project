@@ -8,6 +8,8 @@ import { TRootState } from "../Store/bigPie";
 import { searchActions } from "../Store/SearchSlice";
 import { userActions } from "../Store/userSlice";
 
+const { VITE_API_URL } = import.meta.env;
+
 
 export const header = () => {
 
@@ -63,7 +65,7 @@ export const header = () => {
                     axios.defaults.headers.common["x-auth-token"] = token;
                     const decodedToken = jwtDecode(token) as { _id: string };
                     const response = await axios.get(
-                        "http://localhost:8080/users/" + decodedToken._id
+                        `${VITE_API_URL}/users/` + decodedToken._id
                     );
                     dispatch(userActions.login(response.data));
 

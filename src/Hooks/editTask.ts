@@ -6,6 +6,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import editTaskSchema from "../components/validations/editTaskSchema";
 
+const { VITE_API_URL } = import.meta.env;
+
 export const editTask = () => {
     const [tasks, setTasks] = useState<TTask>();
     const { id } = useParams<{ id: string }>();
@@ -37,7 +39,7 @@ export const editTask = () => {
     const getData = async () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.get("http://localhost:8080/tasks/" + id);
+            const res = await axios.get(`${VITE_API_URL}/tasks/` + id);
             setTasks(res.data);
 
         } catch (err) {
@@ -61,7 +63,7 @@ export const editTask = () => {
 
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.put("http://localhost:8080/tasks/" + tasks?._id, form);
+            const res = await axios.put(`${VITE_API_URL}/tasks/` + tasks?._id, form);
             setTasks(res.data);
 
             Swal.fire({

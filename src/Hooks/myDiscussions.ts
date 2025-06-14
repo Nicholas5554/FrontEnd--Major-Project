@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { TRootState } from "../Store/bigPie";
 
+const { VITE_API_URL } = import.meta.env;
 
 export const myDiscussions = () => {
     const [discussions, setDiscussions] = useState<TDiscussion[]>([]);
@@ -26,7 +27,7 @@ export const myDiscussions = () => {
             axios.defaults.headers.common["x-auth-token"] = token;
         }
 
-        const res = await axios.get('http://localhost:8080/discussions/my-discussions');
+        const res = await axios.get(`${VITE_API_URL}/discussions/my-discussions`);
         setDiscussions(res.data);
         if (res.data.length === 0) {
             Swal.fire({

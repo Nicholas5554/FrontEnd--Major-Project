@@ -9,6 +9,8 @@ import { editUserSchema } from "../components/validations/editUserSchema";
 import { userActions } from "../Store/userSlice";
 import { TUser } from "../Types/TUser";
 
+const { VITE_API_URL } = import.meta.env;
+
 export const editUser = () => {
     const [userInfo, setUserInfo] = useState<TUser | null>(null);;
     const { id } = useParams<{ id: string }>();
@@ -50,7 +52,7 @@ export const editUser = () => {
     const getData = async () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.get("http://localhost:8080/users/" + id);
+            const res = await axios.get(`${VITE_API_URL}/users/` + id);
             setUserInfo(res.data);
             dispatch(userActions.login(res.data));
 
@@ -75,7 +77,7 @@ export const editUser = () => {
 
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.put("http://localhost:8080/users/" + userInfo?._id, form);
+            const res = await axios.put(`${VITE_API_URL}/users/` + userInfo?._id, form);
             setUserInfo(res.data);
 
             Swal.fire({
@@ -130,7 +132,7 @@ export const editUser = () => {
                 try {
                     axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
                     const res = await axios.patch(
-                        "http://localhost:8080/users/" + userInfo?._id, { manager: !userInfo?.isManager }
+                        `${VITE_API_URL}/users/` + userInfo?._id, { manager: !userInfo?.isManager }
                     );
                     setUserInfo(res.data);
 
@@ -189,7 +191,7 @@ export const editUser = () => {
 
                 try {
                     axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-                    const res = await axios.delete("http://localhost:8080/users/" + userInfo?._id);
+                    const res = await axios.delete(`${VITE_API_URL}/users/` + userInfo?._id);
                     setUserInfo(res.data);
                     dispatch(userActions.logout());
                     localStorage.removeItem("token");

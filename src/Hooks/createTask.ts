@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { TaskSchema } from "../components/validations/taskSchema";
 
-const { API_URL } = import.meta.env;
+const { VITE_API_URL } = import.meta.env;
 
 export const createTask = () => {
     const nav = useNavigate();
@@ -29,7 +29,7 @@ export const createTask = () => {
 
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            await axios.post("http://localhost:8080/tasks", form);
+            await axios.post(`${VITE_API_URL}/tasks`, form);
             Swal.fire({
                 title: 'Success!',
                 text: 'Task created successfully',

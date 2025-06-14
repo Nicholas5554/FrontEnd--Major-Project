@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { registerSchema } from "../components/validations/registerSchema";
 
+const { VITE_API_URL } = import.meta.env;
+
 
 export const registerPage = () => {
     const nav = useNavigate();
@@ -39,9 +41,8 @@ export const registerPage = () => {
 
     const submitForm = async (form: any) => {
 
-
         try {
-            await axios.post("http://localhost:8080/users/register", form);
+            await axios.post(`${VITE_API_URL}/users/register`, form);
             Swal.fire({
                 title: `Welcome ${form.name.first} ${form.name.last}`,
                 text: "successfully Registerd",

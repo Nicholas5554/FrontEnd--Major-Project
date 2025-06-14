@@ -28,7 +28,7 @@ export const loginPage = () => {
     const submitLogin = async (form: any) => {
 
         try {
-            const token = await axios.post(`${VITE_API_URL}/login`, form);
+            const token = await axios.post(`${VITE_API_URL}/users/login`, form);
 
             localStorage.setItem("token", token.data);
             const id = decode(token.data)._id;
@@ -68,6 +68,7 @@ export const loginPage = () => {
                     background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                     color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                 });
+
 
             } else {
                 Swal.fire({
