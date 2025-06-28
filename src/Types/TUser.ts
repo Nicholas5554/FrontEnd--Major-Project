@@ -5,6 +5,7 @@ export type TUser = {
         "last": string,
     },
     "email": string,
+    "password": string,
     "isAdmin": boolean,
     "isManager": boolean
 }

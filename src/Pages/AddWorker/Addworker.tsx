@@ -12,12 +12,12 @@ const AddWorker = () => {
     } = addWorker();
 
     return (
-        <form onSubmit={handleSubmit(submitForm)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg w-1/1">
+        <form onSubmit={handleSubmit(submitForm)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg w-[30%]">
 
             <h1 className="text-2xl font-bold dark:text-white">Worker Registration</h1>
 
             <div className="flex flex-row justify-around gap-11 w-80">
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                     <FloatingLabel className="dark:text-white"
                         type="text"
                         variant="standard"
@@ -27,7 +27,7 @@ const AddWorker = () => {
                     <span className="w-32 text-sm text-red-500">{errors.name?.first?.message}</span>
                 </div>
 
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                     <FloatingLabel className="dark:text-white"
                         type="text"
                         variant="standard"
@@ -39,7 +39,7 @@ const AddWorker = () => {
             </div>
 
             <div className="flex flex-row justify-around gap-11 w-80">
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                     <FloatingLabel className="dark:text-white"
                         type="email"
                         variant="standard"
@@ -49,7 +49,7 @@ const AddWorker = () => {
                     <span className="w-32 text-sm text-red-500">{errors.email?.message}</span>
                 </div>
 
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                     <FloatingLabel className="dark:text-white"
                         type="password"
                         variant="standard"

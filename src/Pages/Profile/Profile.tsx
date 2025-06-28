@@ -8,20 +8,20 @@ const Profile = () => {
     } = profile();
 
     return (
-        <div className="text-center dark:text-white w-[90vw] flex flex-col justify-center items-center gap-2">
+        <div className="text-center dark:text-white w-[20%] flex flex-col justify-center items-center gap-2">
 
             <h1 className="text-3xl font-bold text-teal-500">Profile Page</h1>
             <br />
-            <div className="flex flex-wrap items-center justify-center gap-4 w-1/1">
+            <div className="flex flex-wrap items-center justify-center w-full gap-4">
                 <Card className="flex items-center justify-center w-auto">
-                    <h1>Name : {user?.name.first}</h1>
+                    <h1>Name : {user?.name.first} {user?.name.last}</h1>
                     <h2>User Email : {user?.email}</h2>
                     <p>Status : {user?.isManager ? "Manager User" : "Personal User"}</p>
                 </Card>
 
             </div>
 
-            <Button onClick={navToChange} className="mt-5 w-58">To Change Your Information</Button>
+            <Button onClick={navToChange} className="w-full mt-5">To Change Your Information</Button>
         </div>
 
     );

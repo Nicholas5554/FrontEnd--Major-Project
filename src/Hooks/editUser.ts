@@ -21,20 +21,9 @@ export const editUser = () => {
     const initialUser = {
         name: {
             first: userInfo?.name.first,
-            middle: userInfo?.name.middle,
             last: userInfo?.name.last
         },
-        phone: userInfo?.phone,
-        image: {
-            url: userInfo?.image.url,
-            alt: userInfo?.image.alt
-        },
-        address: {
-            country: userInfo?.address.country,
-            city: userInfo?.address.city,
-            street: userInfo?.address.street,
-            houseNumber: userInfo?.address.houseNumber,
-        }
+        password: userInfo?.password
     }
 
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({
