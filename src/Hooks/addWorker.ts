@@ -18,7 +18,8 @@ export const addWorker = () => {
             "last": ""
         },
         "email": "",
-        "password": ""
+        "password": "",
+        "isManager": false
     };
 
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({

@@ -164,19 +164,6 @@ export const myCreatedTasks = () => {
 
         const res = await axios.get(`${VITE_API_URL}/tasks/my-createdTasks`);
         setTasks(res.data);
-        if (res.data.length === 0) {
-            Swal.fire({
-                title: "No Tasks Found",
-                icon: "info",
-                text: "You have not created any tasks yet",
-                confirmButtonColor: '#3085d6',
-                customClass: {
-                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
-                },
-                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
-                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
-            });
-        }
     }
 
     useEffect(() => {

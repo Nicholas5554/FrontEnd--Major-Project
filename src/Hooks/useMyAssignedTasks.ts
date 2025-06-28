@@ -29,20 +29,6 @@ export const useMyAssignedTasks = () => {
             const res = await axios.get(`${VITE_API_URL}/tasks/myAssignedTasks`);
             setTasks(res.data);
 
-            if (res.data.length === 0) {
-                Swal.fire({
-                    title: "No Tasks Found",
-                    text: "You have no assigned tasks",
-                    icon: "info",
-                    confirmButtonColor: '#3085d6',
-                    customClass: {
-                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
-                    },
-                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
-                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
-                });
-            }
-
         } catch (err) {
             Swal.fire({
                 title: "No Tasks Found",

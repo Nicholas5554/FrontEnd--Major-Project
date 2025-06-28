@@ -18,7 +18,7 @@ export const registerPage = () => {
         },
         "email": "",
         "password": "",
-        "isManager": false
+        "isManager": true
     };
 
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({

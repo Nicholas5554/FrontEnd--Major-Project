@@ -21,29 +21,13 @@ export const myWorkers = () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
             const res = await axios.get(`${VITE_API_URL}/users/myworkers`);
-
             setUsers(res.data);
-            if (res.data.length === 0) {
-                Swal.fire({
-                    title: "Error",
-                    text: "No workers were added yet",
-                    icon: "warning",
-                    timerProgressBar: true,
-                    showConfirmButton: true,
-                    confirmButtonColor: '#3085d6',
-                    customClass: {
-                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
-                    },
-                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
-                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
-                });
-            }
 
         } catch (error) {
             Swal.fire({
-                title: "Error",
-                text: "Could not get workers",
-                icon: "error",
+                title: "No workers found",
+                text: "Can't see any workers here",
+                icon: "info",
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
                 timerProgressBar: true,
@@ -53,8 +37,6 @@ export const myWorkers = () => {
                 background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                 color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
-            console.log(`error:`, error);
-
         }
     }
 
@@ -136,7 +118,6 @@ export const myWorkers = () => {
                 try {
                     axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
                     await axios.delete(`${VITE_API_URL}/users/` + user._id);
-                    getUsers();
 
                     Swal.fire({
                         title: "Success",
@@ -151,6 +132,7 @@ export const myWorkers = () => {
                         background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                         color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                     });
+                    getUsers();
 
                 } catch (error) {
                     Swal.fire({

@@ -1,4 +1,4 @@
-import { Button, Checkbox, FloatingLabel, Label } from "flowbite-react";
+import { Button, FloatingLabel } from "flowbite-react";
 import { registerPage } from "../../Hooks/registerPage";
 
 const RegisterPage = () => {
@@ -59,14 +59,6 @@ const RegisterPage = () => {
                     <span className="w-32 text-sm text-red-500">{errors.password?.message}</span>
                 </div>
             </div>
-
-            <Label htmlFor="isBusiness">Manager Account?</Label>
-            <Checkbox style={{
-                width: "25px",
-                height: "25px",
-                marginLeft: "10px"
-            }} {...register("isManager")} />
-            <span className="text-sm text-red-500">{errors.isManager?.message}</span>
 
 
             <Button type="submit" disabled={!isValid} className="w-full dark:text-white">
