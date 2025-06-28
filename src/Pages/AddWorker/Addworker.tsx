@@ -1,7 +1,7 @@
-import { Button, Checkbox, FloatingLabel, Label } from "flowbite-react";
-import { registerPage } from "../../Hooks/registerPage";
+import { Button, FloatingLabel } from "flowbite-react";
+import { addWorker } from "../../Hooks/addWorker";
 
-const RegisterPage = () => {
+const AddWorker = () => {
 
     const {
         register,
@@ -9,12 +9,12 @@ const RegisterPage = () => {
         errors,
         isValid,
         submitForm
-    } = registerPage();
+    } = addWorker();
 
     return (
         <form onSubmit={handleSubmit(submitForm)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg w-1/1">
 
-            <h1 className="text-2xl font-bold dark:text-white">Register</h1>
+            <h1 className="text-2xl font-bold dark:text-white">Worker Registration</h1>
 
             <div className="flex flex-row justify-around gap-11 w-80">
                 <div className="flex flex-col">
@@ -60,21 +60,13 @@ const RegisterPage = () => {
                 </div>
             </div>
 
-            <Label htmlFor="isBusiness">Manager Account?</Label>
-            <Checkbox style={{
-                width: "25px",
-                height: "25px",
-                marginLeft: "10px"
-            }} {...register("isManager")} />
-            <span className="text-sm text-red-500">{errors.isManager?.message}</span>
-
 
             <Button type="submit" disabled={!isValid} className="w-full dark:text-white">
-                Register
+                Add Worker
             </Button>
 
         </form>
     )
 }
 
-export default RegisterPage;
+export default AddWorker;

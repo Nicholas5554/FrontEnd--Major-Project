@@ -1,15 +1,16 @@
 import { joiResolver } from "@hookform/resolvers/joi";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { registerSchema } from "../components/validations/registerSchema";
+import { useNavigate } from "react-router-dom";
 
 const { VITE_API_URL } = import.meta.env;
 
 
-export const registerPage = () => {
-    const nav = useNavigate();
+export const addWorker = () => {
+
+    const navigate = useNavigate();
 
     const initialForm = {
         "name": {
@@ -17,8 +18,7 @@ export const registerPage = () => {
             "last": ""
         },
         "email": "",
-        "password": "",
-        "isManager": false
+        "password": ""
     };
 
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({
@@ -30,10 +30,10 @@ export const registerPage = () => {
     const submitForm = async (form: any) => {
 
         try {
-            await axios.post(`${VITE_API_URL}/users/register`, form);
+            await axios.post(`${VITE_API_URL}/users/addworker`, form);
             Swal.fire({
-                title: `Welcome ${form.name.first} ${form.name.last}`,
-                text: "successfully Registerd",
+                title: `The worker ${form.name.first} ${form.name.last}`,
+                text: "successfully Registered",
                 icon: "success",
                 timer: 2000,
                 timerProgressBar: true,
@@ -44,7 +44,7 @@ export const registerPage = () => {
                 background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                 color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
             });
-            nav("/login");
+            navigate("/myworkers");
 
         } catch (error) {
             if (axios.isAxiosError(error)) {

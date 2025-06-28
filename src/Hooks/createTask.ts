@@ -4,18 +4,20 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { TaskSchema } from "../components/validations/taskSchema";
+import { useEffect, useState } from "react";
 
 const { VITE_API_URL } = import.meta.env;
 
 export const createTask = () => {
+
+    const [workers, setWorkers] = useState([]);
+
     const nav = useNavigate();
 
     const initialFromData = {
         "title": "",
-        "type": "",
         "assignedTo": "",
-        "status": "to do",
-        "priority": "low",
+        "priority": "",
         "description": ""
     }
 
@@ -67,12 +69,27 @@ export const createTask = () => {
         nav("/mytasks")
     }
 
+    useEffect(() => {
+        const fetchWorkers = async () => {
+            try {
+                axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
+                const response = await axios.get(`${VITE_API_URL}/users/myworkers`);
+                setWorkers(response.data);
+            } catch (error) {
+                console.error("Error fetching workers:", error);
+            }
+        };
+
+        fetchWorkers();
+    }, []);
+
     return ({
         register,
         handleSubmit,
         errors,
         isValid,
         onSubmit,
-        navToMyTasks
+        navToMyTasks,
+        workers
     });
 };

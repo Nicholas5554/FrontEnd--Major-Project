@@ -9,6 +9,8 @@ import editTaskSchema from "../components/validations/editTaskSchema";
 const { VITE_API_URL } = import.meta.env;
 
 export const editTask = () => {
+
+    const [workers, setWorkers] = useState([]);
     const [tasks, setTasks] = useState<TTask>();
     const { id } = useParams<{ id: string }>();
 
@@ -16,7 +18,6 @@ export const editTask = () => {
 
     const initialTask = {
         title: tasks?.title,
-        type: tasks?.type,
         assignedTo: tasks?.assignedTo._id,
         status: tasks?.status,
         priority: tasks?.priority,
@@ -45,7 +46,7 @@ export const editTask = () => {
         } catch (err) {
             Swal.fire({
                 title: "error",
-                text: "could not get the data",
+                text: "could not get the task",
                 icon: "error",
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
@@ -101,6 +102,21 @@ export const editTask = () => {
     const navToMyTasks = () => {
         nav("/mytasks")
     }
+
+    useEffect(() => {
+        const fetchWorkers = async () => {
+            try {
+                axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
+                const response = await axios.get(`${VITE_API_URL}/users/myworkers`);
+                setWorkers(response.data);
+            } catch (error) {
+                console.error("Error fetching workers:", error);
+            }
+        };
+
+        fetchWorkers();
+    }, []);
+
     useEffect(() => {
         getData()
     }, [id]);
@@ -117,5 +133,6 @@ export const editTask = () => {
         handleSubmit,
         errors,
         isValid,
+        workers
     });
 }

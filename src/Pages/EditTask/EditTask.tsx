@@ -1,5 +1,6 @@
 import { FloatingLabel, Button } from "flowbite-react";
 import { editTask } from "../../Hooks/editTask";
+import { TWorker } from "../../Types/Tworker";
 
 const EditTask = () => {
     const {
@@ -10,7 +11,19 @@ const EditTask = () => {
         handleSubmit,
         errors,
         isValid,
-    } = editTask();
+        workers
+    }: {
+        tasks: any;
+        onSubmit: (form: any) => Promise<void>;
+        navToMyTasks: () => void;
+        register: any;
+        handleSubmit: any;
+        errors: any;
+        isValid: boolean;
+        workers: TWorker[];
+    }
+
+        = editTask();
 
     return (
         <>
@@ -18,9 +31,8 @@ const EditTask = () => {
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <h1 className="text-2xl font-bold dark:text-white">Edit Task</h1>
-
                 <div className="flex flex-row justify-around gap-11 w-80">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col w-[100%]">
                         <FloatingLabel className="dark:text-white"
                             type="text"
                             variant="standard"
@@ -32,64 +44,51 @@ const EditTask = () => {
                     </div>
 
                     <div className="flex flex-col w-[100%]">
-                        <FloatingLabel className="dark:text-white"
-                            type="text"
-                            variant="standard"
-                            label="Type"
-                            defaultValue={tasks?.type || ""}
-                            {...register("type")}
-                        />
-                        <span className="w-32 text-sm text-red-500">{errors.type?.message}</span>
-                    </div>
-                </div>
-
-                <div className="flex flex-row justify-around gap-11 w-80">
-                    <div className="flex flex-col w-[100%]">
-                        <FloatingLabel className="dark:text-white"
-                            type="text"
-                            variant="standard"
-                            label="Assigned To (User ID)"
-                            defaultValue={tasks?.assignedTo._id || ""}
+                        <select className="w-full h-10 px-3 text-sm border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                            defaultValue={tasks?.assignedTo || ""}
                             {...register("assignedTo")}
-                        />
+                        >
+                            <option value="" disabled>Select Worker</option>
+                            {workers.map(worker => (
+                                <option key={worker._id} value={worker._id}>
+                                    {worker.name.first} {worker.name.last}
+                                </option>
+                            ))}
+                        </select>
                         <span className="w-32 text-sm text-red-500">{errors.assignedTo?.message}</span>
                     </div>
 
-                    <div className="flex flex-col w-[100%]">
-                        <FloatingLabel className="dark:text-white"
-                            type="text"
-                            variant="standard"
-                            label="Status"
-                            defaultValue={tasks?.status || ""}
-                            {...register("status")}
-                        />
-
-                        <span className="w-32 text-sm text-red-500">{errors.status?.message}</span>
-                    </div>
                 </div>
 
                 <div className="flex flex-row justify-around gap-11 w-80">
-                    <div className="flex flex-col w-[100%]">
-                        <FloatingLabel className="dark:text-white"
-                            type="text"
-                            variant="standard"
-                            label="Priority"
-                            defaultValue={tasks?.priority || ""}
-                            {...register("priority")}
-                        />
-                        <span className="w-32 text-sm text-red-500">{errors.priority?.message}</span>
-                    </div>
 
                     <div className="flex flex-col w-[100%]">
                         <FloatingLabel className="dark:text-white"
                             type="text"
                             variant="standard"
                             label="Description"
-                            defaultValue={tasks?.description || ""}
                             {...register("description")}
                         />
                         <span className="w-32 text-sm text-red-500">{errors.description?.message}</span>
                     </div>
+
+                    <div className="flex flex-col w-[100%]">
+                        <select className="w-full h-10 px-3 text-sm border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                            type="text"
+                            variant="standard"
+                            label="Priority"
+                            {...register("priority")}
+                        >
+                            <option value="" disabled>Select Priority</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                        <span className="w-32 text-sm text-red-500">{errors.priority?.message}</span>
+                    </div>
+
+
                 </div>
 
                 <button className="w-full h-10 text-sm text-white transition-colors rounded-md bg-neutral-500 hover:bg-neutral-600" onClick={navToMyTasks}>Go Back</button>

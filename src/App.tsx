@@ -9,7 +9,7 @@ import LoginPage from "./Pages/LoginPage/LoginPage";
 import Header from "./components/Header/Header";
 import Profile from "./Pages/Profile/Profile";
 import RouteGuard from "./components/Shared/RouteGuard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TRootState } from "./Store/bigPie";
 import TaskDetails from "./Pages/TaskDetails/TaskDetails";
 import CreateTask from "./Pages/CreateTask/CreateTask";
@@ -26,10 +26,52 @@ import EditDiscussionDetails from "./Pages/EditDiscussion/EditDiscussion";
 import CreateDiscussion from "./Pages/CreateDiscussion/CreateDiscussion";
 import MyDiscussions from "./Pages/MyDiscussions/MyDiscussions";
 import ShowComments from "./Pages/ShowComments/ShowComments";
+import { useEffect, useState } from "react";
+import { userActions } from "./Store/userSlice";
+import axios from "axios";
+import AddWorker from "./Pages/AddWorker/Addworker";
+import MyWorkers from "./Pages/MyWorkers/MyWorkers";
 
 const App = () => {
 
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+
+  const { VITE_API_URL } = import.meta.env;
+  const dispatch = useDispatch();
+
+  const token = localStorage.getItem("token");
+  if (!token) {
+    localStorage.setItem("token", "");
+  }
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        try {
+          axios.defaults.headers.common["x-auth-token"] = token;
+          const res = await axios.get(`${VITE_API_URL}/users/me`);
+          dispatch(userActions.login(res.data));
+        } catch (error) {
+          localStorage.removeItem("token");
+        }
+      }
+      setIsCheckingAuth(false);
+    };
+
+    fetchUser();
+  }, []);
+
+
+
+
   const user = useSelector((state: TRootState) => state.userSlice.user);
+  if (isCheckingAuth) {
+    return <div className="mt-10 text-xl text-white">Loading...</div>; // or a spinner
+  }
+
 
   return (
     <>
@@ -45,6 +87,16 @@ const App = () => {
             <RouteGuard user={user!}>
               <Profile />
             </RouteGuard>} />
+
+          {user?.isManager && <Route path="/addworker" element={
+            <RouteGuard user={user!}>
+              <AddWorker />
+            </RouteGuard>} />}
+
+          {user?.isManager && <Route path="/myworkers" element={
+            <RouteGuard user={user!}>
+              <MyWorkers />
+            </RouteGuard>} />}
 
           <Route path="/myassignedtasks" element={
             <RouteGuard user={user!}>

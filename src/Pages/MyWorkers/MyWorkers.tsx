@@ -1,27 +1,26 @@
 import { TUser } from "../../Types/TUser"
 import { FaTrash } from "react-icons/fa";
-import { crm } from "../../Hooks/usersCrm";
 import { FaUser } from "react-icons/fa";
+import { myWorkers } from "../../Hooks/myWorkers";
 
 
 
-const Crm = () => {
+const MyWorkers = () => {
     const {
         searchUsers,
         patchManagerStatus,
         deleteUser
-    } = crm();
+    } = myWorkers();
 
     return (
         <>
             <div className="relative overflow-x-auto w-[95%]">
-                <h1 className="mb-2 text-4xl font-bold dark:text-white">Users Chart</h1>
+                <h1 className="mb-2 text-4xl font-bold dark:text-white">My workers</h1>
                 <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">Username</th>
                             <th scope="col" className="px-6 py-3">Email</th>
-                            <th scope="col" className="px-6 py-3">Phone Number</th>
                             <th scope="col" className="px-6 py-3">User Status</th>
                             <th scope="col" className="px-6 py-3">Change Status</th>
                             <th scope="col" className="px-6 py-3">Delete Account</th>
@@ -65,4 +64,4 @@ const Crm = () => {
     );
 };
 
-export default Crm
+export default MyWorkers;

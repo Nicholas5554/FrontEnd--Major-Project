@@ -23,7 +23,7 @@ export const profile = () => {
     const getData = async () => {
         try {
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.get(`${VITE_API_URL}/users/` + user?._id);
+            const res = await axios.get(`${VITE_API_URL}/users/me`);
             dispatch(userActions.login(res.data));
 
         } catch (error) {
