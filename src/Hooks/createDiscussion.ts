@@ -3,24 +3,29 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { editDiscussionSchema } from "../components/validations/editDiscussionSchema";
+import { discussionSchema } from "../components/validations/discussionSchema";
+import { useEffect, useState } from "react";
+
 
 const { VITE_API_URL } = import.meta.env;
 
 export const createDiscussion = () => {
+
+    const [workers, setWorkers] = useState([]);
+
     const nav = useNavigate();
 
     const initialFormData = {
         "title": "",
         "description": "",
         "content": "",
-        "users": "",
+        "users": [] as string[],
     }
 
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({
         defaultValues: initialFormData,
         mode: "onChange",
-        resolver: joiResolver(editDiscussionSchema)
+        resolver: joiResolver(discussionSchema)
     });
 
     const onSubmit = async (form: typeof initialFormData) => {
@@ -33,7 +38,7 @@ export const createDiscussion = () => {
                 title: 'Success!',
                 text: 'Discussion created successfully',
                 icon: 'success',
-                confirmButtonText: 'Cool',
+                confirmButtonText: 'Ok',
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
                 timerProgressBar: true,
@@ -62,6 +67,33 @@ export const createDiscussion = () => {
         }
     };
 
+    useEffect(() => {
+        const getWorkers = async () => {
+            try {
+                axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
+                const res = await axios.get(`${VITE_API_URL}/users/myworkers`);
+                setWorkers(res.data);
+            } catch (error) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Error getting workers",
+                    icon: "error",
+                    confirmButtonColor: '#3085d6',
+                    timer: 1500,
+                    timerProgressBar: true,
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+                })
+                console.log("Error getting workers", error);
+
+            }
+        }
+        getWorkers();
+    })
+
     const navToMyDiscussions = () => {
         nav("/mycreateddiscussions");
     }
@@ -72,6 +104,7 @@ export const createDiscussion = () => {
         errors,
         isValid,
         onSubmit,
-        navToMyDiscussions
+        navToMyDiscussions,
+        workers
     });
 };

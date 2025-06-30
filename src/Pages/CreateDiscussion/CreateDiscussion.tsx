@@ -1,5 +1,6 @@
 import { FloatingLabel, Button } from "flowbite-react";
 import { createDiscussion } from "../../Hooks/createDiscussion";
+import { TWorker } from "../../Types/Tworker";
 
 
 const CreateDiscussion = () => {
@@ -10,16 +11,25 @@ const CreateDiscussion = () => {
         isValid,
         register,
         handleSubmit,
-        navToMyDiscussions
+        navToMyDiscussions,
+        workers
+    }: {
+        onSubmit: any,
+        errors: any,
+        isValid: boolean,
+        register: any,
+        handleSubmit: any,
+        navToMyDiscussions: any,
+        workers: TWorker[];
     } = createDiscussion();
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg w-1/1">
 
-            <h1 className="text-2xl font-bold dark:text-white">Edit Discussion Details</h1>
+            <h1 className="text-2xl font-bold dark:text-white">Create Discussion</h1>
 
             <div className="flex flex-row justify-around gap-11 w-80">
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                     <FloatingLabel className="dark:text-white"
                         type="text"
                         variant="standard"
@@ -29,7 +39,7 @@ const CreateDiscussion = () => {
                     <span className="w-32 text-sm text-red-500">{errors.title?.message}</span>
                 </div>
 
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                     <FloatingLabel className="dark:text-white"
                         type="text"
                         variant="standard"
@@ -41,7 +51,7 @@ const CreateDiscussion = () => {
             </div>
 
             <div className="flex flex-row justify-around gap-11 w-80">
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                     <FloatingLabel className="dark:text-white"
                         type="text"
                         variant="standard"
@@ -51,20 +61,25 @@ const CreateDiscussion = () => {
                     <span className="w-32 text-sm text-red-500">{errors.description?.message}</span>
                 </div>
 
-                <div className="flex flex-col">
-                    <div className="flex flex-col">
-                        <label className="dark:text-white" htmlFor="users">Users (User ID's)</label>
-                        <textarea
-                            id="users"
-                            className="w-full p-2 text-sm border rounded dark:text-white dark:bg-gray-700"
-                            rows={1}
-                            {...register("users", {
-                                setValueAs: (value) =>
-                                    typeof value === "string" ? value.split(",").map((id) => id.trim()) : [],
-                            })}
-                        />
-                        <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>
+                <div className="flex flex-col w-full">
+                    <label className="mb-2 text-sm dark:text-white">Add Users:</label>
+                    <div className="flex flex-col gap-2 p-2 overflow-y-auto border rounded-md max-h-40 dark:border-gray-600">
+                        {workers.map(worker => (
+                            <div key={worker._id} className="flex items-center gap-2">
+                                <input
+                                    type="checkbox"
+                                    id={worker._id}
+                                    value={worker._id}
+                                    {...register("users")}
+                                    className="w-4 h-4 rounded form-checkbox text-neutral-600 dark:text-neutral-400 dark:bg-gray-700 dark:border-gray-600"
+                                />
+                                <label htmlFor={worker._id} className="dark:text-white">
+                                    {worker.name.first} {worker.name.last}
+                                </label>
+                            </div>
+                        ))}
                     </div>
+                    <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>
                 </div>
             </div>
 

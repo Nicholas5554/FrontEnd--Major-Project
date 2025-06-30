@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { editDiscussionSchema } from "../components/validations/editDiscussionSchema";
+import { discussionSchema } from "../components/validations/discussionSchema";
 
 const { VITE_API_URL } = import.meta.env;
 
 export const editDiscussion = () => {
+    const [workers, setWorkers] = useState([]);
     const [discussion, setDiscussion] = useState<TDiscussion | null>(null);
     const { id } = useParams<{ id: string }>();
 
@@ -31,7 +32,7 @@ export const editDiscussion = () => {
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<EditDiscussionForm>({
         defaultValues: initialDiscussion,
         mode: "onChange",
-        resolver: joiResolver(editDiscussionSchema)
+        resolver: joiResolver(discussionSchema)
     });
 
     useEffect(() => {
@@ -46,9 +47,6 @@ export const editDiscussion = () => {
             });
         }
     }, [discussion, reset]);
-
-
-
 
     const getData = async () => {
 
@@ -123,6 +121,31 @@ export const editDiscussion = () => {
         }
     }
 
+    useEffect(() => {
+        const fetchWorkers = async () => {
+            try {
+                axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
+                const res = await axios.get(`${VITE_API_URL}/users/myworkers`);
+                setWorkers(res.data);
+            } catch (error) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Error getting workers",
+                    icon: "error",
+                    confirmButtonColor: '#3085d6',
+                    timer: 1500,
+                    timerProgressBar: true,
+                    customClass: {
+                        popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
+                    },
+                    background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
+                    color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
+                })
+            }
+        };
+        fetchWorkers();
+    })
+
 
     useEffect(() => {
         getData();
@@ -135,5 +158,6 @@ export const editDiscussion = () => {
         errors,
         isValid,
         submitForm,
+        workers
     })
 }

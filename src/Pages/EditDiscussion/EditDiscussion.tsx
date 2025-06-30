@@ -1,10 +1,27 @@
 import { FloatingLabel, Button } from "flowbite-react";
 import { editDiscussion } from "../../Hooks/editDiscussion";
+import { TWorker } from "../../Types/Tworker";
 
 
 const EditDiscussionDetails = () => {
 
-    const { discussion, submitForm, errors, isValid, register, handleSubmit, } = editDiscussion();
+    const { discussion,
+        submitForm,
+        errors,
+        isValid,
+        register,
+        handleSubmit,
+        workers
+    }: {
+        discussion: any,
+        submitForm: any,
+        errors: any,
+        isValid: boolean,
+        register: any,
+        handleSubmit: any,
+        workers: TWorker[];
+    }
+        = editDiscussion();
 
 
 
@@ -51,16 +68,23 @@ const EditDiscussionDetails = () => {
 
                 <div className="flex flex-col">
                     <div className="flex flex-col">
-                        <label className="dark:text-white" htmlFor="users">Users (User ID's)</label>
-                        <textarea
-                            id="users"
-                            className="w-full p-2 text-sm border rounded dark:text-white dark:bg-gray-700"
-                            rows={3}
-                            {...register("users", {
-                                setValueAs: (value) =>
-                                    typeof value === "string" ? value.split(",").map((id) => id.trim()) : [],
-                            })}
-                        />
+                        <label className="dark:text-white" htmlFor="users">Users</label>
+                        {workers.map(worker => (
+                            <div key={worker._id} className="flex items-center gap-2">
+                                <input type="checkbox"
+                                    id={worker._id}
+                                    value={worker._id}
+                                    {...register("users")}
+                                    className="w-4 h-4 rounded form-checkbox text-neutral-600 dark:text-neutral-400 dark:bg-gray-700 dark:border-gray-600"
+                                    defaultValue={discussion?.users?.includes(worker._id) ? worker._id : ""}
+                                />
+                                <label htmlFor={worker._id} className="dark:text-white">
+                                    {worker.name.first} {worker.name.last}
+                                </label>
+                            </div>
+                        ))
+                        }
+
 
                         <span className="w-32 text-sm text-red-500">{errors.users?.message}</span>
                     </div>

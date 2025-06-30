@@ -94,20 +94,6 @@ export const myCreatedDiscussions = () => {
 
         const res = await axios.get(`${VITE_API_URL}/discussions/my-createdDiscussions`);
         setDiscussions(res.data);
-        if (res.data.length === 0) {
-            Swal.fire({
-                title: "No Discussions Found",
-                text: "You have not created any discussions yet",
-                icon: "info",
-                showConfirmButton: true,
-                confirmButtonColor: '#3085d6',
-                customClass: {
-                    popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
-                },
-                background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
-                color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
-            });
-        }
     }
 
     useEffect(() => {
