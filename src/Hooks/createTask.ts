@@ -36,7 +36,7 @@ export const createTask = () => {
                 title: 'Success!',
                 text: 'Task created successfully',
                 icon: 'success',
-                confirmButtonText: 'Cool',
+                confirmButtonText: 'Ok',
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
                 timerProgressBar: true,

@@ -44,13 +44,13 @@ const EditUserDetails = () => {
 
             <div className="flex flex-col w-full">
                 <FloatingLabel className="dark:text-white"
-                    type="text"
+                    type="email"
                     variant="standard"
-                    label="New Password"
-                    defaultValue={userInfo?.password || ""}
-                    {...register("password")}
+                    label="Email"
+                    defaultValue={userInfo?.email || ""}
+                    {...register("email")}
                 />
-                <span className="w-32 text-sm text-red-500">{errors.name?.last?.message}</span>
+                <span className="w-32 text-sm text-red-500">{errors.email?.message}</span>
             </div>
 
             <button className="w-full h-10 text-sm text-white transition-colors rounded-md bg-neutral-500 hover:bg-neutral-600" onClick={navToProfile}>

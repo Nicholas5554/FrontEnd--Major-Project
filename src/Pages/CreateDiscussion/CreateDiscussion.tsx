@@ -28,7 +28,7 @@ const CreateDiscussion = () => {
 
             <h1 className="text-2xl font-bold dark:text-white">Create Discussion</h1>
 
-            <div className="flex flex-row justify-around gap-11 w-80">
+            <div className="flex flex-row justify-around w-full gap-11">
                 <div className="flex flex-col w-full">
                     <FloatingLabel className="dark:text-white"
                         type="text"
@@ -50,7 +50,7 @@ const CreateDiscussion = () => {
                 </div>
             </div>
 
-            <div className="flex flex-row justify-around gap-11 w-80">
+            <div className="flex flex-row justify-around w-full gap-11">
                 <div className="flex flex-col w-full">
                     <FloatingLabel className="dark:text-white"
                         type="text"

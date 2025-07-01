@@ -29,8 +29,8 @@ const CreateTask = () => {
             >
                 <h1 className="text-2xl font-bold dark:text-white">Create Task</h1>
 
-                <div className="flex flex-row justify-around gap-11 w-80">
-                    <div className="flex flex-col w-[100%]">
+                <div className="flex flex-row justify-around w-full gap-11">
+                    <div className="flex flex-col w-full">
                         <FloatingLabel className="dark:text-white"
                             type="text"
                             variant="standard"
@@ -40,7 +40,7 @@ const CreateTask = () => {
                         <span className="w-32 text-sm text-red-500">{errors.title?.message}</span>
                     </div>
 
-                    <div className="flex flex-col w-[100%]">
+                    <div className="flex flex-col w-full">
                         <select className="w-full h-10 px-3 text-sm border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
                             defaultValue=""
                             {...register("assignedTo")}
@@ -57,9 +57,9 @@ const CreateTask = () => {
 
                 </div>
 
-                <div className="flex flex-row justify-around gap-11 w-80">
+                <div className="flex flex-row justify-around w-full gap-11">
 
-                    <div className="flex flex-col w-[100%]">
+                    <div className="flex flex-col w-full">
                         <FloatingLabel className="dark:text-white"
                             type="text"
                             variant="standard"
@@ -69,7 +69,7 @@ const CreateTask = () => {
                         <span className="w-32 text-sm text-red-500">{errors.description?.message}</span>
                     </div>
 
-                    <div className="flex flex-col w-[100%]">
+                    <div className="flex flex-col w-full">
                         <select className="w-full h-10 px-3 text-sm border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
                             type="text"
                             variant="standard"
@@ -84,7 +84,6 @@ const CreateTask = () => {
                         </select>
                         <span className="w-32 text-sm text-red-500">{errors.priority?.message}</span>
                     </div>
-
 
                 </div>
 

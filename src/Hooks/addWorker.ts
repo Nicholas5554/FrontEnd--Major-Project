@@ -51,7 +51,7 @@ export const addWorker = () => {
             if (axios.isAxiosError(error)) {
                 Swal.fire({
                     title: "Error",
-                    text: "please check your data",
+                    text: "User already exists",
                     icon: "error",
                     timer: 2000,
                     timerProgressBar: true,
@@ -62,6 +62,7 @@ export const addWorker = () => {
                     background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                     color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                 });
+
             } else {
                 Swal.fire({
                     title: "Error",

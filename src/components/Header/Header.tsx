@@ -45,7 +45,8 @@ const Header = () => {
                     Profile
                 </Navbar.Link>)}
 
-                {user?.isManager && <Dropdown label="Workers" style={{
+
+                {user && <Dropdown label="Workers" style={{
                     background: "#3b4450", color: "white", fontWeight: "bold"
                 }}>
                     {user?.isManager && (
@@ -60,7 +61,7 @@ const Header = () => {
                         <DropdownItem>
                             <Navbar.Link as={Link} href="/myworkers" to="/myworkers" active={loc === '/myworkers'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
            after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
-                                My Workers
+                                My Assigned Workers
                             </Navbar.Link>
                         </DropdownItem>
                     )}

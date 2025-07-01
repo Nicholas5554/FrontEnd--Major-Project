@@ -23,7 +23,7 @@ export const editUser = () => {
             first: userInfo?.name.first,
             last: userInfo?.name.last
         },
-        password: userInfo?.password
+        email: userInfo?.email
     }
 
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({
@@ -87,10 +87,10 @@ export const editUser = () => {
         } catch (error) {
             Swal.fire({
                 title: "error",
-                text: "error updating user",
+                text: "this email already exists or invalid data",
                 icon: "error",
                 confirmButtonColor: '#3085d6',
-                timer: 1500,
+                timer: 2500,
                 timerProgressBar: true,
                 customClass: {
                     popup: document.documentElement.classList.contains("dark") ? "swal-dark" : "",
