@@ -21,7 +21,6 @@ const Crm = () => {
                         <tr>
                             <th scope="col" className="px-6 py-3">Username</th>
                             <th scope="col" className="px-6 py-3">Email</th>
-                            <th scope="col" className="px-6 py-3">Phone Number</th>
                             <th scope="col" className="px-6 py-3">User Status</th>
                             <th scope="col" className="px-6 py-3">Change Status</th>
                             <th scope="col" className="px-6 py-3">Delete Account</th>

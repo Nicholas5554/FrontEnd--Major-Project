@@ -39,7 +39,7 @@ export const discussionDetails = () => {
             title: "Write your comment",
             input: "text",
             inputLabel: "Comment",
-            inputPlaceholder: "Type something...",
+            inputPlaceholder: "Type something up to 25 characters",
             inputAttributes: {
                 style: "color: black;"
             },
@@ -67,7 +67,6 @@ export const discussionDetails = () => {
                 const updatedComments = [...prev.comments, res.data];
                 return { ...prev, comments: updatedComments };
             });
-
             getData();
 
             await Swal.fire({
