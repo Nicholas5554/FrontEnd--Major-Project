@@ -18,7 +18,7 @@ const EditUserDetails = () => {
     return (
         <form onSubmit={handleSubmit(submitForm)} className="flex flex-col items-center justify-center w-[30%] gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg">
 
-            <h1 className="text-2xl font-bold dark:text-white">Edit User Detail</h1>
+            <h1 className="text-2xl font-bold dark:text-white">Edit User Details</h1>
 
             <div className="flex flex-col w-full">
                 <FloatingLabel className="dark:text-white"
