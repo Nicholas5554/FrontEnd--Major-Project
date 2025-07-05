@@ -23,7 +23,8 @@ export const editUser = () => {
             first: userInfo?.name.first,
             last: userInfo?.name.last
         },
-        email: userInfo?.email
+        email: userInfo?.email,
+        password: userInfo?.password
     }
 
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({

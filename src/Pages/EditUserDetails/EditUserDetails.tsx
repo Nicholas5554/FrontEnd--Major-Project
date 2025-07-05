@@ -53,6 +53,17 @@ const EditUserDetails = () => {
                 <span className="w-32 text-sm text-red-500">{errors.email?.message}</span>
             </div>
 
+            <div className="flex flex-col w-full">
+                <FloatingLabel className="dark:text-white"
+                    type="password"
+                    variant="standard"
+                    label="Password"
+                    defaultValue={userInfo?.password || ""}
+                    {...register("password")}
+                />
+                <span className="w-32 text-sm text-red-500">{errors.password?.message}</span>
+            </div>
+
             <button className="w-full h-10 text-sm text-white transition-colors rounded-md bg-neutral-500 hover:bg-neutral-600" onClick={navToProfile}>
                 Go Back
             </button>
