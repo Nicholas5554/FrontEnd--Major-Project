@@ -12,7 +12,7 @@ const AddWorker = () => {
     } = addWorker();
 
     return (
-        <form onSubmit={handleSubmit(submitForm)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg w-[30%]">
+        <form onSubmit={handleSubmit(submitForm)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg ">
 
             <h1 className="text-2xl font-bold dark:text-white">Worker Registration</h1>
 

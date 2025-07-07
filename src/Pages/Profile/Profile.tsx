@@ -8,7 +8,7 @@ const Profile = () => {
     } = profile();
 
     return (
-        <div className="text-center dark:text-white w-[20%] flex flex-col justify-center items-center gap-2">
+        <div className="flex flex-col items-center justify-center gap-2 mt-5 text-center dark:text-white">
 
             <h1 className="text-3xl font-bold text-teal-500">Profile Page</h1>
             <br />

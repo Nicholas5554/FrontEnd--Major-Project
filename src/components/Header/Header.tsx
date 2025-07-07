@@ -15,7 +15,7 @@ const Header = () => {
     } = header();
 
     return (
-        <Navbar fluid className="list-none shadow bg-slate-200 dark:bg-gray-900">
+        <Navbar fluid className="w-full overflow-x-auto list-none shadow bg-slate-200 dark:bg-gray-900">
             <Navbar.Link className="flex flex-row gap-2">
                 <img src="/dark-mouse.jpeg" alt="dark-mouse" className="w-[40px] h-[40px]" />
                 <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">NEX</span>
