@@ -2,11 +2,19 @@ import { Button } from "flowbite-react";
 import { TbError404 } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 
+const token = localStorage.getItem("token");
+if (!token) {
+    localStorage.setItem("token", "");
+}
+
 const Error = () => {
 
     const path = useNavigate();
     const pathHome = () => {
-        path('/');
+        path("/profile");
+        if (!token) {
+            path("/");
+        }
     }
 
     return (
