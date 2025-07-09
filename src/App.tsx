@@ -62,7 +62,7 @@ const App = () => {
     };
 
     fetchUser();
-  }, []);
+  }, [token]);
 
 
 

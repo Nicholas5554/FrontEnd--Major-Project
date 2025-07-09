@@ -57,7 +57,7 @@ const EditUserDetails = () => {
                 <FloatingLabel className="dark:text-white"
                     type="password"
                     variant="standard"
-                    label="Password"
+                    label="New Password"
                     defaultValue={userInfo?.password || ""}
                     {...register("password")}
                 />
