@@ -1,50 +1,11 @@
 import { Button, Card } from "flowbite-react";
 import { profile } from "../../Hooks/profile";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { userActions } from "../../Store/userSlice";
 
 const Profile = () => {
     const {
         user,
         navToChange
     } = profile();
-
-
-    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-
-
-    const { VITE_API_URL } = import.meta.env;
-    const dispatch = useDispatch();
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-        localStorage.setItem("token", "");
-    }
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            const token = localStorage.getItem("token");
-
-            if (token) {
-                try {
-                    axios.defaults.headers.common["x-auth-token"] = token;
-                    const res = await axios.get(`${VITE_API_URL}/users/me`);
-                    dispatch(userActions.login(res.data));
-                } catch (error) {
-                    localStorage.removeItem("token");
-                }
-            }
-            setIsCheckingAuth(false);
-        };
-
-        fetchUser();
-    }, []);
-
-    if (isCheckingAuth) {
-        return <div className="mt-10 text-xl text-white">Loading...</div>; // or a spinner
-    }
 
     return (
         <div className="flex flex-col items-center justify-center gap-2 mt-5 text-center dark:text-white">
