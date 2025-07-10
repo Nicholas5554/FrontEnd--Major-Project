@@ -16,7 +16,7 @@ const EditUserDetails = () => {
     } = editUser();
 
     return (
-        <form onSubmit={handleSubmit(submitForm)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg">
+        <form onSubmit={handleSubmit(submitForm)} className="flex flex-col items-center justify-center gap-4 p-4 m-auto mt-20 rounded-lg shadow-lg w-72">
 
             <h1 className="text-2xl font-bold dark:text-white">Edit User Details</h1>
 
