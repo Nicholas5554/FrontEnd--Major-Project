@@ -28,20 +28,20 @@ const Header = () => {
                     <TextInput rightIcon={FaSearch} onChange={search} />
                 </Navbar.Brand>}
 
-                <DarkThemeToggle className="mt-0.8" />
+                <DarkThemeToggle className="mt-1" />
 
                 {!user && <Navbar.Link as={Link} href="/" to="/" active={loc === '/'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
-           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-1.5">
+           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-2">
                     Home
                 </Navbar.Link>}
 
                 <Navbar.Link as={Link} href="/about" to="/about" active={loc === '/about'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
-           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-1.5">
+           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-2">
                     About
                 </Navbar.Link>
 
                 {user && (<Navbar.Link as={Link} href="/profile" to="/profile" active={loc === '/profile'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
-           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-1.5">
+           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-2">
                     Profile
                 </Navbar.Link>)}
 
@@ -154,20 +154,20 @@ const Header = () => {
                 </Dropdown>}
 
                 {!user && (<Navbar.Link as={Link} href="/register" to="/register" active={loc === '/register'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
-           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-1.5">
+           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-2">
                     Register
                 </Navbar.Link>)}
 
                 {!user && (
                     <Navbar.Link as={Link} href="/login" to="/login" active={loc === '/login'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
-           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-1.5">
+           after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-2">
                         Login
                     </Navbar.Link>
                 )}
 
                 {user && (
                     <Navbar.Link className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
-           after:h-[2px] after:w-0 after:bg-red-600 after:transition-all after:duration-300 text-lg cursor-pointer mt-1.5"
+           after:h-[2px] after:w-0 after:bg-red-600 after:transition-all after:duration-300 text-lg cursor-pointer mt-2"
                         onClick={logout}
                         style={{
                             color: "crimson", fontWeight: "bold"

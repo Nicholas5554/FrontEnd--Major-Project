@@ -14,7 +14,7 @@ const About = () => {
             <br />
             <h2 className="font-bold text-teal-500">How It Works</h2>
             <p>
-                NEX allows users to create an account and log in to access their personalized dashboard. Users can create tasks, assign them to team members by the Id of the member, and track progress. The discussion boards enables communication, making it easy to collaborate on projects(make sure to add users by Id as well and separate them by ",").
+                NEX allows users to create an account and log in to access their dashboard. Users can create tasks and discussions and assign them to team members by choosing one of the workers they added.
             </p>
             <br />
 
