@@ -88,7 +88,9 @@ const EditDiscussionDetails = () => {
                 </div>
             </div>
 
-            <Button type="submit" disabled={!isValid} className="w-full dark:text-white">
+            <Button type="submit" disabled={!isValid} onClick={() => {
+                console.log(errors);
+            }} className="w-full dark:text-white">
                 Save Changes
             </Button>
 

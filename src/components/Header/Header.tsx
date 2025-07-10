@@ -28,7 +28,7 @@ const Header = () => {
                     <TextInput rightIcon={FaSearch} onChange={search} />
                 </Navbar.Brand>}
 
-                <DarkThemeToggle className="mt-0.5" />
+                <DarkThemeToggle className="mt-0.8" />
 
                 {!user && <Navbar.Link as={Link} href="/" to="/" active={loc === '/'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
            after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 text-lg mt-1.5">
