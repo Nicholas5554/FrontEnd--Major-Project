@@ -1,6 +1,6 @@
 
 import Footer from "./components/Footer/Footer";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import About from "./Pages/About/About";
 import Home from "./Pages/Home/Home";
 import Error from "./Pages/Error/Error";
@@ -39,11 +39,14 @@ const App = () => {
 
   const { VITE_API_URL } = import.meta.env;
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const token = localStorage.getItem("token");
+
   if (!token) {
     localStorage.setItem("token", "");
   }
+
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -64,14 +67,15 @@ const App = () => {
     fetchUser();
   }, []);
 
-
-
-
   const user = useSelector((state: TRootState) => state.userSlice.user);
+
   if (isCheckingAuth) {
-    return <div className="mt-10 text-xl text-white">Loading...</div>; // or a spinner
+    return <div className="mt-10 text-xl text-white">Loading...</div>;
   }
 
+  if (location.pathname === "/" && user !== null) {
+    return <Navigate to="/profile" replace />
+  }
 
   return (
     <>
@@ -79,14 +83,17 @@ const App = () => {
         <Header />
       </header>
       <main className="flex flex-col items-center justify-start min-h-screen gap-4 dark:bg-gray-800">
-        <Routes>
-          {!user && <Route path="/" element={<Home />} />}
-          <Route path="/about" element={<About />} />
 
-          <Route path="/profile" element={
+        <Routes>
+
+          <Route path="/" element={<Home />} />
+
+          {user && <Route path="/profile" element={
             <RouteGuard user={user!}>
               <Profile />
-            </RouteGuard>} />
+            </RouteGuard>} />}
+
+          <Route path="/about" element={<About />} />
 
           {user?.isManager && <Route path="/addworker" element={
             <RouteGuard user={user!}>
@@ -165,9 +172,9 @@ const App = () => {
 
 
 
+          <Route path="/*" element={<Error />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/*" element={<Error />} />
           <Route path="/task/:id" element={<TaskDetails />} />
           <Route path="/discussion/:id" element={<DiscussionDetails />} />
 
