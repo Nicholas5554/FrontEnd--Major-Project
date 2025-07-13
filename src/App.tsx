@@ -47,7 +47,6 @@ const App = () => {
     localStorage.setItem("token", "");
   }
 
-
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
