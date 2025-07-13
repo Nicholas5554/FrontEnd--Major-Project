@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import 'animate.css';
-import { IoIosPhoneLandscape } from "react-icons/io";
+/* import { IoIosPhoneLandscape } from "react-icons/io"; */
 import { FaListAlt } from "react-icons/fa";
 
 
