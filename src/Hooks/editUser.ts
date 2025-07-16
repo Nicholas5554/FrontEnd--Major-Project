@@ -24,7 +24,6 @@ export const editUser = () => {
             last: userInfo?.name.last
         },
         email: userInfo?.email,
-        password: userInfo?.password
     }
 
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({

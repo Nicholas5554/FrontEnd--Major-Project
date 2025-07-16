@@ -20,7 +20,7 @@ const About = () => {
 
             <h2 className="font-bold text-teal-500">Features</h2>
             <ul>
-                <li>User authentication and personalized dashboards</li>
+                <li>User authentication</li>
                 <li>Create, edit, delete, and manage tasks easily</li>
                 <li>Discussion boards for collaboration</li>
                 <li>Responsive and minimalistic design for a smooth experience</li>
