@@ -78,7 +78,7 @@ const App = () => {
 
   return (
     <>
-      <header>
+      <header className="sticky">
         <Header />
       </header>
       <main className="flex flex-col items-center justify-start min-h-screen gap-4 dark:bg-gray-800">
