@@ -24,13 +24,9 @@ const Header = () => {
             <Navbar.Toggle />
             <Navbar.Collapse>
 
-                <Navbar.Brand>
-                    <TextInput
-                        rightIcon={FaSearch}
-                        onChange={search}
-                        className="block sm:block md:hidden lg:block"
-                    />
-                </Navbar.Brand>
+                {loc !== "/" && loc !== "/about" && loc !== "/profile" && loc !== "/createtask" && loc !== "/creatediscussion" && loc !== "/login" && loc !== "/register" && loc !== "/addworker" && <Navbar.Brand >
+                    <TextInput rightIcon={FaSearch} onChange={search} className="block sm:block md:hidden lg:block" />
+                </Navbar.Brand>}
 
                 <DarkThemeToggle className="mt-1" />
 
