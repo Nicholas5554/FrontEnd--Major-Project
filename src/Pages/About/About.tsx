@@ -1,6 +1,6 @@
 const About = () => {
     return (
-        <div className="text-center dark:text-white w-[90vw] text-lg">
+        <div className="text-center dark:text-white w-[90vw] text-lg mt-3">
             <h1 className="font-bold text-teal-500">This Is NEX</h1>
             <p className="size-auto">
                 NEX is a minimalist task organizer designed to help teams and individuals stay organized, collaborate seamlessly, and achieve their goals.
