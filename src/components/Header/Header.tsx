@@ -46,25 +46,25 @@ const Header = () => {
                 </Navbar.Link>)}
 
 
-                {user && <Dropdown label="Workers" style={{
+                {user?.isManager && <Dropdown label="Workers" style={{
                     background: "#3b4450", color: "white", fontWeight: "bold"
                 }}>
-                    {user?.isManager && (
-                        <DropdownItem>
-                            <Navbar.Link as={Link} href="/addworker" to="/addworker" active={loc === '/addworker'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+
+                    <DropdownItem>
+                        <Navbar.Link as={Link} href="/addworker" to="/addworker" active={loc === '/addworker'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
            after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
-                                Add Worker
-                            </Navbar.Link>
-                        </DropdownItem>
-                    )}
-                    {user?.isManager && (
-                        <DropdownItem>
-                            <Navbar.Link as={Link} href="/myworkers" to="/myworkers" active={loc === '/myworkers'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
+                            Add Worker
+                        </Navbar.Link>
+                    </DropdownItem>
+
+
+                    <DropdownItem>
+                        <Navbar.Link as={Link} href="/myworkers" to="/myworkers" active={loc === '/myworkers'} className="relative hover:after:w-full after:absolute after:left-0 after:-bottom-1 
            after:h-[2px] after:w-0 after:bg-gray-400 after:transition-all after:duration-300 text-lg">
-                                My Assigned Workers
-                            </Navbar.Link>
-                        </DropdownItem>
-                    )}
+                            My Assigned Workers
+                        </Navbar.Link>
+                    </DropdownItem>
+
                 </Dropdown>}
 
                 {user && <Dropdown label="Tasks" style={{
