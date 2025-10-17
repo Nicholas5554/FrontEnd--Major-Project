@@ -18,6 +18,7 @@ export const registerPage = () => {
         },
         "email": "",
         "password": "",
+        "photoFile": "",
         "isManager": true
     };
 
@@ -28,9 +29,30 @@ export const registerPage = () => {
     });
 
     const submitForm = async (form: any) => {
-
         try {
-            await axios.post(`${VITE_API_URL}/users/register`, form);
+            const toBase64 = (file: any) => new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+            });
+
+            let base64Photo: any = "";
+
+            if (form.photoFile && form.photoFile.length > 0) {
+                base64Photo = await toBase64(form.photoFile[0]);
+            }
+
+            const payload = {
+                name: form.name,
+                email: form.email,
+                password: form.password,
+                isManager: form.isManager,
+                photoFile: base64Photo,
+            };
+
+            await axios.post(`${VITE_API_URL}/users/register`, payload);
+
             Swal.fire({
                 title: `Welcome ${form.name.first} ${form.name.last}`,
                 text: "successfully Registerd",
@@ -61,6 +83,7 @@ export const registerPage = () => {
                     background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                     color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined
                 });
+                console.log(error.response?.data);
             } else {
                 Swal.fire({
                     title: "Error",

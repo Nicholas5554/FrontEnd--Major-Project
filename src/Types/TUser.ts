@@ -7,5 +7,6 @@ export type TUser = {
     "email": string,
     "password": string,
     "isAdmin": boolean,
+    "photoFile"?: string,
     "isManager": boolean
 }

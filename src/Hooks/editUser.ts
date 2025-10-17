@@ -24,6 +24,7 @@ export const editUser = () => {
             last: userInfo?.name.last
         },
         email: userInfo?.email,
+        photoFile: userInfo?.photoFile
     }
 
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({
@@ -65,8 +66,28 @@ export const editUser = () => {
     const submitForm = async (form: typeof initialUser) => {
 
         try {
+
+            const toBase64 = (file: any) => new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+            });
+
+            let base64Photo: any = "";
+
+            if (form.photoFile && form.photoFile.length > 0) {
+                base64Photo = await toBase64(form.photoFile[0]);
+            }
+
+            const payload = {
+                name: form.name,
+                email: form.email,
+                photoFile: base64Photo
+            };
+
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
-            const res = await axios.put(`${VITE_API_URL}/users/` + userInfo?._id, form);
+            const res = await axios.put(`${VITE_API_URL}/users/` + userInfo?._id, payload);
             setUserInfo(res.data);
 
             Swal.fire({

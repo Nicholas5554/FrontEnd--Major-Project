@@ -13,7 +13,8 @@ const Profile = () => {
             <h1 className="text-3xl font-bold text-teal-500">Profile Page</h1>
             <br />
             <div className="flex flex-wrap items-center justify-center w-full gap-4">
-                <Card className="flex items-center justify-center w-auto">
+                <Card className="flex items-center justify-center max-w-sm">
+                    {user?.photoFile && <img src={user?.photoFile} alt="User Photo" />}
                     <h1>Name : {user?.name.first} {user?.name.last}</h1>
                     <h2>Email : {user?.email}</h2>
                     <p>Status : {user?.isManager ? "Manager User" : "Personal User"}</p>
