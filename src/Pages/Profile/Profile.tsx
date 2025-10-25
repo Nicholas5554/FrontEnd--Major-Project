@@ -14,7 +14,7 @@ const Profile = () => {
             <br />
             <div className="flex flex-wrap items-center justify-center w-full gap-4">
                 <Card className="flex items-center justify-center max-w-sm">
-                    {user?.photoFile && <img src={user?.photoFile} alt="User Photo" />}
+                    {user?.photoFile && <img src={user?.photoFile} alt="User Photo" loading="lazy" />}
                     <h1>Name : {user?.name.first} {user?.name.last}</h1>
                     <h2>Email : {user?.email}</h2>
                     <p>Status : {user?.isManager ? "Manager User" : "Personal User"}</p>
@@ -23,6 +23,8 @@ const Profile = () => {
             </div>
 
             <Button onClick={navToChange} className="w-full mt-5">To Change Your Information</Button>
+
+
         </div>
 
     );

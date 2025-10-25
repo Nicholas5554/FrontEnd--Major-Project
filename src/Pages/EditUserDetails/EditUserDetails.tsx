@@ -54,8 +54,20 @@ const EditUserDetails = () => {
             </div>
 
             <div className="flex flex-col w-full px-10">
+                {/* Show current photo */}
+                {userInfo?.photoFile && (
+                    <div className="mb-3 text-center">
+                        <img
+                            src={userInfo.photoFile}
+                            alt="Current profile"
+                            className="object-cover w-16 h-16 mx-auto border-2 border-gray-300 rounded-full"
+                        />
+                        <p className="mt-1 text-xs text-gray-500">Current photo</p>
+                    </div>
+                )}
+
                 <label htmlFor="photoFile" className="mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                    Profile Photo
+                    Profile Photo (Optional)
                 </label>
                 <input
                     id="photoFile"
@@ -64,6 +76,7 @@ const EditUserDetails = () => {
                     className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     {...register("photoFile")}
                 />
+                <p className="mt-1 text-xs text-gray-500">Leave empty to keep current photo</p>
                 {errors.photoFile && (
                     <span className="w-full mt-1 text-sm text-red-500">{errors.photoFile.message as string}</span>
                 )}

@@ -12,20 +12,19 @@ import { TUser } from "../Types/TUser";
 const { VITE_API_URL } = import.meta.env;
 
 export const editUser = () => {
-    const [userInfo, setUserInfo] = useState<TUser | null>(null);;
+    const [userInfo, setUserInfo] = useState<TUser | null>(null);
     const { id } = useParams<{ id: string }>();
     const dispatch = useDispatch();
-
     const nav = useNavigate();
 
     const initialUser = {
         name: {
-            first: userInfo?.name.first,
-            last: userInfo?.name.last
+            first: userInfo?.name?.first || "",
+            last: userInfo?.name?.last || ""
         },
-        email: userInfo?.email,
-        photoFile: userInfo?.photoFile
-    }
+        email: userInfo?.email || "",
+        photoFile: userInfo?.photoFile || ""
+    };
 
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({
         defaultValues: initialUser,
@@ -67,23 +66,23 @@ export const editUser = () => {
 
         try {
 
-            const toBase64 = (file: any) => new Promise((resolve, reject) => {
+            const toBase64 = (file: File): Promise<string> => new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
+                reader.onload = () => resolve(reader.result as string);
                 reader.onerror = reject;
             });
 
-            let base64Photo: any = "";
+            let base64Photo = userInfo?.photoFile || "";
 
-            if (form.photoFile && form.photoFile.length > 0) {
+            if (form.photoFile && typeof form.photoFile !== 'string' && 'length' in form.photoFile) {
                 base64Photo = await toBase64(form.photoFile[0]);
             }
 
             const payload = {
                 name: form.name,
                 email: form.email,
-                photoFile: base64Photo
+                photoFile: base64Photo // Will be either new photo or existing photo
             };
 
             axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "";
@@ -92,7 +91,7 @@ export const editUser = () => {
 
             Swal.fire({
                 title: "success",
-                text: "user info updated successfully",
+                text: "Your info was updated successfully",
                 icon: "success",
                 confirmButtonColor: '#3085d6',
                 timer: 1500,
@@ -119,6 +118,8 @@ export const editUser = () => {
                 background: document.documentElement.classList.contains("dark") ? "#1f2937" : undefined,
                 color: document.documentElement.classList.contains("dark") ? "#f9fafb" : undefined,
             })
+            console.log(error);
+
         }
     }
 

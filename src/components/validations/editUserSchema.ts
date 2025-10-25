@@ -21,10 +21,6 @@ export const editUserSchema = Joi.object({
             "string.empty": "Email is required",
             "any.required": "Email is required"
         }),
-    photoFile: Joi.alternatives()
-        .try(
-            Joi.any(),
-            Joi.string().regex(/^data:image\/(jpeg|png|gif|webp|svg\+xml);base64,([A-Za-z0-9+/=])+$/)
-        )
-        .optional()
+    photoFile: Joi.any().optional()
+
 });

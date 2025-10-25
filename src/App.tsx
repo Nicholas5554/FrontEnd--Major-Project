@@ -1,4 +1,3 @@
-
 import Footer from "./components/Footer/Footer";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import About from "./Pages/About/About";
@@ -26,11 +25,18 @@ import EditDiscussionDetails from "./Pages/EditDiscussion/EditDiscussion";
 import CreateDiscussion from "./Pages/CreateDiscussion/CreateDiscussion";
 import MyDiscussions from "./Pages/MyDiscussions/MyDiscussions";
 import ShowComments from "./Pages/ShowComments/ShowComments";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { userActions } from "./Store/userSlice";
 import axios from "axios";
 import AddWorker from "./Pages/AddWorker/Addworker";
 import MyWorkers from "./Pages/MyWorkers/MyWorkers";
+
+
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center h-screen">
+    <div className="w-32 h-32 border-b-2 border-gray-900 rounded-full animate-spin"></div>
+  </div>
+);
 
 const App = () => {
 
@@ -83,101 +89,103 @@ const App = () => {
       </header>
       <main className="flex flex-col items-center justify-start min-h-screen gap-4 dark:bg-gray-800">
 
-        <Routes>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
 
-          <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />
 
-          {user && <Route path="/profile" element={
-            <RouteGuard user={user!}>
-              <Profile />
-            </RouteGuard>} />}
+            {user && <Route path="/profile" element={
+              <RouteGuard user={user!}>
+                <Profile />
+              </RouteGuard>} />}
 
-          <Route path="/about" element={<About />} />
+            <Route path="/about" element={<About />} />
 
-          {user?.isManager && <Route path="/addworker" element={
-            <RouteGuard user={user!}>
-              <AddWorker />
-            </RouteGuard>} />}
+            {user?.isManager && <Route path="/addworker" element={
+              <RouteGuard user={user!}>
+                <AddWorker />
+              </RouteGuard>} />}
 
-          {user?.isManager && <Route path="/myworkers" element={
-            <RouteGuard user={user!}>
-              <MyWorkers />
-            </RouteGuard>} />}
+            {user?.isManager && <Route path="/myworkers" element={
+              <RouteGuard user={user!}>
+                <MyWorkers />
+              </RouteGuard>} />}
 
-          <Route path="/myassignedtasks" element={
-            <RouteGuard user={user!}>
-              <MyAssignedTasks />
-            </RouteGuard>} />
+            <Route path="/myassignedtasks" element={
+              <RouteGuard user={user!}>
+                <MyAssignedTasks />
+              </RouteGuard>} />
 
-          <Route path="/mytasks" element={
-            <RouteGuard user={user!}>
-              <MyCreatedTasks />
-            </RouteGuard>} />
+            <Route path="/mytasks" element={
+              <RouteGuard user={user!}>
+                <MyCreatedTasks />
+              </RouteGuard>} />
 
-          {user?.isManager && <Route path="/createtask" element={
-            <RouteGuard user={user!}>
-              <CreateTask />
-            </RouteGuard>} />}
+            {user?.isManager && <Route path="/createtask" element={
+              <RouteGuard user={user!}>
+                <CreateTask />
+              </RouteGuard>} />}
 
-          <Route path="/edittask/:id" element={
-            <RouteGuard user={user!}>
-              <EditTask />
-            </RouteGuard>} />
+            <Route path="/edittask/:id" element={
+              <RouteGuard user={user!}>
+                <EditTask />
+              </RouteGuard>} />
 
-          <Route path="/mycreateddiscussions" element={
-            <RouteGuard user={user!}>
-              <MyCreatedDiscussions />
-            </RouteGuard>} />
+            <Route path="/mycreateddiscussions" element={
+              <RouteGuard user={user!}>
+                <MyCreatedDiscussions />
+              </RouteGuard>} />
 
-          <Route path="/mydiscussions" element={
-            <RouteGuard user={user!}>
-              <MyDiscussions />
-            </RouteGuard>} />
+            <Route path="/mydiscussions" element={
+              <RouteGuard user={user!}>
+                <MyDiscussions />
+              </RouteGuard>} />
 
-          <Route path="/creatediscussion" element={
-            <RouteGuard user={user!}>
-              <CreateDiscussion />
-            </RouteGuard>} />
+            <Route path="/creatediscussion" element={
+              <RouteGuard user={user!}>
+                <CreateDiscussion />
+              </RouteGuard>} />
 
-          <Route path="/edituser/:id" element={
-            <RouteGuard user={user!}>
-              <EditUserDetails />
-            </RouteGuard>} />
+            <Route path="/edituser/:id" element={
+              <RouteGuard user={user!}>
+                <EditUserDetails />
+              </RouteGuard>} />
 
-          <Route path="/editdiscussion/:id" element={
-            <RouteGuard user={user!}>
-              <EditDiscussionDetails />
-            </RouteGuard>} />
+            <Route path="/editdiscussion/:id" element={
+              <RouteGuard user={user!}>
+                <EditDiscussionDetails />
+              </RouteGuard>} />
 
-          <Route path="/discussion/:id/comments" element={
-            <RouteGuard user={user!}>
-              <ShowComments />
-            </RouteGuard>} />
+            <Route path="/discussion/:id/comments" element={
+              <RouteGuard user={user!}>
+                <ShowComments />
+              </RouteGuard>} />
 
-          {user?.isAdmin && <Route path="/crm" element={
-            <RouteGuard user={user!}>
-              <Crm />
-            </RouteGuard>} />}
+            {user?.isAdmin && <Route path="/crm" element={
+              <RouteGuard user={user!}>
+                <Crm />
+              </RouteGuard>} />}
 
-          {user?.isAdmin && <Route path="/taskscrm" element={
-            <RouteGuard user={user!}>
-              <TasksCrm />
-            </RouteGuard>} />}
+            {user?.isAdmin && <Route path="/taskscrm" element={
+              <RouteGuard user={user!}>
+                <TasksCrm />
+              </RouteGuard>} />}
 
-          {user?.isAdmin && <Route path="/discussionscrm" element={
-            <RouteGuard user={user!}>
-              <DiscussionsCrm />
-            </RouteGuard>} />}
+            {user?.isAdmin && <Route path="/discussionscrm" element={
+              <RouteGuard user={user!}>
+                <DiscussionsCrm />
+              </RouteGuard>} />}
 
 
 
-          <Route path="/*" element={<Error />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/task/:id" element={<TaskDetails />} />
-          <Route path="/discussion/:id" element={<DiscussionDetails />} />
+            <Route path="/*" element={<Error />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/task/:id" element={<TaskDetails />} />
+            <Route path="/discussion/:id" element={<DiscussionDetails />} />
 
-        </Routes>
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
     </>
