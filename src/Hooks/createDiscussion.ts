@@ -92,7 +92,7 @@ export const createDiscussion = () => {
             }
         }
         getWorkers();
-    })
+    }, [])
 
     const navToMyDiscussions = () => {
         nav("/mycreateddiscussions");
