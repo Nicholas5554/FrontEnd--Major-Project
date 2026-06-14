@@ -18,5 +18,35 @@
   .dark .swal2-select:focus {
     outline: none;
     border-color: #60a5fa !important;
-    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5); 
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5);
   }
+
+@keyframes rainbow-cycle {
+  0%   { background-color: #2563eb; box-shadow: 0 0 16px #2563ebaa; }
+  14%  { background-color: #7c3aed; box-shadow: 0 0 16px #7c3aedaa; }
+  28%  { background-color: #db2777; box-shadow: 0 0 16px #db2777aa; }
+  42%  { background-color: #dc2626; box-shadow: 0 0 16px #dc2626aa; }
+  57%  { background-color: #ea580c; box-shadow: 0 0 16px #ea580caa; }
+  71%  { background-color: #16a34a; box-shadow: 0 0 16px #16a34aaa; }
+  85%  { background-color: #0891b2; box-shadow: 0 0 16px #0891b2aa; }
+  100% { background-color: #2563eb; box-shadow: 0 0 16px #2563ebaa; }
+}
+
+.magic-button-active {
+  animation: rainbow-cycle 2s linear infinite;
+  transform: scale(1.05);
+}
+
+@keyframes sparkle-out {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(200deg); opacity: 0; }
+}
+
+.sparkle-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: sparkle-out 0.9s ease-out forwards;
+  z-index: 10;
+  font-size: 1.1rem;
+  line-height: 1;
+}
